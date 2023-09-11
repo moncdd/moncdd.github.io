@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>1.5. Ejecución de código en el servidor y en el cliente | Unidad01 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-4"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad01</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 1. Arquitecturas web</a></li>
+   <li class="current-page-parent"><a href="1_caractersticas_de_la_programacin_web.html" class="current-page-parent daddy">1. Características de la programación web</a>
+   <ul>
+      <li><a href="11_pginas_web_estticas_y_dinmicas.html" class="no-ch">1.1. Páginas web estáticas y dinámicas</a></li>
+      <li><a href="12_aplicaciones_web.html" class="no-ch">1.2. Aplicaciones web</a></li>
+      <li><a href="13_historia_de_la_web.html" class="no-ch">1.3. Historia de la web</a></li>
+      <li><a href="14_versiones_de_la_web.html" class="no-ch">1.4. Versiones de la web</a></li>
+      <li id="active"><a href="15_ejecucin_de_cdigo_en_el_servidor_y_en_el_cliente.html" class="active no-ch">1.5. Ejecución de código en el servidor y en el cliente</a></li>
+      <li><a href="ejercicios.html" class="no-ch">Ejercicios</a></li>
+   </ul>
+   </li>
+   <li><a href="2_tecnologas_para_programacin_web_del_lado_del_servidor.html" class="daddy">2. Tecnologías para programación web del lado del servidor</a>
+   <ul class="other-section">
+      <li><a href="21_arquitecturas_y_plataformas.html" class="no-ch">2.1. Arquitecturas y plataformas</a></li>
+      <li><a href="22_seleccin_de_una_arquitectura_de_programacin_web.html" class="no-ch">2.2. Selección de una arquitectura de programación web</a></li>
+      <li><a href="23_integracin_con_el_servidor_web.html" class="no-ch">2.3. Integración con el servidor web</a></li>
+      <li><a href="24_protocolos_de_aplicaciones_web.html" class="no-ch">2.4. Protocolos de aplicaciones web</a></li>
+      <li><a href="ejercicios0.html" class="no-ch">Ejercicios</a></li>
+   </ul>
+   </li>
+   <li><a href="3_lenguajes.html" class="daddy">3. Lenguajes</a>
+   <ul class="other-section">
+      <li><a href="31_cdigo_embebido_en_el_lenguaje_de_marcas.html" class="no-ch">3.1. Código embebido en el lenguaje de marcas</a></li>
+      <li><a href="32_lenguajes_backend_y_frontend.html" class="no-ch">3.2. Lenguajes Back-End y Front-End</a></li>
+      <li><a href="ejercicios1.html" class="no-ch">Ejercicios</a></li>
+   </ul>
+   </li>
+   <li><a href="4_herramientas_de_programacin.html" class="no-ch">4. Herramientas de programación</a></li>
+   <li><a href="5_instalacin_del_entorno_de_trabajo.html" class="daddy">5. Instalación del entorno de trabajo</a>
+   <ul class="other-section">
+      <li><a href="51_ejecutar_cdigo_en_xampp.html" class="no-ch">5.1. Ejecutar código en XAMPP</a></li>
+      <li><a href="ejercicios2.html" class="no-ch">Ejercicios</a></li>
+   </ul>
+   </li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="14_versiones_de_la_web.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="ejercicios.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">1.5. Ejecución de código en el servidor y en el cliente</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id5">
+<div class="iDevice emphasis0" >
+<div id="ta5_126_2" class="block iDevice_content">
+<div class="exe-text"><p>Como vimos, cuando tu navegador solicita a un servidor web una página, es posible que antes de enviártela haya tenido que ejecutar, por sí mismo o por delegación, algún programa para obtenerla. Ese programa es el que genera, en parte o en su totalidad, la página web que llega a tu equipo. En estos casos, <strong>el código se ejecuta en el entorno del servidor web.</strong></p>
+<p>Además, cuando una página web llega a tu navegador, es también posible que incluya algún programa o fragmentos de código que se deban ejecutar. Ese código, normalmente en lenguaje<strong> JavaScript, se ejecutará en tu navegador</strong> y, además de poder modificar el contenido de la página, también puede llevar a cabo acciones como la animación de textos u objetos de la página o la comprobación de los datos que introduces en un formulario.</p>
+<p><strong>Estas dos tecnologías se complementan una con otra.</strong> Así, volviendo al ejemplo del correo web, el programa que se encarga de obtener tus mensajes y su contenido de una base de datos se ejecuta en el entorno del servidor, mientras que tu navegador ejecuta, por ejemplo, el código encargado de avisarte cuando quieres enviar un mensaje y te has olvidado de poner un texto en el asunto.</p>
+<p><img src="imagen.4.png" width="479" height="318" alt="Figura 5. Ejemplo de página web" style="display: block; margin-left: auto; margin-right: auto;" /></p>
+<p>Esta división es así porque <strong>el código que se ejecuta en el cliente web</strong> (en tu navegador) no tiene, o mejor dicho tradicionalmente <strong>no tenía, acceso a los datos que se almacenan en el servidor.</strong> Es decir, cuando en tu navegador querías leer un nuevo correo, el código Javascript que se ejecutaba en el mismo no podía obtener de la base de datos el contenido de ese mensaje. La solución era crear una nueva página en el servidor con la información que se pedía y enviarla de nuevo al navegador.</p>
+<p>Sin embargo, desde hace unos años existe una<strong> técnica de desarrollo web conocida como AJAX</strong>, que nos posibilita realizar programas en los que el código JavaScript que se ejecuta en el navegador pueda comunicarse con un servidor de Internet para obtener información con la que, por ejemplo, modificar la página web actual.</p>
+<p>Por ejemplo, cuando pulsas con el ratón encima de un correo que quieres leer, la página puede contener código Javascript que detecte la acción y, en ese instante, consultar a través de Internet el texto que contiene ese mismo correo y mostrarlo en la misma página, modificando su estructura en caso de que sea necesario. Es decir, sin salir de una página poder modificar su contenido en base a la información que se almacena en un servidor de Internet.</p>
+<p>En este módulo vas a aprender a crear aplicaciones web que se ejecuten en el lado del servidor. Otro módulo de este mismo ciclo, <strong>Desarrollo Web en Entorno Cliente,</strong> enseña las características de la programación de código que se ejecute en el navegador web.</p>
+<p>Muchas de las <strong>aplicaciones web actuales utilizan estas dos tecnologías:</strong> la ejecución de <strong>código en el servidor y en el cliente.</strong> Así, el código que se ejecuta en el servidor genera páginas web que ya incluyen código destinado a su ejecución en el navegador.</p></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="14_versiones_de_la_web.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="ejercicios.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>

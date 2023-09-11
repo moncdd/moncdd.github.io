@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="content.css" />
 <link rel="stylesheet" type="text/css" href="nav.css" />
 <meta http-equiv="content-type" content="text/html;  charset=utf-8" />
-<title>Unidad01 </title>
+<title>2.4. Protocolos de aplicaciones web | Unidad01 </title>
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
 <meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
@@ -15,13 +15,13 @@
 <script type="text/javascript" src="common.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
-<body class="exe-web-site" id="exe-node-0"><script type="text/javascript">document.body.className+=" js"</script>
+<body class="exe-web-site" id="exe-node-15"><script type="text/javascript">document.body.className+=" js"</script>
 <div id="content">
 <p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
 <header id="header" ><div id="headerContent">Unidad01</div></header>
 <nav id="siteNav">
 <ul>
-   <li id="active"><a href="index.html" class="active daddy main-node">Unidad 1. Arquitecturas web</a></li>
+   <li><a href="index.html" class="daddy main-node">Unidad 1. Arquitecturas web</a></li>
    <li><a href="1_caractersticas_de_la_programacin_web.html" class="daddy">1. Características de la programación web</a>
    <ul class="other-section">
       <li><a href="11_pginas_web_estticas_y_dinmicas.html" class="no-ch">1.1. Páginas web estáticas y dinámicas</a></li>
@@ -32,12 +32,12 @@
       <li><a href="ejercicios.html" class="no-ch">Ejercicios</a></li>
    </ul>
    </li>
-   <li><a href="2_tecnologas_para_programacin_web_del_lado_del_servidor.html" class="daddy">2. Tecnologías para programación web del lado del servidor</a>
-   <ul class="other-section">
+   <li class="current-page-parent"><a href="2_tecnologas_para_programacin_web_del_lado_del_servidor.html" class="current-page-parent daddy">2. Tecnologías para programación web del lado del servidor</a>
+   <ul>
       <li><a href="21_arquitecturas_y_plataformas.html" class="no-ch">2.1. Arquitecturas y plataformas</a></li>
       <li><a href="22_seleccin_de_una_arquitectura_de_programacin_web.html" class="no-ch">2.2. Selección de una arquitectura de programación web</a></li>
       <li><a href="23_integracin_con_el_servidor_web.html" class="no-ch">2.3. Integración con el servidor web</a></li>
-      <li><a href="24_protocolos_de_aplicaciones_web.html" class="no-ch">2.4. Protocolos de aplicaciones web</a></li>
+      <li id="active"><a href="24_protocolos_de_aplicaciones_web.html" class="active no-ch">2.4. Protocolos de aplicaciones web</a></li>
       <li><a href="ejercicios0.html" class="no-ch">Ejercicios</a></li>
    </ul>
    </li>
@@ -59,44 +59,22 @@
 </nav>
 <div id='topPagination'>
 <nav class="pagination noprt">
-<a href="1_caractersticas_de_la_programacin_web.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+<a href="23_integracin_con_el_servidor_web.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="ejercicios0.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
 </nav>
 </div>
 <div id="main-wrapper">
 <section id="main">
-<header id="nodeDecoration"><h1 id="nodeTitle">Unidad 1. Arquitecturas web</h1></header>
-<article class="iDevice_wrapper textIdevice em_iDevice" id="id0">
-<div class="iDevice emphasis1" >
-<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">Objetivos</h1></header>
-<div class="iDevice_inner">
-<div class="iDevice_content_wrapper">
-<div id="ta0_121_2" class="block iDevice_content">
-<div class="exe-text"><ul>
-<li>Reconocer las arquitecturas web</li>
-<li>Seleccionar las arquitecturas web</li>
-<li>Conocer las herramientas de programación web</li>
+<header id="nodeDecoration"><h1 id="nodeTitle">2.4. Protocolos de aplicaciones web</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id16">
+<div class="iDevice emphasis0" >
+<div id="ta16_124_2" class="block iDevice_content">
+<div class="exe-text"><p>Una dirección URL tiene la finalidad de acceder a un recurso en un servidor. Todas las direcciones URL tienen diferentes partes:</p>
+<ul>
+<li><strong>Protocolo:</strong> se indica antes de :// y en la web el protocolo que se utiliza es HTTP ( Hypertext Transfer Protocol) o HTTPS ( Hypertext Transfer Protocol Secure). Mediante los navegadores el cliente puede hacer las peticiones de recursos y visualizar las respuestas que recibe del servidor web utilizando el protocolo. Existen otros protocolos como FTP.</li>
+<li><strong>Dirección del servidor:</strong> el lugar de donde se desea obtener el recurso.</li>
+<li><strong>Puerto:</strong> el puerto del servidor destinado a la aplicación encargada de gestionar las peticiones HTTP (puerto del servidor web). En caso de que no esté especificado se utiliza el puerto estándar por HTTP (el puerto 80) o HTTPS (el puerto 443).</li>
+<li><strong>Ruta hasta el recurso:</strong> corresponde a la ruta en la carpeta dentro del servidor web donde se encuentra el recurso.<br />Recurso: es el recurso o archivo que pedimos al servidor.</li>
 </ul></div>
-</div>
-</div>
-</div>
-</div>
-</article>
-<article class="iDevice_wrapper textIdevice em_iDevice" id="id1">
-<div class="iDevice emphasis1" >
-<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">Contenidos</h1></header>
-<div class="iDevice_inner">
-<div class="iDevice_content_wrapper">
-<div id="ta1_122_2" class="block iDevice_content">
-<div class="exe-text"><ul>
-<li>Modelos de ejecución de código en entornos cliente/servidor.</li>
-<li>Generación dinámica de páginas web.</li>
-<li>Lenguajes de programación y tecnologías asociadas en entorno servidor.</li>
-<li>Integración con los lenguajes de marcas.</li>
-<li>Integración con los servidores web.</li>
-<li>Herramientas y frameworks de programación. en entorno servidor.</li>
-</ul></div>
-</div>
-</div>
 </div>
 </div>
 </article>
@@ -107,7 +85,7 @@
 </div>
 <div id='bottomPagination'>
 <nav class="pagination noprt">
-<a href="1_caractersticas_de_la_programacin_web.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+<a href="23_integracin_con_el_servidor_web.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="ejercicios0.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
 </nav>
 </div>
 </div>

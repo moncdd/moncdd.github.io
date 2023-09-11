@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>2. Tecnologías para programación web del lado del servidor | Unidad01 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-5"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad01</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 1. Arquitecturas web</a></li>
+   <li><a href="1_caractersticas_de_la_programacin_web.html" class="daddy">1. Características de la programación web</a>
+   <ul class="other-section">
+      <li><a href="11_pginas_web_estticas_y_dinmicas.html" class="no-ch">1.1. Páginas web estáticas y dinámicas</a></li>
+      <li><a href="12_aplicaciones_web.html" class="no-ch">1.2. Aplicaciones web</a></li>
+      <li><a href="13_historia_de_la_web.html" class="no-ch">1.3. Historia de la web</a></li>
+      <li><a href="14_versiones_de_la_web.html" class="no-ch">1.4. Versiones de la web</a></li>
+      <li><a href="15_ejecucin_de_cdigo_en_el_servidor_y_en_el_cliente.html" class="no-ch">1.5. Ejecución de código en el servidor y en el cliente</a></li>
+      <li><a href="ejercicios.html" class="no-ch">Ejercicios</a></li>
+   </ul>
+   </li>
+   <li id="active"><a href="2_tecnologas_para_programacin_web_del_lado_del_servidor.html" class="active daddy">2. Tecnologías para programación web del lado del servidor</a>
+   <ul>
+      <li><a href="21_arquitecturas_y_plataformas.html" class="no-ch">2.1. Arquitecturas y plataformas</a></li>
+      <li><a href="22_seleccin_de_una_arquitectura_de_programacin_web.html" class="no-ch">2.2. Selección de una arquitectura de programación web</a></li>
+      <li><a href="23_integracin_con_el_servidor_web.html" class="no-ch">2.3. Integración con el servidor web</a></li>
+      <li><a href="24_protocolos_de_aplicaciones_web.html" class="no-ch">2.4. Protocolos de aplicaciones web</a></li>
+      <li><a href="ejercicios0.html" class="no-ch">Ejercicios</a></li>
+   </ul>
+   </li>
+   <li><a href="3_lenguajes.html" class="daddy">3. Lenguajes</a>
+   <ul class="other-section">
+      <li><a href="31_cdigo_embebido_en_el_lenguaje_de_marcas.html" class="no-ch">3.1. Código embebido en el lenguaje de marcas</a></li>
+      <li><a href="32_lenguajes_backend_y_frontend.html" class="no-ch">3.2. Lenguajes Back-End y Front-End</a></li>
+      <li><a href="ejercicios1.html" class="no-ch">Ejercicios</a></li>
+   </ul>
+   </li>
+   <li><a href="4_herramientas_de_programacin.html" class="no-ch">4. Herramientas de programación</a></li>
+   <li><a href="5_instalacin_del_entorno_de_trabajo.html" class="daddy">5. Instalación del entorno de trabajo</a>
+   <ul class="other-section">
+      <li><a href="51_ejecutar_cdigo_en_xampp.html" class="no-ch">5.1. Ejecutar código en XAMPP</a></li>
+      <li><a href="ejercicios2.html" class="no-ch">Ejercicios</a></li>
+   </ul>
+   </li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="ejercicios.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="21_arquitecturas_y_plataformas.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">2. Tecnologías para programación web del lado del servidor</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id6">
+<div class="iDevice emphasis0" >
+<div id="ta6_127_2" class="block iDevice_content">
+<div class="exe-text"><p>Cuando programas una <strong>aplicación</strong>, utilizas un <strong>lenguaje de programación</strong>. Por ejemplo, utilizas el lenguaje Java para crear aplicaciones que se ejecuten en distintos sistemas operativos. Al programar cada aplicación utilizas ciertas herramientas como un entorno de desarrollo o librerías de código. Además, una vez acabado su desarrollo, esa aplicación necesitará ciertos componentes para su ejecución, como por ejemplo una máquina virtual de Java.</p>
+<p>En este bloque <strong>vas a aprender las distintas tecnologías</strong> que se pueden utilizar para <strong>programar aplicaciones</strong> que se ejecuten en un <strong>servidor web</strong>, y cómo se relacionan unas con otras. Verás las ventajas e inconvenientes de utilizar cada una, y qué lenguajes de programación deberás aprender para utilizarlas.</p>
+<p>Los<strong> componentes principales</strong> con los que debes contar para ejecutar aplicaciones web en un servidor son los siguientes:</p>
+<ul>
+<li>Un <strong>servidor web</strong> para recibir las peticiones de los clientes web (normalmente navegadores) y enviarles la página que solicitan (una vez generada puesto que hablamos de páginas web dinámicas). El servidor web debe conocer el procedimiento a seguir para generar la página web: qué módulo se encargará de la ejecución del código y cómo se debe comunicar con él.</li>
+<li>El <strong>módulo encargado de ejecutar el código</strong> o programa y generar la página web resultante. Este módulo debe integrarse de alguna forma con el servidor web, y dependerá del lenguaje y tecnología que utilicemos para programar la aplicación web.</li>
+<li>Una <strong>aplicación de base de datos</strong>, que normalmente también será un servidor. Este módulo no es estrictamente necesario pero en la práctica se utiliza en todas las aplicaciones web que utilizan grandes cantidades de datos para almacenarlos.</li>
+<li>El <strong>lenguaje de programación</strong> que utilizarás para desarrollar las aplicaciones.</li>
+</ul>
+<p>Además de los componentes a utilizar, también es importante decidir cómo vas a <strong>organizar el código</strong> de la aplicación. Muchas de las arquitecturas que se usan en la programación de aplicaciones web te ayudan a estructurar el código de las aplicaciones en <strong>capas o niveles.</strong></p>
+<p>El motivo de dividir en capas el diseño de una aplicación es que se puedan <strong>separar las funciones lógicas</strong> de la misma, de tal forma que sea posible ejecutar cada una en un servidor distinto (en caso de que sea necesario).</p>
+<p><img src="imagen.5.png" width="809" height="367" alt="Figura 7. Patrón MVC" style="display: block; margin-left: auto; margin-right: auto;" /></p>
+<p>En una aplicación puedes distinguir, de forma general, <strong>funciones de presentación</strong> (se encarga de dar formato a los datos para presentárselo al usuario final), <strong>lógica</strong> (utiliza los datos para ejecutar un proceso y obtener un resultado), <strong>persistencia</strong> (que mantiene los datos almacenados de forma organizada) y <strong>acceso</strong> (que obtiene e introduce datos en el espacio de almacenamiento).</p>
+<p>Cada capa puede ocuparse de una o varias de las funciones anteriores. Las aplicaciones web actuales utilizan lo que se conoce como <strong>arquitectura de tres niveles</strong> (en inglés three-tier architecture). Estas capas o niveles son:</p>
+<ul>
+<li><strong>Capa de presentación:</strong> Maneja la parte de la aplicación web que ve el usuario. Es decir, se encarga de la forma de <strong>presentar la información al usuario.</strong> Consta del código del lado del cliente (HTML, JavaScript,...) que le llega al navegador, aunque ese código haya sido generado originalmente por una tecnología del lado del servidor.</li>
+<li><strong>Capa lógica:</strong> Es la encargada de gestionar el <strong>funcionamiento de la aplicación</strong>. En ella se encuentran los documentos escritos en un lenguaje que se debe de interpretar en el lado del servidor (por ello, esta capa está relacionada con el servidor de aplicaciones) y cuyo resultado se enviará al servidor web para que este, a su vez, lo envíe al cliente que hizo la petición.</li>
+<li><strong>Capa de negocio:</strong> Es la que contiene la <strong>información empresarial</strong>. Esta información siempre tiene como requerimiento que quede oculta a cualquier persona sin autorización. En esta capa, fundamentalmente, se encuentra el<strong> sistema gestor de bases de datos</strong> (SGBD) de la empresa, además de otros servidores que proporcionan otros recursos empresariales (como servidores de vídeo, audio, certificados …)</li>
+</ul>
+<p>El diseño de cada una de estas capas influye a la hora de seleccionar uno u otro modelo de programación en la Web. Dichos modelos de programación cliente/servidor pueden clasificarse de este modo atendiendo a diferentes criterios. Así, es posible clasificarlos dependiendo del tamaño de los componentes, por la naturaleza del servicio ofrecido o según el reparto de funciones entre cliente y servidor:</p>
+<ul>
+<li><strong>Según el tamaño de los componentes:</strong> esta primera clasificación hace referencia a qué elemento de la arquitectura web debe soportar más o menos carga de procesamiento. Se habla de configuraciones <strong>Fat Client (thin Server)</strong>, donde el mayor peso de la aplicación se ejecuta en el cliente relegando al servidor a un mero administrador de datos; o <strong>Fat Server (thin client),</strong> donde la funcionalidad asociada al cliente está limitada a la presentación de la información enviada por el servidor.</li>
+<li><strong>Según la naturaleza del servicio ofrecido:</strong> también es posible clasificar los entornos cliente/servidor en<br />función de las capacidades ofrecidas por el servidor. De esta forma, podemos encontrar <strong>servidores de ficheros,</strong><br />donde el objetivo del cliente es el acceso a datos contenidos en ficheros; <strong>servidores de bases de datos</strong>, que se<br />centran en la provisión y administración de sistemas gestores de bases de datos; <strong>servidores de transacciones,</strong><br />centrados en el concepto de transacción con el objetivo de que los flujos de información con el cliente se realicen<br />en un solo mensaje solicitud/respuesta; <strong>servidores de objetos,</strong> cuya principal característica es la utilización de<br />objetos intercomunicados, tanto en el cliente como en el servidor; o <strong>servidores web,</strong> que conforman la base del<br />modelo World Wide Web y que está fundamentado en la existencia de clientes simples que se comunican con<br />servidores web utilizando HTTP como protocolo de comunicación.</li>
+<li><strong>Reparto de funciones entre cliente y servidor:</strong> las diferentes tecnologías web existentes permiten gestionar<br />y distribuir las responsabilidades de cada una de las prestaciones funcionales entre el cliente y el servidor. Lo<br />más habitual es tener una configuración cliente/servidor de <strong>dos o tres capas</strong>, dependiendo de si las capas de<br />negocio y datos se agrupan (modelo en dos capas) o si se separan (modelo en tres capas). La separación en dos<br />o tres capas la podemos ver, además, tanto desde el punto de vista del software como del hardware. También existen otras configuraciones <strong>N capas.</strong></li>
+</ul></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="ejercicios.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="21_arquitecturas_y_plataformas.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>
