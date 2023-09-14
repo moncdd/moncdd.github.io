@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>2.2. Cadenas de texto | Unidad01 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-30"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad01</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 2. Inserción de código en páginas web</a></li>
+   <li><a href="1_programacin_web_con_php.html" class="daddy">1. Programación web con PHP</a>
+   <ul class="other-section">
+      <li><a href="11_variables_en_php.html" class="no-ch">1.1. Variables en PHP</a></li>
+      <li><a href="12_tipos_de_datos_en_php.html" class="no-ch">1.2. Tipos de datos en PHP</a></li>
+      <li><a href="13_expresiones_y_operadores.html" class="no-ch">1.3. Expresiones y operadores</a></li>
+      <li><a href="14_mbito_de_utilizacin_de_variables.html" class="no-ch">1.4. Ámbito de utilización de variables</a></li>
+      <li><a href="15_funciones_relacionadas_con_los_tipos_de_datos.html" class="no-ch">1.5. Funciones relacionadas con los tipos de datos</a></li>
+      <li><a href="16_constantes.html" class="no-ch">1.6. Constantes</a></li>
+      <li><a href="17_asignacin_de_variables_por_referencia.html" class="no-ch">1.7. Asignación de variables por referencia</a></li>
+   </ul>
+   </li>
+   <li class="current-page-parent"><a href="2_elementos_del_lenguaje_php.html" class="current-page-parent daddy">2. Elementos del lenguaje PHP</a>
+   <ul>
+      <li><a href="21_generacin_de_cdigo_html.html" class="no-ch">2.1. Generación de código HTML</a></li>
+      <li id="active"><a href="22_cadenas_de_texto.html" class="active no-ch">2.2. Cadenas de texto</a></li>
+      <li><a href="23_funciones_relacionadas_con_las_cadenas_de_texto.html" class="no-ch">2.3. Funciones relacionadas con las cadenas de texto</a></li>
+      <li><a href="24_extensiones_de_php_para_trabajar_con_fechas_y_horas.html" class="no-ch">2.4. Extensiones de PHP para trabajar con fechas y horas</a></li>
+   </ul>
+   </li>
+   <li><a href="3_ejercicios.html" class="no-ch">3. Ejercicios</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="21_generacin_de_cdigo_html.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="23_funciones_relacionadas_con_las_cadenas_de_texto.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">2.2. Cadenas de texto</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id42">
+<div class="iDevice emphasis0" >
+<div id="ta42_128_2" class="block iDevice_content">
+<div class="exe-text"><p>En PHP las cadenas de texto pueden usar tanto <strong>comillas simples</strong> como <strong>comillas dobles</strong>. Sin embargo hay una diferencia importante entre usar unas u otras. Cuando se pone una variable dentro de unas <strong>comillas dobles, se procesa y se sustituye por su valor.</strong> Así, el ejemplo anterior sobre el uso de print también podía haberse puesto de la siguiente forma:</p>
+<blockquote>
+<p>&lt;?php</p>
+<p>   $modulo="DWES";</p>
+<p>   print "&lt;p&gt;Módulo: $modulo&lt;/p&gt;";</p>
+<p>?&gt;</p>
+</blockquote>
+<p>La variable $modulo se reconoce dentro de las comillas dobles, y se sustituye por el valor "DWES" antes de generar la salida. Si esto mismo lo hubieras hecho utilizando <strong>comillas simples, no se realizaría sustitución alguna.</strong></p>
+<p><strong>Para que PHP distinga correctamente el texto que forma la cadena del nombre de la variable, a veces es necesario rodearla entre llaves.</strong></p>
+<blockquote>
+<p>print "&lt;p&gt;Módulo: ${modulo}&lt;/p&gt;";</p>
+</blockquote>
+<p>Cuando se usan <strong>comillas simples</strong>, sólo se realizan <strong>dos sustituciones dentro de la cadena:</strong> cuando se encuentra la secuencia de caracteres <strong>\', se muestra en la salida una comilla simple;</strong> y cuando se encuentra la secuencia<strong> \\, se muestra en la salida una barra invertida.</strong></p>
+<p>Estas secuencias se conocen como secuencias de escape. En las cadenas que usan comillas dobles, además de la secuencia \\, se pueden usar algunas más, pero no la secuencia \'. En esta tabla puedes ver las secuencias de escape que se pueden<br />utilizar, y cuál es su resultado.</p>
+<p style="text-align: center;">Secuencias de escape.</p>
+<table style="width: 53.8235%; margin-left: auto; margin-right: auto;" border="1">
+<tbody>
+<tr>
+<td style="width: 11.0784%; text-align: center;">Secuencia</td>
+<td style="width: 42.7451%;">Resultado</td>
+</tr>
+<tr>
+<td style="width: 11.0784%; text-align: center;">\\</td>
+<td style="width: 42.7451%;">se muestra una barra invertida.</td>
+</tr>
+<tr>
+<td style="width: 11.0784%; text-align: center;">\'</td>
+<td style="width: 42.7451%;">se muestra una comilla simple.</td>
+</tr>
+<tr>
+<td style="width: 11.0784%; text-align: center;">\"</td>
+<td style="width: 42.7451%;">se muestra una comilla doble.</td>
+</tr>
+<tr>
+<td style="width: 11.0784%; text-align: center;">\n</td>
+<td style="width: 42.7451%;">se muestra un avance de línea (LF o 0x0A (10) en ASCII).</td>
+</tr>
+<tr>
+<td style="width: 11.0784%; text-align: center;">\r</td>
+<td style="width: 42.7451%;">se muestra un retorno de carro (CR o 0x0D (13) en ASCII).</td>
+</tr>
+<tr>
+<td style="width: 11.0784%; text-align: center;">\t</td>
+<td style="width: 42.7451%;">se muestra un tabulador horizontal (HT o 0x09 (9) en ASCII).</td>
+</tr>
+<tr>
+<td style="width: 11.0784%; text-align: center;">\v</td>
+<td style="width: 42.7451%;">se muestra un tabulador vertical (VT o 0x0B (11) en ASCII).</td>
+</tr>
+<tr>
+<td style="width: 11.0784%; text-align: center;">\f</td>
+<td style="width: 42.7451%;">se muestra un avance de página (FF o 0x0C (12) en ASCII).</td>
+</tr>
+<tr>
+<td style="width: 11.0784%; text-align: center;">\$</td>
+<td style="width: 42.7451%; text-align: center;">se muestra un signo del dólar.</td>
+</tr>
+</tbody>
+</table>
+<p>En PHP tienes dos operadores exclusivos para trabajar con cadenas de texto. Con el <strong>operador de concatenación punto (.)</strong> puedes unir las dos cadenas de texto que le pases como operandos. El <strong>operador de asignación y concatenación (.=)</strong> concatena al argumento del lado izquierdo la cadena del lado derecho.</p>
+<p>En PHP tienes otra alternativa para crear cadenas: <strong>la sintaxis heredoc</strong>. Consiste en poner el <strong>operador &lt;&lt;&lt; seguido de un identificador</strong> de tu elección, y a continuación y empezando en la línea siguiente la cadena de texto, sin utilizar comillas. <strong>La cadena finaliza cuando escribes ese mismo identificador en una nueva línea</strong>. Esta línea de cierre no debe llevar más caracteres, ni siquiera espacios o sangría, salvo quizás un punto y coma después del identificador.</p>
+<blockquote>
+<p>&lt;?php</p>
+<p>   $a = &lt;&lt;&lt;MICADENA</p>
+<p>      Desarrollo de Aplicaciones Web&lt;br /&gt;</p>
+<p>      Desarrollo Web en Entorno Servidor</p>
+<p>   MICADENA;</p>
+<p>   print $a;</p>
+<p>?&gt;</p>
+</blockquote>
+<p>El texto se procesa de igual forma que si fuera una cadena entre comillas dobles, sustituyendo variables y secuencias de escape. <strong>Si no quisieras que se realizara ninguna sustitución, debes poner el identificador de apertura entre comillas simples.</strong></p>
+<blockquote>
+<p>...</p>
+<p>$a = &lt;&lt;&lt;'MICADENA'</p>
+<p>...</p>
+<p>MICADENA;</p>
+</blockquote>
+<p><a href="https://www.php.net/manual/es/language.types.string.php">Ver cadenas de caracteres (Strings) en php.net</a></p></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="21_generacin_de_cdigo_html.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="23_funciones_relacionadas_con_las_cadenas_de_texto.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>
