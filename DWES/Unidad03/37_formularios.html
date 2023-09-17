@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>3.7. Formularios | Unidad 03 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-43"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad 03</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 3. Programación basada en lenguajes de marcas con código embebido</a></li>
+   <li><a href="31_introduccin_a_las_estructuras_de_control.html" class="no-ch">3.1. Introducción a las estructuras de control</a></li>
+   <li><a href="32_sentencias_condicionales.html" class="no-ch">3.2. Sentencias condicionales</a></li>
+   <li><a href="33_instrucciones_iterativas.html" class="no-ch">3.3. Instrucciones iterativas</a></li>
+   <li><a href="34_sintaxis_alternativa_de_estructuras_de_control.html" class="no-ch">3.4. Sintaxis alternativa de estructuras de control</a></li>
+   <li><a href="35_tipos_de_datos_compuestos_arrays_vectores_y_matrices.html" class="no-ch">3.5. Tipos de datos compuestos. Arrays (vectores y matrices)</a></li>
+   <li><a href="36_funciones.html" class="no-ch">3.6. Funciones</a></li>
+   <li id="active"><a href="37_formularios.html" class="active no-ch">3.7. Formularios</a></li>
+   <li><a href="38_inclusin_de_ficheros_externos.html" class="no-ch">3.8. Inclusión de ficheros externos</a></li>
+   <li><a href="39_redirigir_a_otra_pgina.html" class="no-ch">3.9. Redirigir a otra página</a></li>
+   <li><a href="310_ejercicios.html" class="no-ch">3.10. Ejercicios</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="36_funciones.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="38_inclusin_de_ficheros_externos.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">3.7. Formularios</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id70">
+<div class="iDevice emphasis0" >
+<div id="ta70_125_2" class="block iDevice_content">
+<div class="exe-text"><p>La forma natural para hacer llegar a la aplicación web los datos del usuario desde un navegador, es utilizar formularios HTML.</p>
+<p>Los formularios HTML van encerrados siempre entre las etiquetas <strong>&lt;form&gt;</strong><br /><strong>&lt;/form&gt;</strong>. Dentro de un formulario se incluyen los elementos sobre los que puede actuar el usuario, principalmente usando las etiquetas <strong>&lt;input&gt;, &lt;select&gt;, &lt;textarea&gt; y &lt;button&gt;.</strong></p>
+<p>El atributo <strong>action</strong> del elemento form indica la página a la que se le enviarán los datos del formulario. En nuestro caso se tratará de un script PHP.</p>
+<p>Por su parte, el atributo <strong>method</strong> especifica el método usado para enviar la información. Este atributo puede tener dos valores:</p>
+<ul>
+<li><strong>get</strong>: con este método los datos del formulario se agregan al URI utilizando un signo de interrogación "?" como separador.</li>
+<li><strong>post</strong>: con este método los datos se incluyen en el cuerpo del formulario y se envían utilizando el protocolo HTTP.</li>
+</ul>
+<p>Como vamos a ver, los datos se recogerán de distinta forma dependiendo de cómo se envíen.</p></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id71">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">3.6.1. Procesamiento de información recibida por un formulario</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta71_126_2" class="block iDevice_content">
+<div class="exe-text"><p>Crea un formulario en una página HTML que recoja datos del usuario y los envie a una página PHP para que los procese. Si usas el método POST, los datos se pueden recoger utilizando la variable <strong>$_POST</strong>. Si por el contrario usas el método GET, el código necesario para procesar los datos sería similar; simplemente haría falta cambiar la variable $_POST por <strong>$_GET.</strong></p>
+<p>En cualquiera de los dos casos podrías haber usado $_REQUEST sustituyendo respectivamente a $_POST y a $_GET. <span style="background-color: #ffff00;"><strong>(Este método está desaconsejado)</strong></span></p>
+<p>Siempre que sea posible, es preferible validar los datos que se introducen en el navegador antes de enviarlos. Para ello deberás usar los atributos HTML5 o código en lenguaje Javascript.</p>
+<p>Si por algún motivo hay <strong>datos que se tengan que validar en el servidor</strong>, por ejemplo, porque necesites comprobar que los datos de un usuario no existan ya en la base de datos antes de introducirlos, será necesario hacerlo con código PHP en la página que figura en el atributo action del formulario.</p>
+<p>En este caso, una posibilidad que deberás tener en cuenta es usar <strong>la misma página que muestra el formulario como destino de los datos.</strong> Si tras comprobar los datos éstos son correctos, se reenvía a otra página. Si son incorrectos, se rellenan los datos correctos en el formulario y se indican cuáles son incorrectos y por qué.</p>
+<p>Para hacerlo de este modo, tienes que comprobar si la página recibe datos (hay que mostrarlos y no generar el formulario), o si no recibe datos (hay que mostrar el formulario). Esto se puede hacer utilizando la función <strong>isset</strong> con una variable de las que se deben recibir (por ejemplo, poniéndole un nombre al botón de enviar y comprobando sobre él).</p>
+<p>El formulario se debe englobar dentro de una sentencia else para que sólo se genere si no se reciben datos en la página. Además, para enviar los datos a la misma página que contiene el formulario puedes usar <strong>$_SERVER['PHP_SELF']</strong> para obtener su nombre; esto hace que no se produzca un error aunque la página se cambie de nombre.</p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id73">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">3.6.2. Generación de formularios web en PHP</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta73_128_2" class="block iDevice_content">
+<div class="exe-text"><p>Un ejemplo de formulario web que envía información al mismo script sería el siguiente:</p>
+<ul>
+<li>Lo primero que se tiene que hacer es la validación de los datos. Sería algo así como:</li>
+</ul>
+<blockquote>
+<p>if (<strong>isset</strong>($_POST['nombre']) &amp;&amp; <strong>!empty</strong>($_POST['nombre']))</p>
+<p>{</p>
+<p>   // Aquí se incluye el código a ejecutar cuando los datos son correctos</p>
+<p>}</p>
+<p>else</p>
+<p>{</p>
+<p>   // Aquí generamos el formulario, indicando los datos incorrectos y rellenando los valores correctamente introducidos</p>
+<p>}</p>
+</blockquote>
+<ul>
+<li>Para que el usuario no pierda, después de enviar el formulario, los datos correctamente introducidos,  se utiliza el atributo value en las entradas de texto:</li>
+</ul>
+<blockquote>
+<p>Nombre del alumno: &lt;input type="text" name="nombre" value="<strong>&lt;?php echo $_POST['nombre'];?&gt;</strong>" /&gt;</p>
+</blockquote>
+<ul>
+<li>Para indicar al usuario los datos que no ha rellenado (o que ha rellenado de forma incorrecta), se debe comprobar si es la primera vez que se visualiza el formulario, o si ya se ha enviado. Se puede hacer por ejemplo de la siguiente forma:</li>
+</ul>
+<blockquote>
+<p>Nombre del alumno: &lt;input type="text" name="nombre" value="&lt;?php echo $_POST['nombre'];?&gt;" /&gt; <strong>&lt;?php if (isset($_POST['enviar']) &amp;&amp; empty($_POST['nombre'])) echo "&lt;span style='{color:red}'&gt; &lt;-- Debe introducir un nombre!!&lt;/span&gt;" ?&gt;</strong>&lt;br /&gt;</p>
+</blockquote>
+<p>Una forma de <strong>enviar información de una página PHP a otra (persistencia de datos)</strong>, es incluyéndola en campos ocultos dentro de un formulario. Ya veremos más adelante cómo enviar información entre páginas PHP.</p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="36_funciones.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="38_inclusin_de_ficheros_externos.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>3.3. Instrucciones iterativas | Unidad 03 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-39"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad 03</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 3. Programación basada en lenguajes de marcas con código embebido</a></li>
+   <li><a href="31_introduccin_a_las_estructuras_de_control.html" class="no-ch">3.1. Introducción a las estructuras de control</a></li>
+   <li><a href="32_sentencias_condicionales.html" class="no-ch">3.2. Sentencias condicionales</a></li>
+   <li id="active"><a href="33_instrucciones_iterativas.html" class="active no-ch">3.3. Instrucciones iterativas</a></li>
+   <li><a href="34_sintaxis_alternativa_de_estructuras_de_control.html" class="no-ch">3.4. Sintaxis alternativa de estructuras de control</a></li>
+   <li><a href="35_tipos_de_datos_compuestos_arrays_vectores_y_matrices.html" class="no-ch">3.5. Tipos de datos compuestos. Arrays (vectores y matrices)</a></li>
+   <li><a href="36_funciones.html" class="no-ch">3.6. Funciones</a></li>
+   <li><a href="37_formularios.html" class="no-ch">3.7. Formularios</a></li>
+   <li><a href="38_inclusin_de_ficheros_externos.html" class="no-ch">3.8. Inclusión de ficheros externos</a></li>
+   <li><a href="39_redirigir_a_otra_pgina.html" class="no-ch">3.9. Redirigir a otra página</a></li>
+   <li><a href="310_ejercicios.html" class="no-ch">3.10. Ejercicios</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="32_sentencias_condicionales.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="34_sintaxis_alternativa_de_estructuras_de_control.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">3.3. Instrucciones iterativas</h1></header>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id61">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">3.3.1. while</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta61_125_2" class="block iDevice_content">
+<div class="exe-text"><p>Usando while puedes definir un bucle que se ejecuta mientras se cumpla una expresión booleana.<strong> La expresión se evalúa antes de comenzar cada ejecución del bucle.</strong></p>
+<p><a href="https://www.php.net/manual/es/control-structures.while.php">Ver while en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id62">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">3.3.2. do / while</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta62_126_2" class="block iDevice_content">
+<div class="exe-text"><p>Es un bucle similar al anterior, pero <strong>la expresión se evalúa al final,</strong> con lo cual se asegura que la sentencia o conjunto de sentencias del bucle <strong>se ejecutan al menos una vez.</strong></p>
+<p><a href="https://www.php.net/manual/es/control-structures.do.while.php">Ver do-while en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id63">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">3.3.3. for</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta63_127_2" class="block iDevice_content">
+<div class="exe-text"><p>Son los bucles más complejos de PHP. Al igual que los del lenguaje C, se componen de tres expresiones:</p>
+<blockquote>
+<p>for (expr1; expr2; expr3) sentencia o conjunto de sentencias;</p>
+</blockquote>
+<ul>
+<li>La primera expresión, expr1, se ejecuta solo una vez al comienzo del bucle.</li>
+<li>La segunda expresión, expr2, se evalúa para saber si se debe ejecutar o no la sentencia o conjunto de sentencias. Si el resultado el false, el bucle termina. Si el resultado es true, se ejecutan las sentencias y al finalizar</li>
+<li>Se ejecuta la tercera expresión, expr3, y se vuelve a evaluar expr2 para decidir si se vuelve a ejecutar o no el bucle.</li>
+</ul>
+<p><a href="https://www.php.net/manual/es/control-structures.for.php">Ver for en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id64">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">3.3.4. break / continue</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta64_128_2" class="block iDevice_content">
+<div class="exe-text"><p>Se pueden anidar cualquiera de los bucles anteriores en varios niveles.</p>
+<p>Si se desea salir del bucle en un momento determinado, se puede usar la sentencia <strong>break.</strong></p>
+<p>Por otro lado, si lo que interesa es omitir una iteración concreta pero no salir del bucle, <strong>continue</strong> omite una iteración pasando a la siguiente en la ejecución del bucle.</p>
+<p><a href="https://www.php.net/manual/es/control-structures.break.php">Ver la sentencia break en php.net</a></p>
+<p><a href="https://www.php.net/manual/es/control-structures.continue.php">Ver la sentencia continue en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="32_sentencias_condicionales.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="34_sintaxis_alternativa_de_estructuras_de_control.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>

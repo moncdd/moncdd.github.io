@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>3.5. Tipos de datos compuestos. Arrays (vectores y matrices) | Unidad 03 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-40"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad 03</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 3. Programación basada en lenguajes de marcas con código embebido</a></li>
+   <li><a href="31_introduccin_a_las_estructuras_de_control.html" class="no-ch">3.1. Introducción a las estructuras de control</a></li>
+   <li><a href="32_sentencias_condicionales.html" class="no-ch">3.2. Sentencias condicionales</a></li>
+   <li><a href="33_instrucciones_iterativas.html" class="no-ch">3.3. Instrucciones iterativas</a></li>
+   <li><a href="34_sintaxis_alternativa_de_estructuras_de_control.html" class="no-ch">3.4. Sintaxis alternativa de estructuras de control</a></li>
+   <li id="active"><a href="35_tipos_de_datos_compuestos_arrays_vectores_y_matrices.html" class="active no-ch">3.5. Tipos de datos compuestos. Arrays (vectores y matrices)</a></li>
+   <li><a href="36_funciones.html" class="no-ch">3.6. Funciones</a></li>
+   <li><a href="37_formularios.html" class="no-ch">3.7. Formularios</a></li>
+   <li><a href="38_inclusin_de_ficheros_externos.html" class="no-ch">3.8. Inclusión de ficheros externos</a></li>
+   <li><a href="39_redirigir_a_otra_pgina.html" class="no-ch">3.9. Redirigir a otra página</a></li>
+   <li><a href="310_ejercicios.html" class="no-ch">3.10. Ejercicios</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="34_sintaxis_alternativa_de_estructuras_de_control.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="36_funciones.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">3.5. Tipos de datos compuestos. Arrays (vectores y matrices)</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id65">
+<div class="iDevice emphasis0" >
+<div id="ta65_129_2" class="block iDevice_content">
+<div class="exe-text"><p>Un <strong>tipo de datos compuesto</strong> es aquel que te permite <strong>almacenar más de un valor.</strong> En PHP puedes utilizar dos tipos de datos compuestos: el <strong>array</strong> y el <strong>objeto</strong>. Los objetos los veremos más adelante; vamos a empezar con los arrays.</p>
+<p>Un array es un tipo de datos que nos permite <strong>almacenar varios valores</strong>. Cada miembro del array se almacena en una <strong>posición</strong> a la que se hace referencia utilizando un <strong>valor clave</strong>. Las claves pueden ser <strong>numéricas</strong> o <strong>asociativas</strong>.</p>
+<blockquote>
+<p>//array numérico</p>
+<p>$modulos1 = array(0 =&gt; "Programación", 1 =&gt; "Bases de datos", ..., 9 =&gt; "Desarrollo web en entorno servidor");</p>
+<p>//array asociativo</p>
+<p>$modulos2 = array("PR" =&gt; "Programación", "BD" =&gt; "Bases de datos", ..., "DWES" =&gt; "Desarrollo web en entorno servidor");</p>
+</blockquote>
+<p>Para hacer referencia a los elementos almacenados en un array, tienes que utilizar el <strong>valor clave entre corchetes:</strong></p>
+<blockquote>
+<p>$modulos1 [9]</p>
+<p>$modulos2 ["DWES"]</p>
+</blockquote>
+<p>Los arrays anteriores son <strong>vectores</strong>, esto es, <strong>arrays unidimensionales</strong>. En PHP puedes crear también arrays de varias dimensiones almacenando otro array en cada uno de los elementos de un array. Los <strong>arrays bidimensionales</strong> o de dos dimensiones se conocen como <strong>matrices</strong>:</p>
+<blockquote>
+<p>//array bidimensional</p>
+<p>$ciclos = array( "DAW" =&gt; array ("PR" =&gt; "Programación", "BD" =&gt; "Bases de datos", ..., "DWES" =&gt; "Desarrollo web en entorno servidor"), "DAM" =&gt; array ("PR" =&gt; "Programación", "BD" =&gt; "Bases de datos", ..., "PMDM" =&gt; "Programación multimedia y de dispositivos móviles") );</p>
+</blockquote>
+<p>Para hacer referencia a los elementos almacenados en un array multidimensional, debes indicar las claves para cada una de las dimensiones:</p>
+<p>En PHP <strong>no es necesario que indiques el tamaño del array antes de crearlo.</strong> Ni siquiera es necesario indicar que una variable concreta es de tipo array. Simplemente puedes comenzar a asignarle valores:</p>
+<blockquote>
+<p>// array numérico</p>
+<p>$modulos1 [0] = "Programación";</p>
+<p>$modulos1 [1] = "Bases de datos"; ...</p>
+<p>$modulos1 [9] = "Desarrollo web en entorno servidor";</p>
+<p>// array asociativo $modulos2 ["PR"] = "Programación";</p>
+<p>$modulos2 ["BD"] = "Bases de datos"; ...</p>
+<p>$modulos2 ["DWES"] = "Desarrollo web en entorno servidor";</p>
+</blockquote>
+<p><strong>Ni siquiera es necesario que especifiques el valor de la clave.</strong> Si la omites, el array se irá llenando a partir de la última clave numérica existente, o de la posición 0 si no existe ninguna:</p>
+<blockquote>
+<p>$modulos1 [ ] = "Programación";</p>
+<p>$modulos1 [ ] = "Bases de datos"; ...</p>
+<p>$modulos1 [ ] = "Desarrollo web en entorno servidor";</p>
+</blockquote>
+<p>Además de asignando valores directamente, la función array permite <strong>crear un array con una sola línea de código</strong>, tal y como vimos anteriormente. Esta función recibe un conjunto de parámetros, y crea un array a partir de los valores que se le pasan. <strong>Si en los parámetros no se indica el valor de la clave, crea un array numérico (con base 0). Si no se le pasa ningún parámetro, crea un array vacío.</strong></p>
+<blockquote>
+<p>$a = array(); <strong>//array vacío</strong></p>
+<p>$modulos = array("Programación", "Bases de datos", ..., "Desarrollo web en entorno servidor"); <strong>//array numérico</strong></p>
+</blockquote>
+<p>Una vez definido un array puedes añadir nuevos elementos (no definiendo el índice, o utilizando un índice nuevo) y modificar los ya existentes (utilizando el índice del elemento a modificar). También se pueden <strong>eliminar elementos de un array utilizando la función unset.</strong></p>
+<p>En el caso de los arrays numéricos, eliminar un elemento significa que las claves del mismo ya no estarán consecutivas.</p>
+<blockquote>
+<p><strong>unset</strong> ($modulos [0]); //El primer elemento pasa a ser $modulos [1] == "Bases de datos";</p>
+</blockquote>
+<p>La función <strong>array_values</strong> recibe un array como parámetro, y devuelve un nuevo array con los mismos elementos y con índices numéricos consecutivos con base 0.</p>
+<p>Para comprobar si una variable es de tipo array, utiliza la función<strong> is_array</strong>. Para obtener el número de elementos que contiene un array, tienes la función <strong>count</strong>.</p>
+<p>Si quieres buscar un elemento concreto dentro de un array, puedes utilizar la función<strong> in_array</strong>. Recibe como parámetros el elemento a buscar y la variable de tipo array en la que buscar, y devuelve true si encontró el elemento o false en caso contrario.</p>
+<blockquote>
+<p>$modulos = array("Programación", "Bases de datos", "Desarrollo web en entorno servidor"); $modulo = "Bases de datos";</p>
+<p>if (in_array($modulo, $modulos)) printf "Existe el módulo de nombre ".$modulo;</p>
+</blockquote>
+<p>Otra posibilidad es la función <strong>array_search</strong>, que recibe los mismos parámetros pero devuelve la clave correspondiente al elemento, o false si no lo encuentra.</p>
+<p>Y si lo que quieres buscar es un clave en un array, tienes la función <strong>array_key_exists</strong>, que devuelve true o false.</p>
+<p><a href="https://www.php.net/manual/es/language.types.array.php">Ver arrays en php.net</a></p></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id66">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">3.3.1. Recorrer arrays</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta66_121_2" class="block iDevice_content">
+<div class="exe-text"><p>Las cadenas de texto o <strong>strings</strong> se pueden tratar como <strong>arrays</strong> en los que se almacena una letra en cada posición, siendo 0 el índice correspondiente a la primera letra, 1 el de la segunda, etc.</p>
+<blockquote>
+<p>//cadena de texto</p>
+<p>$modulo = "Desarrollo web en entorno servidor"; //$modulo[3] == "a";</p>
+</blockquote>
+<p>Para recorrer los elementos de un arrays, en PHP se puede usar un bucle específico: <strong>foreach</strong>. Utiliza una variable temporal para asignarle en cada iteración el valor de cada uno de los elementos del arrays. Se puede usar de dos formas. <strong>Recorriendo sólo los elementos:</strong></p>
+<blockquote>
+<p>$modulos = arrays("PR" =&gt; "Programación", "BD" =&gt; "Bases de datos", ..., "DWES" =&gt; "Desarrollo web en entorno servidor");</p>
+<p>foreach ($modulos as $modulo) { print "Módulo: ".$modulo. "&lt;br /&gt;" }</p>
+</blockquote>
+<p>O <strong>recorriendo los elementos y sus valores clave</strong> de forma simultánea:</p>
+<blockquote>
+<p>$modulos = arrays("PR" =&gt; "Programación", "BD" =&gt; "Bases de datos", ..., "DWES" =&gt; "Desarrollo web en entorno servidor");</p>
+<p>foreach ($modulos as $codigo =&gt; $modulo) { print "El código del módulo ".$modulo." es ".$codigo."&lt;br /&gt;" }</p>
+</blockquote>
+<p>Pero en PHP también hay <strong>otra forma de recorrer los valores de un array</strong>. Cada array mantiene un puntero interno, que se puede utilizar con este fin. Utilizando funciones específicas, se puede avanzar, retroceder o inicializar el puntero, así como recuperar los valores del elemento (o de la pareja clave / elemento) al que apunta el puntero en cada momento. Algunas de estas funciones son:</p>
+<ul>
+<li>reset: Sitúa el puntero interno al comienzo del array.</li>
+<li>next: Avanza el puntero interno una posición.</li>
+<li>prev: Mueve el puntero interno una posición hacia atrás.</li>
+<li>end: Sitúa el puntero interno al final del array.</li>
+<li>current: Devuelve el elemento de la posición actual.</li>
+<li>key: Devuelve la clave de la posición actual.</li>
+<li>each: Devuelve un array con la clave y el elemento de la posición actual. Además, avanza el puntero interno una posición.</li>
+</ul>
+<p>Las funciones reset, next, prev y end, además de mover el puntero interno devuelven, al igual que current, el valor del nuevo elemento en que se posiciona. Si al mover el puntero te sales de los límites del array (por ejemplo, si ya estás en el último elemento y haces un next), cualquiera de ellas devuelve false. Sin embargo, al comprobar este valor devuelto no serás capaz de distinguir si te has salido de los límites del array, o si estás en una posición válida del array que contiene el valor "false".</p>
+<p>La función key devuelve null si el puntero interno está fuera de los límites del array.</p>
+<p>La función each devuelve un array con cuatro elementos. Los elementos 0 y 'key' almacenan el valor de la clave en la posición actual del puntero interno. Los elementos 1 y 'value' devuelven el valor almacenado.</p>
+<p>Si el puntero interno del array se ha pasado de los límites del array, la función each devuelve false, por lo que la puedes usar para crear un bucle que recorra el array de la siguiente forma:</p>
+<blockquote>
+<p>while ($modulo = each($modulos)) { print "El código del módulo ".$modulo[1]." es ".$modulo[0]."&lt;br /&gt;" }</p>
+</blockquote>
+<p><a href="https://www.php.net/manual/es/control-structures.foreach.php">Ver foreach en php.net</a></p>
+<p><a href="https://www.php.net/manual/es/ref.array.php">Ver funciones de arrays en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="34_sintaxis_alternativa_de_estructuras_de_control.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="36_funciones.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>
