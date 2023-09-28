@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>4.1. Autentificación de usuarios y control de acceso | Unidad 04 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-49"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad 04</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 4. Desarrollo de aplicaciones web utilizando código embebido</a></li>
+   <li id="active"><a href="41_autentificacin_de_usuarios_y_control_de_acceso.html" class="active no-ch">4.1. Autentificación de usuarios y control de acceso</a></li>
+   <li><a href="42_cookies.html" class="no-ch">4.2. Cookies</a></li>
+   <li><a href="43_manejo_de_sesiones.html" class="no-ch">4.3. Manejo de sesiones</a></li>
+   <li><a href="44_mecanismos_de_mantenimiento_del_estado.html" class="no-ch">4.4. Mecanismos de mantenimiento del estado</a></li>
+   <li><a href="45_ejercicios.html" class="no-ch">4.5. Ejercicios</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="index.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="42_cookies.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">4.1. Autentificación de usuarios y control de acceso</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id119">
+<div class="iDevice emphasis0" >
+<div id="ta119_119_2" class="block iDevice_content">
+<div class="exe-text"><p>Muchas veces es importante verificar la identidad de los dos extremos de una comunicación. En el caso de una comunicación web, existen métodos para identificar tanto al servidor en el que se aloja el sitio web, como al usuario del navegador que se encuentra en el otro extremo.</p>
+<p>Los sitios web que necesitan emplear identificación del servidor, como las tiendas o los bancos, utilizan el <strong>protocolo HTTPS</strong>. Este protocolo requiere de un <strong>certificado válido, firmado por una autoridad confiable,</strong> que es verificado por el navegador cuando se accede al sitio web. Además, HTTPS utiliza métodos de cifrado para crear un canal seguro entre el navegador y el servidor, de tal forma que no se pueda interceptar la información que se transmite por el mismo.</p>
+<p>Para identificar a los usuarios que visitan un sitio web, se pueden utilizar distintos métodos como el <strong>DNI digital o certificados digitales</strong> de usuario, pero el más extendido es solicitar al usuario cierta información que solo él conoce: la combinación de un nombre de usuario y una contraseña.</p>
+<p>En la mayoría de los casos es importante implantar en aplicaciones que gestionan información almacenada en <strong>bases de datos</strong> algún <strong>mecanismo de control de acceso que obligue al usuario a identificarse.</strong> Una vez identificado, se puede limitar el uso que puede hacer de la información.</p>
+<p>Así, puede haber sitios web en los que los <strong>usuarios autentificados pueden utilizar sólo una parte de la información</strong> (como los bancos, que permiten a sus clientes acceder únicamente a la información relativa a sus cuentas). Otros sitios web necesitan <strong>separar en grupos a los usuarios autentificados,</strong> de tal forma que la información a la que accede un usuario depende del grupo en que éste se encuentre.</p>
+<p>Por ejemplo, una aplicación de gestión de una empresa puede tener un grupo de usuarios a los que permite visualizar la información, y otro grupo de usuarios que, además de visualizar la información, también la pueden modificar.</p>
+<p>Se debe distinguir la <strong>autentificación de los usuarios y el control de acceso</strong>, de la utilización de <strong>mecanismos para asegurar las comunicaciones entre el usuario del navegador y el servidor web</strong>. Aunque ambos aspectos suelen ir unidos, son independientes.</p>
+<p>En los ejemplos de esta unidad, la información de autentificación (nombre y contraseña de los usuarios) se envía en texto plano desde el navegador hasta el servidor web. <strong>Esta práctica es altamente insegura y nunca debe usarse sin un protocolo como HTTPS que permita cifrar las comunicaciones con el servidor web</strong>. Sin embargo, la configuración de servidores web que permitan usar el protocolo HTTPS para cifrar la información que reciben y transmiten no forma parte de los contenidos de este módulo.</p>
+<p>Por este motivo, durante esta unidad utilizaremos únicamente el protocolo no seguro HTTP.</p></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id120">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">4.1.1. Mecanismos de autentificación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta120_120_2" class="block iDevice_content">
+<div class="exe-text"><p>El <strong>protocolo HTTP</strong> ofrece un método sencillo para <strong>autentificar a los usuarios</strong>. El proceso es el siguiente:</p>
+<ul>
+<li>El servidor web debe proveer algún método para definir los usuarios que se utilizarán y cómo se pueden autentificar. Además, se tendrán que definir los recursos a los que se restringe el acceso y qué <strong>lista de control de acceso (ACL)</strong> se aplica a cada uno.</li>
+<li>Cuando un usuario no autentificado intenta acceder a un recurso restringido, el servidor web responde con un error de "Acceso no autorizado" (código 401).</li>
+<li>El navegador recibe el error y abre una ventana para solicitar al usuario que se autentifique mediante su nombre y contraseña.</li>
+<li>La información de autentificación del usuario se envía al servidor, que la verifica y decide si permite o no el acceso al recurso solicitado. Esta información se mantiene en el navegador para utilizarse en posteriores peticiones a ese servidor.</li>
+</ul>
+<p>En el servidor web Apache existe una utilidad en línea de comandos, <strong>htpasswd</strong>, que <strong>permite almacenar en un fichero una lista de usuarios y sus respectivas contraseñas.</strong> La información relativa a las contraseñas se almacena cifrada; aun así, es conveniente crear este fichero en un lugar no accesible por los usuarios del servidor web.</p>
+<p>Por ejemplo, para crear el fichero de usuario y añadirle el usuario "dwes", puedes hacer:</p>
+<blockquote>
+<p>// Si no reconoce el comando, instalar apache2-utils (sudo apt install apache2-utils)<br />sudo htpasswd –c users dwes</p>
+</blockquote>
+<p>e introducir la contraseña correspondiente a ese usuario.</p>
+<p>La opción –c indica que se debe crear el fichero, por lo que solo se deberá usar cuando se introduzca el primer usuario y contraseña. Fíjate que en el ejemplo anterior, el fichero se crea en la ruta<strong> /etc/apache2/users,</strong> que en principio no es accesible vía web.</p>
+<p><span style="background-color: #ffff00;">Si trabajamos con XAMPP, creamos el archivo en /opt/lampp/etc</span></p>
+<p>Para indicarle al servidor Apache qué recursos tienen acceso restringido, una opción es crear un fichero<strong> .htaccess</strong> en el directorio en que se encuentren, con las siguientes directivas:</p>
+<blockquote>
+<p>En /opt/lampp/etc/httpd.conf buscamos &lt;Directory “/opt/lampp/htdocs”&gt;,<strong> comentamos Require all granted</strong> y escribimos:<br /><strong>AuthName</strong> "Contenido restringido"<br /><strong>AuthType Basic</strong><br /><strong>AuthUserFile</strong> /etc/apache2/users<br /><strong>require valid-user </strong></p>
+</blockquote>
+<p style="text-align: left;">El significado de cada una de las directivas anteriores es el siguiente:</p>
+<p style="text-align: center;">Directivas de autentificación en Apache.</p>
+<table style="width: 100%; height: 105px;" border="1">
+<tbody>
+<tr style="height: 21px;">
+<td style="width: 18.6726%; height: 21px;"><strong>Directiva</strong></td>
+<td style="width: 81.3274%; height: 21px;"><strong>Significado</strong></td>
+</tr>
+<tr style="height: 129px;">
+<td style="width: 18.6726%; height: 21px;">AuthName</td>
+<td style="width: 81.3274%; height: 21px;">Nombre de dominio que se usará en la autentificación. Si el cliente se autentifica correctamente, esa misma información de autentificación se utilizará automáticamente en el resto de las páginas del mismo dominio.</td>
+</tr>
+<tr style="height: 21px;">
+<td style="width: 18.6726%; height: 21px;">AuthType</td>
+<td style="width: 81.3274%; height: 21px;">Método de autentificación que se usará. Además del método Basic,<br />Apache también permite utilizar el método Digest.</td>
+</tr>
+<tr style="height: 21px;">
+<td style="width: 18.6726%; height: 21px;">AuthUserFile</td>
+<td style="width: 81.3274%; height: 21px;">Ruta al archivo de credenciales que has creado con htpasswd.</td>
+</tr>
+<tr style="height: 21px;">
+<td style="width: 18.6726%; height: 21px;">Require</td>
+<td style="width: 81.3274%; height: 21px;">Permite indicar que sólo puedan acceder algunos usuarios o grupos de usuarios concretos. Si indicamos "valid-user", podrán acceder todos los usuarios que se autentifiquen correctamente.</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: left;"><br />Además, hay que asegurar que en la configuración de Apache se utiliza la directiva <strong>AllowOverride</strong> para que se aplique correctamente la configuración que figura en los ficheros <strong>.htaccess.</strong></p>
+<p style="text-align: left;">Desde PHP puedes acceder a la información de autentificación HTTP que ha introducido el usuario utilizando el array superglobal <strong>$_SERVER.</strong></p>
+<p style="text-align: center;">Valores del array $_SERVER relacionados con la autentificación HTTP.</p>
+<table style="width: 100%;" border="1">
+<tbody>
+<tr>
+<td style="width: 36.9027%;"><strong>Valor</strong></td>
+<td style="width: 63.0974%;"><strong>Contenido</strong></td>
+</tr>
+<tr>
+<td style="width: 36.9027%;">$_SERVER['PHP_AUTH_USER']</td>
+<td style="width: 63.0974%;">Nombre de usuario que se ha introducido.</td>
+</tr>
+<tr>
+<td style="width: 36.9027%;">$_SERVER['PHP_AUTH_PW']</td>
+<td style="width: 63.0974%;">Contraseña introducida.</td>
+</tr>
+<tr>
+<td style="width: 36.9027%;">$_SERVER['AUTH_TYPE']</td>
+<td style="width: 63.0974%;">Método HTTP usado para autentificar. Puede ser Basic o Digest.</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: left;">Es decir, que si se crea una página web que muestre los valores de estas variables, y se prepara el servidor web para utilizar autentificación HTTP, cuando se accede a esa página con el usuario "dwes" obtendrás algo como lo siguiente:</p>
+<p style="text-align: left;"><img src="DWES04_CONT_R02d_Datos_autentificacion_HTTP.jpg" width="404" height="172" alt="Figura 1. Autorización mediante HTTP" style="display: block; margin-left: auto; margin-right: auto;" /></p>
+<p style="text-align: left;">Si no se introduce un usuario/contraseña válidos, el navegador te mostrará el error 401. </p>
+<p style="text-align: left;"><img src="Sin_t_C3_ADtulo.jpg" width="417" height="121" alt="Figura 2. Error 401" style="display: block; margin-left: auto; margin-right: auto;" />Además, en PHP se puede usar la<strong> función header para forzar a que el servidor envíe un error de "Acceso no autorizado" (código 401).</strong> De esta forma no es necesario utilizar ficheros .htaccess para indicarle a Apache qué recursos están restringidos. En su lugar, se puede añadir las siguientes líneas de código en las páginas PHP:</p>
+<blockquote>
+<p style="text-align: left;">&lt;?php<br />   if (!isset($_SERVER['PHP_AUTH_USER'])) {<br />      header('WWW-Authenticate: Basic Realm="Contenido restringido"');<br />   header('HTTP/1.0 401 Unauthorized');<br />   echo "Usuario no reconocido!";<br />   exit;<br />}<br />?&gt;</p>
+</blockquote>
+<p style="text-align: left;">Con el código anterior, la página envía un error 401, lo que fuerza al navegador a solicitar las credenciales de acceso (nombre de usuario y contraseña). Si se introducen, se ejecuta el resto de la página y se muestra su contenido. En este caso,<strong> habría que añadir algún código para comprobar que el nombre de usuario y contraseña son válidos,</strong> tal y como veremos a continuación. Si se pulsa el botón "Cancelar", se muestra el mensaje de error que se indica.</p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id121">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">4.1.2. Incorporación de métodos de autentificación a una aplicación web</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta121_121_2" class="block iDevice_content">
+<div class="exe-text"><p>Si se utiliza la función header para forzar al navegador a solicitar credenciales HTTP, el usuario introducirá un nombre y una contraseña. Pero <strong>el servidor no verificará esta</strong><br /><strong>información</strong>; deberás ser tú quien provea un método para comprobar que las credenciales que ha introducido el usuario son correctas.</p>
+<p>El método más simple es incluir en el código PHP de tu página las sentencias necesarias para comparar los datos introducidos con otros datos fijos. Por ejemplo, para permitir el acceso a un usuario "dwes" con contraseña "abc123.", se puede hacer:</p>
+<blockquote>
+<p>&lt;?php<br />   if ($_SERVER['PHP_AUTH_USER']!='dwes' || $_SERVER['PHP_AUTH_PW']!='abc123.')<br />   {<br />      header('WWW-Authenticate: Basic Realm="Contenido restringido"');<br />      header('HTTP/1.0 401 Unauthorized'); <br />      echo "Usuario no reconocido!";<br />      exit;<br />   }<br />?&gt;</p>
+</blockquote>
+<p>Recuerda que el código PHP no se envía al navegador, por lo que <strong>la información de autentificación que introduzcas en el código no será visible por el usuario</strong>. Sin embargo, esto hará tu <strong>código menos portable</strong>. Si se necesita modificar el nombre de usuario o la contraseña, se tendrán que hacer modificaciones en el código. Además, no se podrá permitir al usuario introducir su propia contraseña.</p>
+<p>Una solución mejor es <strong>utilizar un almacenamiento externo para los nombres de usuario y </strong><strong>sus contraseñas.</strong> Para esto se podría emplear un fichero de texto, o mejor aún, una base de datos. La información de autentificación podrá estar aislada en la base de datos, o compartir espacio de almacenamiento con los datos que utilice la aplicación web. Si se quiere almacenar la información de los usuarios en una base de datos, se tiene que crear una nueva tabla en su estructura. Aunque se podrían almacenar las contraseñas en texto plano, es mejor hacerlo en <strong>formato encriptado</strong>.</p>
+<p><a href="https://www.php.net/manual/es/features.http-auth.php">Ver autenticación HTTP con PHP en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="index.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="42_cookies.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>

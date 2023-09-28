@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>4.4. Mecanismos de mantenimiento del estado | Unidad 04 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-52"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad 04</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 4. Desarrollo de aplicaciones web utilizando código embebido</a></li>
+   <li><a href="41_autentificacin_de_usuarios_y_control_de_acceso.html" class="no-ch">4.1. Autentificación de usuarios y control de acceso</a></li>
+   <li><a href="42_cookies.html" class="no-ch">4.2. Cookies</a></li>
+   <li><a href="43_manejo_de_sesiones.html" class="no-ch">4.3. Manejo de sesiones</a></li>
+   <li id="active"><a href="44_mecanismos_de_mantenimiento_del_estado.html" class="active no-ch">4.4. Mecanismos de mantenimiento del estado</a></li>
+   <li><a href="45_ejercicios.html" class="no-ch">4.5. Ejercicios</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="43_manejo_de_sesiones.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="45_ejercicios.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">4.4. Mecanismos de mantenimiento del estado</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id126">
+<div class="iDevice emphasis0" >
+<div id="ta126_126_2" class="block iDevice_content">
+<div class="exe-text"><p>En el apartado anterior se aprendió a usar la sesión del usuario para almacenar el estado de las variables, y poder recuperarlo cuando sea necesario. El proceso es muy sencillo; se utiliza el array superglobal $_SESSION, añadiendo nuevos elementos para ir guardando la información en la sesión.p</p>
+<p>El procedimiento para almacenar objetos es similar, pero hay una diferencia importante. Todas las variables almacenan su información en memoria de una forma u otra según su tipo. Los objetos, sin embargo, no tienen un único tipo. Cada objeto tendrá unos atributos u otros en función de su clase. Por tanto, para almacenar los objetos en la sesión del usuario, hace falta convertirlos a un formato estándar. Este proceso se llama <strong>serialización.</strong></p>
+<p>En PHP, para serializar un objeto se utiliza la función <strong>serialize</strong>. El resultado obtenido es un string que contiene un flujo de bytes, en el que se encuentran definidos todos los valores del objeto.</p>
+<blockquote>
+<p>$p = new Producto();<br />$a = <strong>serialize</strong>($p);</p>
+</blockquote>
+<p>Esta cadena se puede almacenar en cualquier parte, como puede ser la sesión del usuario, o una base de datos. A partir de ella, es posible reconstruir el objeto original<br />utilizando la función <strong>unserialize.</strong></p>
+<blockquote>
+<p>$p = unserialize($a);</p>
+</blockquote>
+<p>Las funciones serialize y unserialize se utilizan mucho con objetos, pero sirven para convertir en una cadena cualquier tipo de dato, <strong>excepto el tipo resource.</strong> Cuando se<br />aplican a un objeto, convierten y recuperan toda la información del mismo, incluyendo sus atributos privados. La única información que no se puede mantener utilizando estas<br />funciones es la que contienen los atributos estáticos de las clases. Si simplemente queremos almacenar un objeto en la sesión del usuario, deberíamos hacer por tanto:</p>
+<blockquote>
+<p>session_start();<br />$_SESSION['producto'] = serialize($p);</p>
+</blockquote>
+<p>Pero en PHP esto aún es más fácil. <strong>Los objetos que se añadan a la sesión del usuario son serializados automáticamente.</strong> Por tanto, no es necesario usar serialize ni unserialize.</p>
+<blockquote>
+<p>session_start();<br />$_SESSION['producto'] = $p;</p>
+</blockquote>
+<p>Para poder deserializar un objeto, debe estar definida su clase. Al igual que antes, si se recupera de la información almacenada en la sesión del usuario, no será necesario<br />utilizar la función unserialize.</p>
+<blockquote>
+<p>session_start();<br />$p = $_SESSION['producto'];</p>
+</blockquote>
+<p>Como ya se vio en la unidad anterior, el mantenimiento de los datos en la sesión del usuario no es perfecta; tiene sus limitaciones. Si fuera necesario, es posible almacenar esta<br />información en una base de datos. Para ello se tendrá que usar las funciones serialize y unserialize , pues en este caso PHP ya no realiza la serialización automática.</p>
+<p>En PHP además se tiene la opción de personalizar el proceso de serialización y deserialización de un objeto, utilizando los métodos mágicos __sleep y __wakeup. Si en la clase está definido un método con nombre __sleep, se ejecuta antes de serializar un objeto. Igualmente, si existe un método __wakeup, se ejecuta con cualquier llamada a la función unserialize.</p>
+<p><a href="https://www.php.net/manual/es/function.serialize.php">Ver serialize en php.net</a></p>
+<p><a href="https://www.php.net/manual/es/function.unserialize.php">Ver unserialize en php.net</a></p>
+<p><a href="https://www.php.net/manual/en/language.oop5.magic.php">Ver los métodos mágicos __sleep() y __wakeup() en php.net </a></p></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="43_manejo_de_sesiones.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="45_ejercicios.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>
