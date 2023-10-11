@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>5.4. PHP Data Objects (PDO) | Unidad 05 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-57"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad 05</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 5. Utilización de técnicas de acceso a datos</a></li>
+   <li><a href="51_acceso_a_bases_de_datos_desde_php.html" class="no-ch">5.1. Acceso a bases de datos desde PHP</a></li>
+   <li><a href="52_utilizacin_de_bases_de_datos_mysql_en_php.html" class="no-ch">5.2. Utilización de bases de datos MySQL en PHP</a></li>
+   <li><a href="53_extensin_mysqli.html" class="no-ch">5.3. Extensión MySQLi</a></li>
+   <li id="active"><a href="54_php_data_objects_pdo.html" class="active no-ch">5.4. PHP Data Objects (PDO)</a></li>
+   <li><a href="55_errores_y_manejo_de_excepciones.html" class="no-ch">5.5. Errores y manejo de excepciones</a></li>
+   <li><a href="56_expresiones_regulares.html" class="no-ch">5.6. Expresiones regulares</a></li>
+   <li><a href="57_filtrado_de_datos.html" class="no-ch">5.7. Filtrado de datos</a></li>
+   <li><a href="58_xml.html" class="no-ch">5.8. XML</a></li>
+   <li><a href="59_ficheros.html" class="no-ch">5.9. Ficheros</a></li>
+   <li><a href="510_encriptacin_y_contraseas.html" class="no-ch">5.10. Encriptación y contraseñas</a></li>
+   <li><a href="511_subida_y_bajada_de_archivos.html" class="no-ch">5.11. Subida y bajada de archivos</a></li>
+   <li><a href="512_paginacin.html" class="no-ch">5.12. Paginación</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="53_extensin_mysqli.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="55_errores_y_manejo_de_excepciones.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">5.4. PHP Data Objects (PDO)</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id142">
+<div class="iDevice emphasis0" >
+<div id="ta142_142_2" class="block iDevice_content">
+<div class="exe-text"><p>Si vas a programar una aplicación que utilice como sistema gestor de bases de datos MySQL, la extensión MySQLi que acabas de ver es una buena opción. Ofrece acceso a todas las características del motor de base de datos, a la vez que reduce los tiempos de espera en la ejecución de sentencias.</p>
+<p>Sin embargo, <strong>si en el futuro tienes que cambiar el SGBD por otro distinto, tendrás que volver a programar gran parte del código de la misma.</strong> Por eso, antes de comenzar el desarrollo, es muy importante revisar las características específicas del proyecto. En el caso de que exista la posibilidad, presente o futura, de utilizar otro servidor como almacenamiento, deberás adoptar una capa de abstracción para el acceso a los datos. Existen varias alternativas como ODBC, pero sin duda la opción más recomendable en la actualidad es PDO.</p>
+<p>El objetivo es que si llegado el momento necesitas<strong> cambiar el servidor de base de datos, las modificaciones que debas realizar en tu código sean mínimas.</strong> Incluso es posible desarrollar aplicaciones preparadas para utilizar un almacenamiento u otro según se indique en el momento de la ejecución, pero éste no es el objetivo principal de PDO. <strong>PDO no abstrae de forma completa el sistema gestor que se utiliza.</strong> Por ejemplo, no modifica las sentencias SQL para adaptarlas a las características específicas de cada servidor. Si esto fuera necesario, habría que programar una capa de abstracción completa.</p>
+<p>La extensión <strong>PDO debe utilizar un driver o controlador específico para el tipo de base de datos que se utilice</strong>. Para consultar los controladores disponibles en tu instalación de PHP, puedes utilizar la información que proporciona la función phpinfo.</p>
+<p><strong>PDO se basa en las características de orientación a objetos de PHP pero, al contrario que la extensión MySQLi, no ofrece un interface de programación dual</strong>. Para acceder a las funcionalidades de la extensión tienes que emplear los objetos que ofrece, con sus métodos y propiedades. No existen funciones alternativas. A continuación podemos ver una comparativa entre PDO y MySQLi:</p>
+<table border="1" style="margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<th>Características</th>
+<th>PDO</th>
+<th>MySQLi</th>
+</tr>
+<tr>
+<td>Manejo de base de datos</td>
+<td>12 conectores diferentes</td>
+<td>MySQL solamente</td>
+</tr>
+<tr>
+<td>Conexión</td>
+<td>Fácil</td>
+<td>Fácil</td>
+</tr>
+<tr>
+<td>API</td>
+<td>OOP</td>
+<td>OOP - Procedimiento</td>
+</tr>
+<tr>
+<td>Rendimiento</td>
+<td>Rápido</td>
+<td>Rápido</td>
+</tr>
+<tr>
+<td>Llamada de parámetros</td>
+<td>Sí</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Mapeo de objetos</td>
+<td>Sí</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Procedimiento almacenado</td>
+<td>Sí</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Declaraciones preparadas de los clientes</td>
+<td>Sí</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Seguridad</td>
+<td>Más seguro que MySQLi.</td>
+<td>Seguro, pero no más que PDO.</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://www.php.net/manual/es/book.pdo.php">Ver PDO en php.net</a></p></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id143">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.4.1. Establecimiento de conexiones</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta143_143_2" class="block iDevice_content">
+<div class="exe-text"><p>Para establecer una conexión con una base de datos utilizando PDO, debes <strong>instanciar un objeto de la clase PDO</strong> pasándole los siguientes parámetros (solo el primero es obligatorio):</p>
+<ul>
+<li><strong>Origen de datos (DSN).</strong> Es una cadena de texto que indica qué controlador se va a utilizar y a continuación, separadas por el carácter dos puntos, los parámetros específicos necesarios por el controlador, como por ejemplo el nombre o dirección IP del servidor y el nombre de la base de datos.</li>
+<li><strong>Nombre de usuario</strong> con permisos para establecer la conexión.</li>
+<li><strong>Contraseña</strong> del usuario.</li>
+<li><strong>Opciones de conexión,</strong> almacenadas en forma de array.</li>
+</ul>
+<p>Por ejemplo, podemos establecer una conexión con la base de datos 'dwes' creada anteriormente de la siguiente forma:</p>
+<blockquote>
+<p>$dwes = new PDO('mysql:host=localhost;dbname=dwes', 'dwes', 'abc123.');</p>
+</blockquote>
+<p>Si como en el ejemplo, se utiliza el controlador para MySQL, los parámetros específicos para utilizar en la cadena DSN (separadas unas de otras por el carácter punto y coma) a continuación del prefijo mysql: son los siguientes:</p>
+<ul>
+<li>host. Nombre o dirección IP del servidor.</li>
+<li>port. Número de puerto TCP en el que escucha el servidor.</li>
+<li>dbname. Nombre de la base de datos.</li>
+<li>unix_socket. Socket de MySQL en sistemas Unix.</li>
+</ul>
+<p>Si quisieras indicar al servidor MySQL utilice codificación UTF-8 para los datos que se transmitan, puedes usar una opción específica de la conexión:</p>
+<blockquote>
+<p>$opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND =&gt; "SET NAMES utf8");</p>
+<p>$dwes = new PDO('mysql:host=localhost;dbname=dwes', 'dwes', 'abc123.', $opciones);</p>
+</blockquote>
+<p>Una vez establecida la conexión, puedes utilizar el método <strong>getAttribute</strong> para obtener información del estado de la conexión y <strong>setAttribute</strong> para modificar algunos parámetros que afectan a la misma. Por ejemplo, para obtener la versión del servidor puedes hacer:</p>
+<blockquote>
+<p>$version = $dwes-&gt;getAttribute(PDO::ATTR_SERVER_VERSION);</p>
+<p>print "Versión: $version";</p>
+</blockquote>
+<p>Y si quieres por ejemplo que te devuelva todos los nombres de columnas en mayúsculas:</p>
+<blockquote>
+<p>$version = $dwes-&gt;setAttribute(PDO::ATTR_CASE, PDO::CASE_UPPER);</p>
+</blockquote>
+<p><a href="https://www.php.net/manual/es/pdo.connections.php">Ver conexiones PDO en php.net</a><br /> </p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id144">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.4.2. Ejecución de consultas</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta144_144_2" class="block iDevice_content">
+<div class="exe-text"><p>Para ejecutar una consulta SQL utilizando PDO, debes diferenciar aquellas sentencias SQL que no devuelven como resultado un conjunto de datos, de aquellas otras que sí lo devuelven. En el caso de las consultas de acción, como INSERT, DELETE o UPDATE, el método exec devuelve el número de registros afectados.</p>
+<blockquote>
+<p>$registros = $dwes-&gt;exec('DELETE FROM stock WHERE unidades=0');</p>
+<p>print "&lt;p&gt;Se han borrado $registros registros.&lt;/p&gt;";</p>
+</blockquote>
+<p>Si la consulta genera un conjunto de datos, como es el caso de SELECT, debes utilizar el método query, que devuelve un objeto de la clase PDOStatement.</p>
+<blockquote>
+<p>$dwes = new PDO("mysql:host=localhost;dbname=dwes", "dwes", "abc123.");</p>
+<p>$resultado = $dwes-&gt;query("SELECT producto, unidades FROM stock");</p>
+</blockquote>
+<p>Por defecto PDO trabaja en modo "<strong>autocommit</strong>", esto es, confirma de forma automática cada sentencia que ejecuta el servidor. Para trabajar con transacciones, PDO incorpora tres métodos:</p>
+<ul>
+<li><strong>beginTransaction</strong>. Deshabilita el modo "autocommit" y comienza una nueva transacción, que finalizará cuando ejecutes uno de los dos métodos siguientes.</li>
+<li><strong>commit</strong>. Confirma la transacción actual.</li>
+<li><strong>rollback</strong>. Revierte los cambios llevados a cabo en la transacción actual.</li>
+</ul>
+<p>Una vez ejecutado un commit o un rollback, se volverá al modo de confirmación automática.</p>
+<blockquote>
+<p>$ok = true;</p>
+<p>$dwes-&gt;beginTransaction();</p>
+<p>if($dwes-&gt;exec('DELETE …') == 0) $ok = false;</p>
+<p>if($dwes-&gt;exec('UPDATE …') == 0) $ok = false;</p>
+<p>…</p>
+<p>if ($ok) $dwes-&gt;commit(); // Si todo fue bien confirma los cambios</p>
+<p>else $dwes-&gt;rollback(); // y si no, los revierte</p>
+</blockquote>
+<p>Ten en cuenta que <strong>no todos los motores no soportan transacciones.</strong> Tal es el caso, como ya viste, del motor MyISAM de MySQL. En este caso concreto, <strong>PDO ejecutará el método beginTransaction sin errores, pero naturalmente no será capaz de revertir los cambios si fuera necesario ejecutar un rollback.</strong></p>
+<p><a href="https://www.php.net/manual/es/pdo.transactions.php">Ver transacciones PDO en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id145">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.4.3. Obtención y utilización de conjuntos de resultados</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta145_145_2" class="block iDevice_content">
+<div class="exe-text"><p>Al igual que con la extensión MySQLi, en PDO tienes varias posibilidades para tratar con el conjunto de resultados devuelto por el método query. La más utilizada es el método <strong>fetch</strong> de la clase PDOStatement. Este método <strong>devuelve un registro del conjunto de resultados, o false</strong> si ya no quedan registros por recorrer.</p>
+<blockquote>
+<p>$dwes = new PDO("mysql:host=localhost;dbname=dwes", "dwes", "abc123.");</p>
+<p>$resultado = $dwes-&gt;query("SELECT producto, unidades FROM stock");</p>
+<p>while ($registro = $resultado-&gt;fetch()) {</p>
+<p>   echo "Producto ".$registro['producto'].": ".$registro['unidades']."&lt;br /&gt;";</p>
+<p>}</p>
+</blockquote>
+<p>Por defecto, el método <strong>fetch genera y devuelve a partir de cada registro un array con claves numéricas y asociativas</strong>. Para cambiar su comportamiento, admite un parámetro opcional que puede tomar uno de los siguientes valores:</p>
+<ul>
+<li><strong>PDO::FETCH_ASSOC.</strong> Devuelve solo un array asociativo.</li>
+<li><strong>PDO::FETCH_NUM.</strong> Devuelve solo un array con claves numéricas.</li>
+<li><strong>PDO::FETCH_BOTH.</strong> Devuelve un array con claves numéricas y asociativas. Es el comportamiento por defecto.</li>
+<li><strong>PDO::FETCH_OBJ</strong>. Devuelve un objeto cuyas propiedades se corresponden con los campos del registro.</li>
+</ul>
+<blockquote>
+<p>$dwes = new PDO("mysql:host=localhost;dbname=dwes", "dwes", "abc123.");</p>
+<p>$resultado = $dwes-&gt;query("SELECT producto, unidades FROM stock");</p>
+<p>while ($registro = $resultado-&gt;fetch(PDO::FETCH_OBJ)) {</p>
+<p>   echo "Producto ".$registro-&gt;producto.": ".$registro-&gt;unidades."&lt;br /&gt;";<br />}</p>
+</blockquote>
+<ul>
+<li><strong>PDO::FETCH_LAZY.</strong> Devuelve tanto el objeto como el array con clave dual anterior.</li>
+<li><strong>PDO::FETCH_BOUND.</strong> Devuelve true y asigna los valores del registro a variables, según se indique con el método bindColumn. Este método debe ser llamado una vez por cada columna, indicando en cada llamada el número de columna (empezando en 1) y la variable a asignar.</li>
+</ul>
+<blockquote>
+<p>$dwes = new PDO("mysql:host=localhost;dbname=dwes", "dwes", "abc123.");</p>
+<p>$resultado = $dwes-&gt;query("SELECT producto, unidades FROM stock");</p>
+<p>$resultado-&gt;bindColumn(1, $producto);</p>
+<p>$resultado-&gt;bindColumn(2, $unidades);</p>
+<p>while ($registro = $resultado-&gt;fetch(PDO::FETCH_OBJ)) {</p>
+<p>   echo "Producto ".$producto.": ".$unidades."&lt;br /&gt;";</p>
+<p>}</p>
+</blockquote>
+<p><a href="https://www.php.net/manual/es/class.pdostatement.php">Ver la clase PDOStatement en php.net</a></p>
+<p><a href="https://www.php.net/manual/es/pdo.query.php">Ver la función query de PDO en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id146">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.4.4. Consultas preparadas</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta146_146_2" class="block iDevice_content">
+<div class="exe-text"><p>Al igual que con MySQLi, también utilizando PDO podemos preparar consultas parametrizadas en el servidor para ejecutarlas de forma repetida. El procedimiento es similar e incluso los métodos a ejecutar tienen prácticamente los mismos nombres.</p>
+<p>Para preparar la consulta en el servidor MySQL, deberás utilizar el <strong>método prepare</strong> de la clase PDO. Este método devuelve un objeto de la clase PDOStatement.<strong> Los parámetros se pueden marcar utilizando signos de interrogación</strong> como en el caso anterior.</p>
+<blockquote>
+<p>$dwes = new PDO("mysql:host=localhost;dbname=dwes", "dwes", "abc123.");</p>
+<p>$consulta = $dwes-&gt;prepare('INSERT INTO familia (cod, nombre) VALUES (?, ?)');</p>
+</blockquote>
+<p>O también <strong>utilizando parámetros con nombre, precediéndolos por el símbolo de dos puntos.</strong></p>
+<blockquote>
+<p>$dwes = new PDO("mysql:host=localhost;dbname=dwes", "dwes", "abc123.");</p>
+<p>$consulta = $dwes-&gt;prepare('INSERT INTO familia (cod, nombre) VALUES (:cod, :nombre)');</p>
+</blockquote>
+<p>Antes de ejecutar la consulta hay que <strong>asignar un valor a los parámetros utilizando el método bindParam</strong> de la clase PDOStatement.. Si utilizas signos de interrogación para marcar los parámetros, el procedimiento es equivalente al método bindColumn que acabamos de ver.</p>
+<blockquote>
+<p>$cod_producto = "TABLET";</p>
+<p>$nombre_producto = "Tablet PC";</p>
+<p>$consulta-&gt;bindParam(1, $cod_producto);</p>
+<p>$consulta-&gt;bindParam(2, $nombre_producto);</p>
+</blockquote>
+<p>Si utilizas parámetros con nombre, debes indicar ese nombre en la llamada a bindParam.</p>
+<blockquote>
+<p>$consulta-&gt;bindParam(":cod", $cod_producto);</p>
+<p>$consulta-&gt;bindParam(":nombre", $nombre_producto);</p>
+</blockquote>
+<p>Tal y como sucedía con la extensión MySQLi, cuando uses <strong>bindParam</strong> para asignar los parámetros de una consulta preparada, <strong>deberás usar siempre variables</strong> como en el ejemplo anterior. Una vez preparada la consulta y enlazados los parámetros con sus valores, se ejecuta la consulta utilizando el método <strong>execute</strong>.</p>
+<blockquote>
+<p>$consulta-&gt;execute();</p>
+</blockquote>
+<p>Alternativamente, es posible asignar los valores de los parámetros en el momento de ejecutar la consulta, utilizando un array (asociativo o con claves numéricas dependiendo de la forma en que hayas indicado los parámetros) en la llamada a execute.</p>
+<blockquote>
+<p>$parametros = array(":cod" =&gt; "TABLET", ":nombre" =&gt; "Tablet PC");</p>
+<p>$consulta→execute($parametros);</p>
+</blockquote>
+<p><a href="https://www.php.net/manual/es/pdo.prepared-statements.php">Ver prepared statements en PDO en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="53_extensin_mysqli.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="55_errores_y_manejo_de_excepciones.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>

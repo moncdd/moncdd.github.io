@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>5.10. Encriptación y contraseñas | Unidad 05 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-63"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad 05</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 5. Utilización de técnicas de acceso a datos</a></li>
+   <li><a href="51_acceso_a_bases_de_datos_desde_php.html" class="no-ch">5.1. Acceso a bases de datos desde PHP</a></li>
+   <li><a href="52_utilizacin_de_bases_de_datos_mysql_en_php.html" class="no-ch">5.2. Utilización de bases de datos MySQL en PHP</a></li>
+   <li><a href="53_extensin_mysqli.html" class="no-ch">5.3. Extensión MySQLi</a></li>
+   <li><a href="54_php_data_objects_pdo.html" class="no-ch">5.4. PHP Data Objects (PDO)</a></li>
+   <li><a href="55_errores_y_manejo_de_excepciones.html" class="no-ch">5.5. Errores y manejo de excepciones</a></li>
+   <li><a href="56_expresiones_regulares.html" class="no-ch">5.6. Expresiones regulares</a></li>
+   <li><a href="57_filtrado_de_datos.html" class="no-ch">5.7. Filtrado de datos</a></li>
+   <li><a href="58_xml.html" class="no-ch">5.8. XML</a></li>
+   <li><a href="59_ficheros.html" class="no-ch">5.9. Ficheros</a></li>
+   <li id="active"><a href="510_encriptacin_y_contraseas.html" class="active no-ch">5.10. Encriptación y contraseñas</a></li>
+   <li><a href="511_subida_y_bajada_de_archivos.html" class="no-ch">5.11. Subida y bajada de archivos</a></li>
+   <li><a href="512_paginacin.html" class="no-ch">5.12. Paginación</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="59_ficheros.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="511_subida_y_bajada_de_archivos.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">5.10. Encriptación y contraseñas</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id167">
+<div class="iDevice emphasis0" >
+<div id="ta167_167_2" class="block iDevice_content">
+<div class="exe-text"><p>Desde el principio <strong>PHP</strong> ha sido un <strong>lenguaje de programación para la construcción de sitios web</strong>. Esa idea permanece en el núcleo del lenguaje, y por eso es tan popular para la <strong>construcción de aplicaciones web</strong>. Cuando se creó en los años 90, el término <strong>aplicación web</strong> no existía aún, por lo que la <strong>protección de contraseñas para cuentas de usuarios</strong> no era algo en lo que estuviera centrado.</p>
+<p>Han pasado muchos años desde entonces y actualmente es impensable una aplicación web que no proteja las cuentas de los usuarios con <strong>contraseñas</strong>. Es fundamental para cualquier programador hacer que estas contraseñas tengan una <strong>encriptación segura y eficiente</strong>. <strong>PHP 5.5</strong> añadió una nueva librería llamada Hash de contraseñas para la <strong>encriptación de contraseñas</strong>, con funciones que facilitan la tarea y utilizan los últimos métodos más eficaces.</p>
+<p>Siempre hay que guardar las contraseñas encriptadas mediante un <strong>algoritmo de encriptación</strong> como el <strong>algoritmo hashing</strong> para hacer imposible a alguien que acceda a una base de datos conseguir averiguar la contraseña. Esto no es sólo para proteger a los usuarios frente a algún atacante sino también frente a los propios empleados de la aplicación.</p>
+<p>Mucha gente utiliza las mismas contraseñas para muchas <strong>aplicaciones web</strong>. Si alguien accede a la dirección de email y contraseña de un usuario, probablemente pueda hacerlo en muchas otras aplicaciones.</p>
+<p>Los hashes no se crean iguales, se emplean algoritmos muy distintos para crear un hash. Los dos más usados en el pasado son <strong>MD5</strong> y <strong>SHA-1</strong>. Los ordenadores de hoy en día pueden <strong>crackear</strong> fácilmente estos <strong>algoritmos</strong>. Dependiendo de la <strong>complejidad y longitud de la contraseña</strong>, se puede crackear en menos de una hora con los dos algoritmos nombrados (los ratios son 3650 millones de cálculos por segundo con MD5 y 1360 millones por segundo con SHA-1).</p>
+<p>Por eso es importante usar <strong>algoritmos complejos</strong>. Si el hash es más largo reduce el <strong>riesgo de colisiones entre contraseñas</strong> (dos frases generando el mismo hash), pero también conviene que la aplicación se tome el <strong>tiempo necesario para generar el hash</strong>. Esto es porque el usuario apenas notará un segundo o dos más de tiempo de carga al logearse, pero se consigue que crackearlo tome muchisimo más tiempo, en case de que sea posible.</p>
+<p>También es necesario protegerse frente a las <strong>Rainbow Tables</strong>. Las Rainbow Tables, como a la <strong>MD5</strong> que puede verse en <a href="http://md5cracker.org/">este enlace</a>, son <strong>tablas de búsqueda inversa para hashes</strong>. El creador de las tablas precalcula los hashes MD5 para palabras comunes, frases, palabras modificadas y strings aleatorios. La <strong>facilidad de crackear un algoritmo MD5</strong> hace posible la existencia de este tipo de tablas.</p>
+<p>Generar este tipo de tablas para un <strong>algoritmo complejo</strong> tarda mucho más, pero es posible también. Una medida apropiada es <strong>añadir un salt al hash</strong>. En este contexto, salt es cualquier frase que se añade a la contraseña antes de crear el hash. Usando un salt se gana mucho terreno frente a este tipo de tablas. Se debería <strong>crear una Rainbow Table específica para tu aplicación</strong> y averiguar cual es el salt en tu aplicación.<code class="hljs php"></code></p></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id168">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.10.1. Mejora de los antiguos métodos de encriptación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta168_168_2" class="block iDevice_content">
+<div class="exe-text"><p>Primero veamos la funciones básicas de hashing para PHP:</p>
+<ul>
+<li>md5: Calcula un hash con el algoritmo md5. Si se establece _$rawoutput como true se devolverá en raw binario con una longitud de 16. De normal devuelve un hash de 32 caracteres hexadecimal.</li>
+<li>sha1: Calcula un hash con el algoritmo sha1. Si se establece _$rawoutput como true se devolverá en raw binario con una longitud de 20. De normal devuelve un hash de 40 caracteres hexadecimal.</li>
+<li>hash: La función toma primero el algoritmo que se desea emplear, $algo, y después el string que se desea encriptar, $data. El algoritmo puede ser md5, sha128, sha256...</li>
+</ul>
+<p>Anteriormente, el siguiente código era un ejemplo de una buena protección de contraseñas:</p>
+<blockquote>
+<p>class Password {<br />   const SALT = 'EstoEsUnSalt';<br />   public static function hash($password) {<br />      return hash('sha512', self::SALT . $password);<br />   }<br />   public static function verify($password, $hash) {<br />      return ($hash == self::hash($password));<br />   }<br />}<br />// Crear la contraseña:<br />$hash = Password::hash('micontraseña');<br />// Comprobar la contraseña introducida<br />if (Password::verify('micontraseña', $hash)) {<br />   echo 'Contraseña correcta!\n';<br />} else {<br />   echo "Contraseña incorrecta!\n";<br />}</p>
+</blockquote>
+<p>Durante mucho tiempo esto ha sido la mejor forma de protegerse, mejor que usar md5. Se usa un algoritmo mucho más complejo como el sha512, y fuerza a todas las contraseñas a usar un salt, pero tiene algunas carencias:</p>
+<p>Se utiliza un salt, pero todas las contraseñas utilizan el mismo, por lo que si alguien consigue averiguar una contraseña, o el acceso al código fuente donde puede mirar el hash, se puede hacer una Rainbow Table añadiendo el salt descubierto. La solución es crear un salt aleatorio para cada contraseña que se crea, y guardar el salt con la contraseña de forma que después se pueda recuperar.<br />Se utiliza sha512, un complejo algoritmo que viene con PHP. Sin embargo también puede ser crackeado a un ratio de 46 millones de cálculos por segundo. Aunque es más lento de crackear que md5 y sha1, todavía no es un nivel de seguridad estable. La solución es utilizar algoritmos que son todavía más complejos y emplearlos varias veces. Por ejemplo emplear un algoritmo sha512 10 veces consecutivamente reduciría el intento de hackeo considerablemente.<br />Las dos soluciones ya vienen por defecto con la librería Hash de contraseñas de PHP.</p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id169">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.10.2. La librería Hash de contraseñas</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta169_169_2" class="block iDevice_content">
+<div class="exe-text"><p>La extensión Hash de contraseñas crea un password muy complejo, incluyendo la generación de salts aleatorios. En forma más simple se utiliza la función passwordhash(), con la contraseña que quieres "hashear", y la extensión lo hace directamente. Es necesario facilitar también el algoritmo que se desea emplear. La mejor opción de momento es especificar PASSWORD_DEFAULT (se actualiza siempre que se añada un algoritmo nuevo más fuerte), aunque también es posible PASSWORD_BCRYPT.</p>
+<p>Es compatible con crypt() por lo que los hash de contraseñas creados con crypt() se pueden usar con passwordhash(). Las opciones que se admiten son salt (para proporcionarlo manualmente, pero esta opción ya está obsoleta en PHP 7 por lo que no conviene usarla) y cost, que denota el coste del algoritmo a usar (el valor predeterminado es 10).</p>
+<blockquote>
+<p>$hash = password_hash('micontraseña', PASSWORD_DEFAULT, [15]);</p>
+</blockquote>
+<p>El coste indica cuánto de complejo debe ser el algoritmo y por lo tanto cuánto tardará en generarse el hash. El número se puede considerar como el número de veces que el algoritmo hashea la contraseña.</p>
+<p>Para poder verificar los passwords, deberíamos saber el salt que se ha creado. Si se usa passwordhash() otra vez y se compara con el anterior, se puede ver que son distintos. Cada vez que se llama a la función, se genera un nuevo hash, por lo que la extensión facilita una segunda función: passwordverify(). Llamando a esta función y pasando la contraseña proporcionada por el usuario, la función devolverá true si coincide con la almacenada:</p>
+<blockquote>
+<p>if(password_verify($password, $hash)){<br />   // Password correcto!<br />}</p>
+</blockquote>
+<p>Ahora la clase que habíamos puesto al principio se puede refactorizar por una mucho más segura:</p>
+<blockquote>
+<p>class Password {<br />   public static function hash($password) {<br />      return password_hash($password, PASSWORD_DEFAULT, ['cost' =&gt; 15]);<br />   }<br />   public static function verify($password, $hash) {<br />       return password_verify($password, $hash);<br />   }<br />}</p>
+</blockquote></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id170">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.10.3. Cambios en los métodos de encriptación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta170_170_2" class="block iDevice_content">
+<div class="exe-text"><p>Usando la extensión de encriptación de PHP, tu aplicación estará con los últimos estándares en seguridad, aunque hace algunos años de decía que SHA-1 era lo mejor. Esto significa que cada vez se van actualizando los logaritmos y por tanto la extensión se irá adaptando.</p>
+<p>¿Y qué ocurre con las contraseñas antiguas? Para eso está la función password_needsrehash(), que detecta si una contraseña almacenada no cumple con las necesidades de seguridad de la aplicación. La razón puede ser que hayas aumentado la complejidad con cost, o que PHP haya actualizado el algoritmo. Por esta razón se ha de elegir PASSWORD_DEFAULT, siempre se estará protegido con la opción más segura disponible.</p>
+<p>Cuando un usuario se logea, ahora tendríamos una nueva tarea, llamar a password_needsrehash(), que toma parámetros similares a passwordhash(). Lo que hace la función password_needsrehash() es decirte si el password necesita un rehash. Depende de ti cuándo generar un nuevo hash de contraseña y guardarlo, porque la extensión Hash desconoce cómo deseas hacerlo.</p>
+<p>El siguiente es un ejemplo de una clase Usuario simulada para ver el funcionamiento de la extensión Hash, y sirve de orientación a cómo podria realizarse:</p>
+<blockquote>
+<p>class User {<br />   // Opciones de contraseña:<br />   const HASH = PASSWORD_DEFAULT;<br />   const COST = 14;<br />   // Almacenamiento de datos del usuario:<br />   public $data;<br />   // Constructor simulado:<br />   public function __construct() {<br />      // Leer los datos de la base de datos almacenados en $data, como<br />      // $data-&gt;passwordHash o $data-&gt;username<br />   }<br />   // Funcionalidad de guardar los datos simulada:<br />   public function save() {<br />      // Guardar los datos de $data en la base de datos<br />   }</p>
+</blockquote>
+<p>Ya hemos construido la base de la clase user, ahora vamos a ver el cambio de contraseña y el login:</p>
+<blockquote>
+<p>   // Permite el cambio de contraseña:<br />   public function setPassword($password) {<br />      $this-&gt;data-&gt;passwordHash = password_hash($password, self::HASH, ['cost' =&gt; self::COST]);<br />   }<br />   // Logear un usuario:<br />   public function login($password) {<br />      // Primero comprobamos si se ha empleado una contraseña correcta:<br />      echo "Login: ", $this-&gt;data-&gt;passwordHash, "\n";<br />      if (password_verify($password, $this-&gt;data-&gt;passwordHash)) {<br />         // Exito, ahora se comprueba si la contraseña necesita un rehash:<br />             if (password_needs_rehash($this-&gt;data-&gt;passwordHash, self::HASH, ['cost' =&gt; self::COST])) {<br />                // Tenemos que hacer rehash en la contraseña y guardarla. Simplemente se llama a setPassword():<br />                $this-&gt;setPassword($password);<br />                $this-&gt;save();<br />             }<br />             return true; // O hacer lo necesario para indicar que el usuario se ha logeado.<br />          }<br />          return false;<br />       }<br />   }</p>
+</blockquote></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="59_ficheros.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="511_subida_y_bajada_de_archivos.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>

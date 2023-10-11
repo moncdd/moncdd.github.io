@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>5.6. Expresiones regulares | Unidad 05 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-59"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad 05</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 5. Utilización de técnicas de acceso a datos</a></li>
+   <li><a href="51_acceso_a_bases_de_datos_desde_php.html" class="no-ch">5.1. Acceso a bases de datos desde PHP</a></li>
+   <li><a href="52_utilizacin_de_bases_de_datos_mysql_en_php.html" class="no-ch">5.2. Utilización de bases de datos MySQL en PHP</a></li>
+   <li><a href="53_extensin_mysqli.html" class="no-ch">5.3. Extensión MySQLi</a></li>
+   <li><a href="54_php_data_objects_pdo.html" class="no-ch">5.4. PHP Data Objects (PDO)</a></li>
+   <li><a href="55_errores_y_manejo_de_excepciones.html" class="no-ch">5.5. Errores y manejo de excepciones</a></li>
+   <li id="active"><a href="56_expresiones_regulares.html" class="active no-ch">5.6. Expresiones regulares</a></li>
+   <li><a href="57_filtrado_de_datos.html" class="no-ch">5.7. Filtrado de datos</a></li>
+   <li><a href="58_xml.html" class="no-ch">5.8. XML</a></li>
+   <li><a href="59_ficheros.html" class="no-ch">5.9. Ficheros</a></li>
+   <li><a href="510_encriptacin_y_contraseas.html" class="no-ch">5.10. Encriptación y contraseñas</a></li>
+   <li><a href="511_subida_y_bajada_de_archivos.html" class="no-ch">5.11. Subida y bajada de archivos</a></li>
+   <li><a href="512_paginacin.html" class="no-ch">5.12. Paginación</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="55_errores_y_manejo_de_excepciones.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="57_filtrado_de_datos.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">5.6. Expresiones regulares</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id149">
+<div class="iDevice emphasis0" >
+<div id="ta149_149_2" class="block iDevice_content">
+<div class="exe-text"><p>Una <strong>expresión regular</strong> o <strong>regex</strong> es un <strong>patrón</strong> que se compara con una <strong>cadena objetivo</strong> de izquierda a derecha, carácter a carácter. La biblioteca PCRE (Perl Compatible Regular Expressions) es una extensión incorporada en PHP que permite utilizar <strong>expresiones regulares</strong> en funciones para <strong>buscar, comparar y sustituir strings en PHP</strong>.</p>
+<p>Las <strong>expresiones regulares</strong> van encerradas en <strong>delimitadores</strong>, que son cualquier par de caracteres no alfanuméricos (excepto la barra invertida \ y el espacio en blanco). Los delimitadores más utilizados son las <strong>barras oblícuas</strong> (<strong>/</strong>), aunque también se pueden utilizar <strong>almohadillas #</strong>, <strong>virgulillas ~</strong>... Además de <strong>()</strong>, <strong>[]</strong>, <strong>{}</strong>, o <strong>&lt;&gt;</strong>.</p>
+<blockquote>
+<p>/([A-Z])\w+/<br />+expresión+<br />#[a-zA-Z]#</p>
+</blockquote>
+<p>Para <strong>escapar valores</strong> se utiliza la <strong>barra invertida \</strong>. Si el <strong>delimitador</strong> aparece frecuentemente dentro del patrón, se suele utilizar otro delimitador para que sea más legible:</p>
+<blockquote>
+<p>/http:\/\//<br />#http://#</p>
+</blockquote>
+<p>Podemos ver un ejemplo con una de las funciones más básicas, _<strong>preg_match()</strong>_, que devuelve 1 si encuentra el patrón, y 0 si no lo encuentra:</p>
+<blockquote>
+<p>$abecedario = "abcdefghijklmnñopqrstuvwz";<br />echo preg_match("/abc/", $abecedario); // Devuelve 1</p>
+</blockquote>
+<p>*Para el ejemplo anterior sería más recomendable utilizar <em>strpos()</em> y <em>strstr()</em>, que son mucho más rápidas.</p>
+<p>Si queremos <strong>comprobar si un string empieza con unos caracteres concretos</strong>, podemos hacerlo de la siguiente forma:</p>
+<blockquote>
+<p>$direccion = "Calle Cuéllar";<br />if(preg_match("/^Calle/", $direccion))<br />{<br />   echo "Es una calle";<br />} else {<br />   echo "No es una calle";<br />}</p>
+</blockquote>
+<p>Hemos comprobado que la dirección es una calle. La <strong>regex</strong> está delimitada por dos <strong>barras oblícuas (/)</strong> y comienzan con un <strong>signo de intercalación</strong> o <strong>caret</strong> <strong>^</strong>, un <strong>metacarácter</strong> que sirve para indicar el comienzo que queremos que tenga el string buscado.</p>
+<pre><code class="hljs php"><span class="hljs-variable"></span></code></pre>
+<p>Coinciden porque ambas tienen C mayúscula, no lo harían si la <strong>regex</strong> o el <em>string</em> <em>$direccion</em> fueran en minúscula. Por defecto, las búsquedas son <strong>sensibles a mayúsculas y minúsculas</strong>, para cambiar esto se puede añadir una <strong>i</strong> de <strong>insensitive</strong> al final. Esto es lo que se llama un <strong>modificador de patrón</strong>:</p>
+<blockquote>
+<p>...// Alteramos esta línea en el código anterior:<br />if(preg_match("/^calle/i", $direccion))<br />... // Daría igual que fuera CALle, cAllE, callE...</p>
+</blockquote>
+<p>Para encontrar un patron al final de un string, se hace de forma similar a encontrar un patrón al principio de un string. En lugar de usar <strong>^</strong> se usa el <strong>símbolo de dólar $</strong> al final:</p>
+<blockquote>
+<p>$cadena = "Esto es un saludo: hola";<br />echo preg_match("/hola$/", $cadena); // Devuelve: 1</p>
+</blockquote>
+<pre><code class="hljs php"><span class="hljs-comment"></span></code></pre>
+<p>Si se trabaja con un <strong>string con múltiples líneas</strong> (primera línea\nsegunda línea) y se quiere saber si el patrón coincide en el principio y el final de éstas, se pueden utilizar los símbolos <strong>^</strong> y <strong>$</strong> para indicar, respectivamente, el <strong>principio y el final de cada línea de un string</strong>. Para ello es necesario utilizar también el <strong>modificador de patrón</strong> <em>m</em>:</p>
+<blockquote>
+<p>$direccion = "Calle Cuéllar\nCalle Augusta";<br />// preg_match_all devuelve el número de matches<br />// Hemos incluido dos modificadores de patrón, i y m:<br />echo preg_match_all("/^calle/im", $direccion); // Devuelve: 2</p>
+</blockquote>
+<p>Si no importan las líneas dentro de un string y se quiere saber exactamente el principio y el final de un string sin importar saltos de línea se usan <strong>\A</strong> y <strong>\Z:</strong></p>
+<blockquote>
+<p>$texto = "esto\nes\ntexto\nmultilinea\nlinea";<br />// Da igual que se incluya el modificador multilínea con \A y \Z:<br />echo preg_match_all('/linea\Z/im', $texto); // Devuelve: 1<br />echo preg_match_all('/linea$/im', $texto); // Devuelve: 2<br />echo preg_match_all('/\Aes/im', $texto); // Devuelve: 1<br />echo preg_match_all('/^es/im', $texto); // Devuelve: 2</p>
+</blockquote>
+<p><a href="https://www.php.net/manual/es/book.pcre.php">Ver pcre en php.net</a><code class="hljs php"><span class="hljs-variable"></span>
+</code></p></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id150">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.6.1. Metacaracteres</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta150_150_2" class="block iDevice_content">
+<div class="exe-text"><p>El símbolo caret ^ y el de dólar $ son <strong>metacaracteres</strong>. El poder de las expresiones regulares viene dado por la capacidad de incluir alternativas y repeticiones en el patrón. Éstas están codificadas en el patrón por el uso de <strong>metacaracteres</strong>, que no tienen una representación en el <em>string</em>, sino que modifican la interpretación del patrón.</p>
+<p>Se pueden dividir en dos: los que se interpretan fuera de los corchetes y los que se interpretan dentro:</p>
+<ul>
+<li><strong>Metacaracteres fuera de los corchetes:</strong></li>
+</ul>
+<table border="1" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th>Metacarácter</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\</td>
+<td>escape</td>
+</tr>
+<tr>
+<td>^</td>
+<td>inicio de string o línea</td>
+</tr>
+<tr>
+<td>$</td>
+<td>final de string o línea</td>
+</tr>
+<tr>
+<td>.</td>
+<td>coincide con cualquier carácter excepto nueva línea</td>
+</tr>
+<tr>
+<td>[</td>
+<td>inicio de la definición de clase carácter</td>
+</tr>
+<tr>
+<td>]</td>
+<td>fin de la definición de clase carácter</td>
+</tr>
+<tr>
+<td><code>|</code></td>
+<td>inicio de la rama alternativa</td>
+</tr>
+<tr>
+<td>(</td>
+<td>inicio de subpatrón</td>
+</tr>
+<tr>
+<td>)</td>
+<td>fin de subpatrón</td>
+</tr>
+<tr>
+<td>?</td>
+<td>amplía el significado del subpatrón, cuantificador 0 ó 1, y hace <strong>lazy</strong> los cuantificadores <strong>greedy</strong></td>
+</tr>
+<tr>
+<td>*</td>
+<td>cuantificador 0 o más</td>
+</tr>
+<tr>
+<td>+</td>
+<td>cuantificador 1 o más</td>
+</tr>
+<tr>
+<td>{</td>
+<td>inicio de cuantificador mín/máx</td>
+</tr>
+<tr>
+<td>}</td>
+<td>fin de cuantificador mín/máx</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Metacaracteres dentro de los corchetes:</strong></li>
+</ul>
+<table border="1" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th>Metacarácter</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\</td>
+<td>carácter de escape general</td>
+</tr>
+<tr>
+<td>^</td>
+<td>niega la clase, pero sólo si es el primer carácter</td>
+</tr>
+<tr>
+<td>-</td>
+<td>indica el rango de caracteres</td>
+</tr>
+</tbody>
+</table>
+<p>Si queremos escapar cualquiera de los metacaracteres anteriores tan sólo hay que utilizar el <strong>backslash \</strong>:</p>
+<blockquote>
+<p>// Ejemplo de una multiplicación con el metacarácter *<br />$string = '3*4';<br />echo preg_match('/^3\*4/', $string); // Devuelve 1</p>
+</blockquote>
+<p>Debido a las interpretaciones especiales del entrecomillado en PHP, si se quiere comparar \ mediante la expresión regular \, se ha de usar "\\" ó '\\'.</p>
+<pre><code class="hljs php"><span class="hljs-comment"></span></code></pre>
+<p>Ya hemos visto el funcionamiento de ^ y $. Vamos a ver ahora el de los <strong>corchetes []</strong>, que representan una <strong>clase carácter</strong>, esto es un conjunto de caracteres que queremos hacer coincidir, y puede ser literalmente <em>[hola]</em>, o en forma de agrupación como <em>[a-z]</em>:</p>
+<blockquote>
+<p>$string = "hola";<br />echo preg_match("/h[aeiou]la/", $string); // Devuelve 1<br />// También coincidiría con hala, hela, hila y hula</p>
+</blockquote>
+<p>Si en la <strong>clase carácter</strong> se presenta un rango, como a-z, significa que puede coincidir con cualquier carácter del abecedario en minúsculas. En mayúsculas el rango es A-Z.</p>
+<p>Si se incluye un metacarácter dentro de una clase carácter se interpreta literalmente (salvo las excepciones ya nombradas \, ^ y -). Ejemplo: [abc$] podría coincidir con cualquiera de los 4 caracteres: a, b, c o $.</p>
+<p>Un <strong>caret ^</strong> al principio de una clase carácter se interpreta como negación, y encontrará cualquier carácter salvo los incluídos dentro de la clase carácter:</p>
+<blockquote>
+<p>$string = '123456789';<br />// Si se añade un tercer elemento a preg_match_all devuelve un array con lo encontrado<br />preg_match_all("/[^2468]/", $string, $matches);<br />var_dump($matches); // Devuelve array con 1, 3, 5, 7 y 9</p>
+</blockquote>
+<p>El caret sólo es interpretado de esa forma si se coloca al principio, después se interpreta de forma literal. Podemos <strong>filtrar</strong> por ejemplo <strong>las vocales, espacios de un string</strong> o <strong>mayúsculas</strong>:</p>
+<blockquote>
+<p>// Filtrar vocales:<br />$string = 'No coger vocales';<br />echo preg_match_all("/[^aeiou]/", $string, $matches); // 10<br />// Filtrar vocales y espacios:<br />echo preg_match_all("/[^ aeiou]/", $string, $matches); // 8<br />// Filtrar consonantes:<br />$string = "NO coger MAYUSCULAS solo minusculas"; // 23<br />echo preg_match_all("/[^A-Z]/", $string, $matches);</p>
+</blockquote>
+<p>El <strong>metacaracter \</strong> Se utiliza como <strong>escape de metacaracteres</strong>:</p>
+<blockquote>
+<p>$string = '[]';<br />// Interpreta los corchetes como corchetes<br />echo preg_match("/\[\]/", $string, $matches);<br />// Interpreta los corchetes como corchetes dentro de una clase carácter<br />echo preg_match("/[\[\]]/", $string, $matches);</p>
+</blockquote>
+<p>O para el uso de secuencias especiales (explicadas después).</p>
+<pre><code class="hljs php"></code></pre>
+<p>El <strong>metarácter punto</strong> coincide una vez con cualquier carácter excepto los <strong>saltos de línea</strong> como <strong>\r</strong> y <strong>\n</strong>:</p>
+<blockquote>
+<p>$string = "6\nf^R\nL";<br />echo preg_match_all("/./", $string); // Devuelve 5: 6, f, ^, R y L<br />echo preg_match_all("//", $string); // Devuelve 8 (todos)<br />// Con la secuencia especial \s se muestra el número de líneas/espacios:<br />echo preg_match_all("/\s/", $string); // Devuelve 2 (sólo las líneas)</p>
+</blockquote>
+<p>El metacarácter * encuentra <strong>cero o más ocurrencias</strong> del carácter que le precede:</p>
+<blockquote>
+<p>$string1 = "hla";<br />$string2 = "hola";<br />$string3 = "hoooooooola";<br />echo preg_match("/ho*la/", $string1); // Devuelve 1<br />echo preg_match("/ho*la/", $string2); // Devuelve 1<br />echo preg_match("/ho*la/", $string3); // Devuelve 1</p>
+</blockquote>
+<p>El metacarácter + encuentra <strong>una o más ocurrencias</strong> del caracter que le precede:</p>
+<blockquote>
+<p>$string1 = "hla";<br />$string2 = "hola";<br />$string3 = "hoooooooola";<br />echo preg_match("/ho+la/", $string1); // Devuelve 0<br />echo preg_match("/ho+la/", $string2); // Devuelve 1<br />echo preg_match("/ho+la/", $string3); // Devuelve 1</p>
+</blockquote>
+<p>El metacarácter ? encuentra <strong>0 o 1 ocurrencias</strong> del carácter o expresión regular que le precede. Se utiliza para hacer algún carácter opcional:</p>
+<blockquote>
+<p>$string1 = "hla";<br />$string2 = "hola";<br />$string3 = "hoooooooola";<br />echo preg_match("/ho?la/", $string1); // Devuelve 1<br />echo preg_match("/ho?la/", $string2); // Devuelve 1<br />echo preg_match("/ho?la/", $string3); // Devuelve 0</p>
+</blockquote>
+<p>Los metacaracteres {} llaves indican el número exacto de matches del carácter o grupo de caracteres que le preceden:</p>
+<blockquote>
+<p>$string1 = "hooola";<br />$string2 = "hooooola";<br />$string2 = "hoola";<br />$string4 = "houiela";<br />$string5 = "hla";<br />echo preg_match("/ho{3}la/", $string1); // Devuelve 1<br />// Si se indica {n,} quiere decir que al menos n elementos<br />echo preg_match("/ho{3,}la/", $string2); // Devuelve 1<br />// Si se indica {n, m} quiere decir un número entre n y m<br />echo preg_match("/ho{2,3}la/", $string3); // Devuelve 1<br />echo preg_match("/h[aeiou]{4}la/", $string4); // Devuelve 1<br />echo preg_match("/ho{0}la/", $string5); // Devuelve 1</p>
+</blockquote>
+<p>El metacarácter de <strong>barra vertical |</strong> permite alternar entre posibles coincidencias:</p>
+<blockquote>
+<p>$string = "Este es un Estado de Estados Unidos";<br />echo preg_match_all("/este|esto|esta/i", $string); // Devuelve 3</p>
+</blockquote>
+<p>Los metacaracteres () paréntesis en las expresiones regulares permiten <strong>crear subpatrones</strong>, como pequeños patrones dentro del patrón principal:</p>
+<blockquote>
+<p>$string1 = "Llegaré pronto que voy volando";<br />$string2 = "Llegaré tarde que voy andando";<br />echo preg_match_all("/(and|vol)ando/i", $string1); // Devuelve 1<br />echo preg_match_all("/(and|vol)ando/i", $string2); // Devuelve 1</p>
+</blockquote>
+<p><a href="https://www.php.net/manual/es/reference.pcre.pattern.syntax.php">Ver patrones en php.net</a></p>
+<p><a href="https://www.php.net/manual/es/reference.pcre.pattern.modifiers.php">Ver modificadores de patrón en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id151">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.6.2. Subpatrones</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta151_151_2" class="block iDevice_content">
+<div class="exe-text"><p>Los subpatrones, creados mediante los <strong>metacaracteres ()</strong>, se pueden <strong>anidar</strong> para <strong>ser referenciados</strong>. Los subpatrones son <strong>capturados</strong>, es decir, se almacena la porción en paréntesis del string que coincide con el subpatrón:</p>
+<blockquote>
+<p>$string = "marrón";<br />preg_match("/ma(r{2}ó)n/", $string, $matches);<br />var_dump($matches);<br />/*<br />array (size=2)<br />0 =&gt; string 'marrón' (length=7)<br />1 =&gt; string 'rró' (length=4)<br />*/</p>
+</blockquote>
+<p>Las capturas se pueden referenciar después mediante un <strong>backlash</strong> y un <strong>número</strong>, dependiendo de la posición de la referencia: \1, \2, \3... hasta \9. Estas referencias se pueden hacer dentro de la misma <strong>expresión regular</strong>, aunque nunca dentro de las <strong>clases carácter</strong>:</p>
+<blockquote>
+<p>$string = "hola y hola";<br />preg_match('/(hola) y \1/', $string, $matches);<br />var_dump($matches);<br />/*<br />array (size=2)<br />0 =&gt; string 'hola y hola' (length=11)<br />1 =&gt; string 'hola' (length=4)<br />*/</p>
+</blockquote>
+<p>El metacarácter <strong>?</strong> modifica el comportamiento del subpatrón, las tres posibilidades más básicas son las siguientes:</p>
+<pre><code class="hljs php"><span class="hljs-variable"></span></code></pre>
+<pre><code class="hljs php"><span class="hljs-variable"></span></code></pre>
+<ul>
+<li>
+<p>(?:). Hace que el subpatrón no sea capturable.</p>
+</li>
+<li>
+<p>(?=). Encuentra el subpatrón después de la expresión principal sin incluirlo en el resultado.</p>
+</li>
+<li>(?!). Opuesto del anterior, especifica el subpatrón que no puede ir después de la expresión principal. El subpatrón tampoco aparece en el resultado.</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id152">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.6.3. Secuencias especiales, modificadores y declaraciones</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta152_152_2" class="block iDevice_content">
+<div class="exe-text"><p>Las secuencias especiales utilizan el <strong>backslash \</strong> y son <strong>conjuntos predefinidos de caracteres</strong> que permiten reducir el tamaño de las <strong>expresiones regulares</strong>:</p>
+<table border="1" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th>Secuencia</th>
+<th>-Coincidencia</th>
+<th>Equivalencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\d</td>
+<td>Cualquier carácter numérico</td>
+<td>[0-9]</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>Cualquier carácter <strong>no</strong> numérico</td>
+<td>[^0-9]</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>Cualquier espacio</td>
+<td>[\t\n\r\f\v]</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>Cualquiera que <strong>no</strong> sea espacio</td>
+<td>[^ \t\n\r\f\v]</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>Cualquier carácter alfanumérico</td>
+<td>[a-zA-Z0-9_]</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>Cualquier carácter <strong>no</strong> alfanumérico</td>
+<td>[^a-zA-Z0-9_]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Algunos ejemplos</strong>:</p>
+<blockquote>
+<p>$string = 'abc123^+*&lt;&gt;?';<br />// Encontrar sólo caracteres alfanuméricos:<br />echo preg_match_all("/[\w]/", $string, $matches); // Devuelve 6<br />// Cualquier carácter:<br />echo preg_match_all("//", $string, $matches); // Devuelve 13<br />// Encuentra todo menos caracteres alfanuméricos:<br />echo preg_match_all("/[\W]/", $string, $matches); // Devuelve 6<br />// Encuentra todo string que comienza con número:<br />$string = '4 pares de zapatos';<br />echo preg_match_all("/^\d/", $string); // Devuelve 1<br />// Encuentra los espacios<br />$string = "Esto es un\nejemplo con espacios\n y salto de linea";<br />echo preg_match_all("/\s/", $string); // Devuelve 10</p>
+</blockquote>
+<p>Los modificadores se utilizan para modificar la forma en que se evalúan las <strong>expresiones regulares</strong>. Se incluyen justo después del <strong>delimitador de la expresión regular</strong> y se pueden utilizar varios a la vez. Algunos de ellos son:</p>
+<pre><code class="hljs php"><span class="hljs-variable"></span></code></pre>
+<table style="height: 106px; margin-left: auto; margin-right: auto;" border="1">
+<thead>
+<tr style="height: 22px;">
+<th style="height: 22px; width: 91px;">Modificador</th>
+<th style="height: 22px; width: 383px;">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr style="height: 21px;">
+<td style="height: 21px; width: 91px;">i</td>
+<td style="height: 21px; width: 383px;">Insensible a mayúsculas y minúsculas</td>
+</tr>
+<tr style="height: 21px;">
+<td style="height: 21px; width: 91px;">m</td>
+<td style="height: 21px; width: 383px;">Múltiples líneas</td>
+</tr>
+<tr style="height: 21px;">
+<td style="height: 21px; width: 91px;">x</td>
+<td style="height: 21px; width: 383px;">Se pueden añadir comentarios</td>
+</tr>
+<tr style="height: 21px;">
+<td style="height: 21px; width: 91px;">u</td>
+<td style="height: 21px; width: 383px;">Strings de patrones y objetivos son tratados como UTF-8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Algunos ejemplos</strong>:</p>
+<blockquote>
+<p>// Ejemplo de insensibilidad a mayúsculas y minúsculas:<br />$string = "AaBb";<br />echo preg_match_all("/[ab]/i", $string); // Devuelve 4<br />// Ejemplo múltiples líneas, detecta un número al principio de cada una:<br />$string = "1Esto\n2son\n3varias\n4lineas";<br />echo preg_match_all("/^[0-9]/m", $string); // Devuelve 4<br />// Ejemplo de comentarios en expresión regular:<br />$string = "123 son\n3 números";<br />$regex = "/<br />^ # buscar al principio de línea<br />[0-9] # cualquier número del 1 al 9<br />/mx";<br />echo preg_match_all($regex, $string); // Devuelve 2</p>
+</blockquote>
+<p>Las <strong>declaraciones</strong> son comprobaciones de los caracteres anteriores o siguientes al punto de coincidencia actual (no consumen ningún carácter). Se incluyen dentro de la <strong>expresión regular</strong>.</p>
+<pre><code class="hljs php"><span class="hljs-comment"></span></code></pre>
+<table border="1" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th>Declaración</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\b</td>
+<td>Límite de palabra</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>NO límite de palabra</td>
+</tr>
+<tr>
+<td>\A</td>
+<td>Comienzo de string</td>
+</tr>
+<tr>
+<td>\Z</td>
+<td>Final de string o de línea</td>
+</tr>
+<tr>
+<td>\z</td>
+<td>Final de string</td>
+</tr>
+<tr>
+<td>\G</td>
+<td>Primer match en el string</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Algunos ejemplos</strong>:</p>
+<blockquote>
+<p>// Ejemplo para encontrar palabra exacta<br />$string1 = "Es ahora";<br />$string2 = "Es la hora";<br />echo preg_match("/\bhora\b/", $string1); // Devuelve 0<br />echo preg_match("/\bhora\b/", $string2); // Devuelve 1<br />// *Si se utiliza \b dentro de una clase carácter no hace de límite sino de backspace</p>
+<p>// Ejemplo de límite y no límite:<br />$string = "Es ahora";<br />// La palabra debe acabar en hora, pero debe tener al menos algún carácter antes:<br />echo preg_match("/\Bhora\b/", $string); // Devuelve 1<br />$string = "Es la hora";<br />// Ahora vemos como no coincide, pues no tiene un carácter antes:<br />echo preg_match("/\Bhora\b/", $string); // Devuelve 0</p>
+</blockquote></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id153">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.6.4. Funciones PCRE</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta153_153_2" class="block iDevice_content">
+<div class="exe-text"><ul>
+<li><strong>preg_replace</strong>. La función <strong>preg_replace</strong> realiza una <strong>búsqueda</strong> y una <strong>sustitución de una expresión regular</strong>.</li>
+<li><strong>preg_filter</strong>. Es igual que <strong>preg_replace</strong>, pero <strong>sólo devuelve los resultados donde hay una coincidencia.</strong></li>
+<li><strong>preg_grep.</strong> Devuelve un <strong>nuevo array con los elementos de <em>$input</em></strong> que coinciden con <em>$pattern</em>.</li>
+<li><strong>preg_match</strong><code class="hljs nginx">. </code>Hace una<strong> comparación en <em>$subject</em> con una expresión regular <em>$pattern</em>.</strong></li>
+<li><strong>preg_match_all. </strong>Busca en <em>$subject</em> <strong>todas las coincidencias de la expresión regular <em>$pattern</em> y las introduce en <em>$matches</em></strong> en el orden especificado por <em>$flags</em>.</li>
+<li><strong>preg_replace_callback</strong><code class="hljs nginx">. </code>Funciona de la misma forma que preg_replace, pero en lugar de un string <em>$replacement</em> se <strong>especifica un <em>$callback</em>.</strong></li>
+<li><strong>preg_split</strong>. <strong>Divide un string mediante una expresión regular.</strong></li>
+</ul>
+<p><a href="https://www.php.net/manual/es/ref.pcre.php">Ver funciones PCRE en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="55_errores_y_manejo_de_excepciones.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="57_filtrado_de_datos.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>

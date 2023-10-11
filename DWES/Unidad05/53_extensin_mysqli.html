@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>5.3. Extensión MySQLi | Unidad 05 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-56"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad 05</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 5. Utilización de técnicas de acceso a datos</a></li>
+   <li><a href="51_acceso_a_bases_de_datos_desde_php.html" class="no-ch">5.1. Acceso a bases de datos desde PHP</a></li>
+   <li><a href="52_utilizacin_de_bases_de_datos_mysql_en_php.html" class="no-ch">5.2. Utilización de bases de datos MySQL en PHP</a></li>
+   <li id="active"><a href="53_extensin_mysqli.html" class="active no-ch">5.3. Extensión MySQLi</a></li>
+   <li><a href="54_php_data_objects_pdo.html" class="no-ch">5.4. PHP Data Objects (PDO)</a></li>
+   <li><a href="55_errores_y_manejo_de_excepciones.html" class="no-ch">5.5. Errores y manejo de excepciones</a></li>
+   <li><a href="56_expresiones_regulares.html" class="no-ch">5.6. Expresiones regulares</a></li>
+   <li><a href="57_filtrado_de_datos.html" class="no-ch">5.7. Filtrado de datos</a></li>
+   <li><a href="58_xml.html" class="no-ch">5.8. XML</a></li>
+   <li><a href="59_ficheros.html" class="no-ch">5.9. Ficheros</a></li>
+   <li><a href="510_encriptacin_y_contraseas.html" class="no-ch">5.10. Encriptación y contraseñas</a></li>
+   <li><a href="511_subida_y_bajada_de_archivos.html" class="no-ch">5.11. Subida y bajada de archivos</a></li>
+   <li><a href="512_paginacin.html" class="no-ch">5.12. Paginación</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="52_utilizacin_de_bases_de_datos_mysql_en_php.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="54_php_data_objects_pdo.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">5.3. Extensión MySQLi</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id136">
+<div class="iDevice emphasis0" >
+<div id="ta136_136_2" class="block iDevice_content">
+<div class="exe-text"><p>Esta extensión ofrece un interface de programación dual, pudiendo accederse a las funcionalidades de la extensión utilizando objetos o funciones de forma indiferente. Por ejemplo, para establecer una conexión con un servidor MySQLi y consultar su versión, podemos utilizar cualquiera de las siguientes formas:</p>
+<blockquote>
+<p>//uso de la extensión mysqli con POO</p>
+<p>$conexion = new mysqli('localhost', 'usuario', 'contraseña', 'base_de_datos');</p>
+<p>print conexion-&gt;server_info;</p>
+<p>//uso de la extensión procedimental</p>
+<p>$conexion = mysqli_connect('localhost', 'usuario', 'contraseña', 'base_de_datos');</p>
+<p>print mysqli_get_server_info($conexion);</p>
+</blockquote>
+<p>En ambos casos, <strong>la variable $conexion es de tipo objeto</strong>. La utilización de los métodos y propiedades que aporta la clase mysqli normalmente produce un código más corto y legible que si utilizas llamadas a funciones.</p>
+<p>Entre las mejoras que aporta a la antigua extensión mysql, figuran:</p>
+<ul>
+<li>Interface orientado a objetos.</li>
+<li>Soporte para transacciones.</li>
+<li>Soporte para consultas preparadas.</li>
+<li>Mejores opciones de depuración.</li>
+</ul>
+<p>Como ya viste en la primera unidad, las opciones de configuración de PHP se almacenan en el fichero <strong>php.ini</strong>. En este fichero hay una sección específica para las opciones de configuración propias de cada extensión. Entre las opciones que puedes configurar para la extensión MySQLi están:</p>
+<ul>
+<li><strong>mysqli.allow_persistent.</strong> Permite crear conexiones persistentes.</li>
+<li><strong>mysqli.default_port.</strong> Número de puerto TCP predeterminado a utilizar cuando se conecta al servidor de base de datos.</li>
+<li><strong>mysqli.reconnect.</strong> Indica si se debe volver a conectar automáticamente en caso de que se pierda la conexión.</li>
+<li><strong>mysqli.default_host.</strong> Host predeterminado a usar cuando se conecta al servidor de base de datos.</li>
+<li><strong>mysqli.default_user.</strong> Nombre de usuario predeterminado a usar cuando se conecta al servidor de base de datos.</li>
+<li><strong>mysqli.default_pw</strong>. Contraseña predeterminada a usar cuando se conecta al servidor de base de datos.</li>
+</ul>
+<p><a href="https://www.php.net/manual/es/book.mysqli.php">Ver extensión mysqli en php.net</a></p></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id137">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.3.1. Establecimiento de conexión</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta137_137_2" class="block iDevice_content">
+<div class="exe-text"><p>Para poder comunicarte desde un programa PHP con un servidor MySQL, el primer paso es establecer una conexión. Toda comunicación posterior que tenga lugar, se hará utilizando esa conexión.</p>
+<p>Si utilizas la extensión MySQLi, establecer una conexión con el servidor significa crear una instancia de la clase mysqli. El constructor de la clase puede recibir seis parámetros, todos opcionales, aunque lo más habitual es utilizar los cuatro primeros:</p>
+<ul>
+<li>El nombre o dirección IP del servidor MySQL al que te quieres conectar.</li>
+<li>Un nombre de usuario con permisos para establecer la conexión.</li>
+<li>La contraseña del usuario.</li>
+<li>El nombre de la base de datos a la que conectarse.</li>
+<li>El número del puerto en que se ejecuta el servidor MySQL.</li>
+<li>El socket o la tubería con nombre (named pipe) a usar.</li>
+</ul>
+<p>Si utilizas el constructor de la clase, para conectarte a la base de datos "dwes" puedes hacer:</p>
+<blockquote>
+<p>// utilizando el constructor de la clase</p>
+<p>$dwes = new mysqli('localhost', 'dwes', 'abc123.', 'dwes');</p>
+</blockquote>
+<p>Aunque también tienes la opción de primero crear la instancia, y después utilizar el método connect para establecer la conexión con el servidor:</p>
+<blockquote>
+<p>// utilizando el método connect</p>
+<p>$dwes = new mysqli();</p>
+<p>$dwes-&gt;connect('localhost', 'dwes', 'abc123.', 'dwes');</p>
+</blockquote>
+<p>Por el contrario, utilizando el interface procedimental de la extensión:</p>
+<blockquote>
+<p>// utilizando llamadas a funciones</p>
+<p>$dwes = mysqli_connect('localhost', 'dwes', 'abc123.', 'dwes');</p>
+</blockquote>
+<p>Es importante verificar que la conexión se ha establecido correctamente. Para comprobar el error, en caso de que se produzca, puedes usar las siguientes propiedades (o funciones equivalentes) de la clase mysqli:</p>
+<ul>
+<li><strong>connect_errno</strong> (o la función<strong> mysqli_connect_errno</strong>) devuelve el número de error o null si no se produce ningún error.</li>
+<li><strong>connect_error</strong> (o la función <strong>mysqli_connect_error</strong>) devuelve el mensaje de error o null si no se produce ningún error.</li>
+</ul>
+<p>Por ejemplo, el siguiente código comprueba el establecimiento de una conexión con la base de datos "dwes" y finaliza la ejecución si se produce algún error:</p>
+<blockquote>
+<p>@ $dwes = new mysqli('localhost', 'dwes', 'abc123.', 'dwes');</p>
+<p>$error = $dwes-&gt;connect_errno;</p>
+<p>if ($error != null) { echo "&lt;p&gt;Error $error conectando a la base de datos: $dwes-&gt;connect_error&lt;/p&gt;"; exit(); }</p>
+</blockquote>
+<p>Si una vez establecida la conexión, quieres cambiar la base de datos puedes usar el método select_db (o la función mysqli_select_db de forma equivalente) para indicar el nombre de la nueva.</p>
+<blockquote>
+<p>// utilizando el método connect</p>
+<p>$dwes-&gt;select_db('otra_bd');</p>
+</blockquote>
+<p>Una vez finalizadas las tareas con la base de datos, utiliza el método <strong>close</strong> (o la función <strong>mysqli_close</strong>) para cerrar la conexión con la base de datos y liberar los recursos que utiliza.</p>
+<blockquote>
+<p>$dwes-&gt;close();</p>
+</blockquote>
+<p><a href="https://www.php.net/manual/es/mysqli.quickstart.dual-interface.php">Ver interfaz dual mysqi en php.net</a></p>
+<p><a href="https://www.php.net/manual/es/mysqli.quickstart.connections.php">Ver conexiones mysqli en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id138">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.3.2. Ejecución de consultas</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta138_138_2" class="block iDevice_content">
+<div class="exe-text"><p>La forma más inmediata de ejecutar una consulta, si utilizas esta extensión, es el método <strong>query</strong>, equivalente a la función <strong>mysqli_query</strong>. Si se ejecuta una <strong>consulta de acción que no devuelve datos</strong> (como una sentencia SQL de tipo UPDATE, INSERT o DELETE), la llamada <strong>devuelve true si se ejecuta correctamente o false en caso contrario</strong>. El número de registros afectados se puede obtener con la propiedad <strong>affected_rows</strong> (o con la función mysqli_affected_rows).</p>
+<blockquote>
+<p>@ $dwes = new mysqli('localhost', 'dwes', 'abc123.', 'dwes');</p>
+<p>$error = $dwes-&gt;connect_errno;</p>
+<p>if ($error == null) {</p>
+<p>   $resultado = $dwes-&gt;query('DELETE FROM stock WHERE unidades=0');</p>
+<p>   if ($resultado) {</p>
+<p>      print "&lt;p&gt;Se han borrado $dwes-&gt;affected_rows registros.&lt;/p&gt;";</p>
+<p>   }</p>
+<p>$dwes-&gt;close(); }</p>
+</blockquote>
+<p>En el caso de ejecutar una <strong>sentencia SQL que sí devuelva datos</strong> (como un SELECT), éstos <strong>se devuelven en forma de un objeto resultado</strong> (de la clase mysqli_result). En el punto siguiente verás cómo se pueden manejar los resultados obtenidos.</p>
+<p>El método query tiene un parámetro opcional que afecta a cómo se obtienen internamente los resultados, pero no a la forma de utilizarlos posteriormente. En la opción por defecto,<strong> MYSQLI_STORE_RESULT</strong>, los resultados se recuperan todos juntos de la base de datos y se almacenan de forma local. Si cambiamos esta opción por el valor <strong>MYSQLI_USE_RESULT,</strong> los datos se van recuperando del servidor según se vayan necesitando.</p>
+<blockquote>
+<p>$resultado = $dwes-&gt;query('SELECT producto, unidades FROM stock', <strong>MYSQLI_USE_RESULT</strong>);</p>
+</blockquote>
+<p>Otra forma que puedes utilizar para ejecutar una consulta es el método <strong>real_query</strong> (o la función <strong>mysqli_real_query</strong>), que siempre <strong>devuelve true o false</strong> según se haya ejecutado correctamente o no. Si la consulta devuelve un <strong>conjunto de resultados</strong>, se podrán recuperar de forma completa utilizando el método <strong>store_result</strong>, o según vaya siendo necesario gracias al método <strong>use_result</strong>.</p>
+<p>Es importante tener en cuenta que <strong>los resultados obtenidos se almacenarán en memoria mientras los estés usando</strong>. Cuando ya no los necesites, <strong>los puedes liberar</strong> con el método <strong>free</strong> de la clase <strong>mysqli_result</strong> (o con la función <strong>mysqli_free_result</strong>):</p>
+<blockquote>
+<p>$resultado-&gt;free();</p>
+</blockquote>
+<p><a href="https://www.php.net/manual/es/mysqli.quickstart.statements.php">Ver ejecución de consultas mysqli en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id139">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.3.3. Transacciones y sentencias múltiples</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta139_139_2" class="block iDevice_content">
+<div class="exe-text"><p>Como ya comentamos, si necesitas utilizar transacciones deberás asegurarte de que estén soportadas por el motor de almacenamiento que gestiona tus tablas en MySQL. Si utilizas InnoDB, por defecto cada consulta individual se incluye dentro de su propia transacción. Puedes gestionar este comportamiento con el método <strong>autocommit</strong> (función <strong>mysqli_autocommit</strong>).</p>
+<blockquote>
+<p>$dwes-&gt;autocommit(false); // deshabilitamos el modo transaccional automático</p>
+</blockquote>
+<p>Al deshabilitar las transacciones automáticas, las siguientes operaciones sobre la base de datos iniciarán una transacción que deberás finalizar utilizando:</p>
+<ul>
+<li><strong>commit</strong> (o la función <strong>mysqli_commit</strong>). Realizar una operación "commit" de la transacción actual, devolviendo true si se ha realizado correctamente o false en caso contrario.</li>
+<li><strong>rollback</strong> (o la función <strong>mysqli_rollback</strong>). Realizar una operación "rollback" de la transacción actual, devolviendo true si se ha realizado correctamente o false en caso contrario.</li>
+</ul>
+<blockquote>
+<p>… $dwes-&gt;query('DELETE FROM stock WHERE unidades=0'); // Inicia una transacción</p>
+<p>$dwes-&gt;query('UPDATE stock SET unidades=3 WHERE producto="STYLUSSX515W"'); …</p>
+<p>$dwes-&gt;commit(); // Confirma los cambios</p>
+</blockquote>
+<p>Una vez finalizada esa transacción, comenzará otra de forma automática.</p>
+<p>Por otro lado, MySQL permite opcionalmente tener múltiples sentencias en una cadena de sentencias. El envío de <strong>múltiples sentencias de una sola vez reduce los viajes de ida y vuelta desde el cliente al servidor</strong>, pero requiere un manejo especial.</p>
+<p>Las sentencias múltiples o multiconsultas deben ser ejecutadas con mysqli_multi_query(). Las sentencias individuales de la cadena de sentencias están serparadas por un punto y coma. Entonces, todos los conjuntos de resultados devueltos por las sentencias ejecutadas deben ser obtenidos.</p>
+<p>El servidor MySQL permite tener sentencias que devuelven conjuntos de resultados y sentencias que no devuelve conjuntos de resultados en una sentencia múltiple.</p>
+<p><a href="https://www.php.net/manual/es/mysqli.quickstart.transactions.php">Ver soporte de transacciones en php.net</a></p>
+<p><a href="https://www.php.net/manual/es/mysqli.quickstart.multiple-statement.php">Ver sentencias múltiples en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id140">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.3.4. Obtención y utilización de conjuntos de resultados</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta140_140_2" class="block iDevice_content">
+<div class="exe-text"><p>Ya sabes que al ejecutar una consulta que devuelve datos obtienes un objeto de la clase <strong>mysqli_result</strong>. Esta clase sigue los criterios de ofrecer un interface de programación dual, es decir, una función por cada método con la misma funcionalidad que éste. Para trabajar con los datos obtenidos del servidor, tienes varias posibilidades:</p>
+<ul>
+<li><strong>fetch_array</strong> (función <strong>mysqli_fetch_array</strong>). Obtiene un registro completo del conjunto de resultados y lo almacena en un array. Por defecto el array contiene <strong>tanto claves numéricas como asociativas</strong>. Por ejemplo, para acceder al primer campo devuelto, podemos utilizar como clave el número 0 o su nombre indistintamente.</li>
+</ul>
+<blockquote>$resultado = $dwes-&gt;query('SELECT producto, unidades FROM stock WHERE unidades&lt;2');</blockquote>
+<blockquote>$stock = $resultado-&gt;fetch_array(); </blockquote>
+<blockquote>$producto = $stock['producto']; // Obtenemos el primer registro </blockquote>
+<blockquote>$stock[0]; // O también</blockquote>
+<p>Este comportamiento por defecto se puede modificar utilizando un parámetro opcional, que puede tomar los siguientes valores:</p>
+<blockquote><strong>MYSQLI_NUM.</strong> Devuelve un array con claves numéricas.</blockquote>
+<blockquote><strong>MYSQLI_ASSOC</strong>. Devuelve un array asociativo.</blockquote>
+<blockquote><strong>MYSQLI_BOTH</strong>. Es el comportamiento por defecto, en el que devuelve un array con claves numéricas y asociativas.</blockquote>
+<ul>
+<li><strong>fetch_assoc</strong> (función <strong>mysqli_fetch_assoc</strong>). Idéntico a fetch_array pasando como parámetro MYSQLI_ASSOC.</li>
+<li><strong>fetch_row</strong> (función <strong>mysqli_fetch_row</strong>). Idéntico a fetch_array pasando como parámetro MYSQLI_NUM.</li>
+<li><strong>fetch_object</strong> (función <strong>mysqli_fetch_object</strong>). Similar a los métodos anteriores, pero devuelve un objeto en lugar de un array. Las propiedades del objeto devuelto se corresponden con cada uno de los campos del registro.</li>
+</ul>
+<p>Parar recorrer todos los registros de un array, puedes hacer un bucle teniendo en cuenta que cualquiera de los métodos o funciones anteriores <strong>devolverá null cuando no haya más registros en el conjunto de resultados.</strong></p>
+<blockquote>
+<p>$resultado = $dwes-&gt;query('SELECT producto, unidades FROM stock WHERE unidades&lt;2');</p>
+<p>$stock = $resultado-&gt;fetch_object();</p>
+<p>while ($stock != null) {</p>
+<p>   print "&lt;p&gt;Producto $stock-&gt;producto: $stock-&gt;unidades unidades.&lt;/p&gt;";</p>
+<p>   $stock = $resultado-&gt;fetch_object();</p>
+<p>}</p>
+</blockquote>
+<p><a href="https://www.php.net/manual/es/mysqli.query.php">Ver mysqli_query en php.net</a><br /> </p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id141">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.4.4. Consultas preparadas</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta141_141_2" class="block iDevice_content">
+<div class="exe-text"><p>Cada vez que se envía una consulta al servidor, éste debe analizarla antes de ejecutarla. Algunas sentencias SQL, como las que insertan valores en una tabla, deben repetirse de forma habitual en un programa. <strong>Para acelerar este proceso, MySQL admite consultas preparadas</strong>. Estas consultas se almacenan en el servidor listas para ser ejecutadas cuando sea necesario.</p>
+<p>Para trabajar con consultas preparadas con la extensión MySQLi de PHP, debes utilizar la clase <strong>mysqli_stmt</strong>. Utilizando el método <strong>stmt_init</strong> de la clase mysqli (o la función <strong>mysqli_stmt_init</strong>) obtienes un objeto de dicha clase.</p>
+<blockquote>
+<p>$dwes = new mysqli('localhost', 'dwes', 'abc123.', 'dwes');</p>
+<p>$consulta = $dwes-&gt;stmt_init();</p>
+</blockquote>
+<p>Los pasos que debes seguir para ejecutar una consulta preparada son:</p>
+<ol>
+<li>Preparar la consulta en el servidor MySQL utilizando el método prepare (función mysqli_stmt_prepare).</li>
+<li>Ejecutar la consulta, tantas veces como sea necesario, con el método execute (función mysqli_stmt_execute).</li>
+<li>Una vez que ya no se necesita más, se debe ejecutar el método close (función mysqli_stmt_close).</li>
+</ol>
+<p>Por ejemplo, para preparar y ejecutar una consulta que inserta un nuevo registro en la tabla familia:</p>
+<blockquote>
+<p>$consulta = $dwes-&gt;stmt_init();</p>
+<p>$consulta-&gt;prepare('INSERT INTO familia (cod, nombre) VALUES ("TABLET", "Tablet PC")');</p>
+<p>$consulta-&gt;execute();</p>
+<p>$consulta-&gt;close();</p>
+<p>$dwes-&gt;close();</p>
+</blockquote>
+<p>El problema que ya habrás observado, es que de poco sirve preparar una consulta de inserción de datos como la anterior, si los valores que inserta son siempre los mismos. Por este motivo <strong>las consultas preparadas admiten parámetros</strong>. Para preparar una consulta con parámetros, en lugar de poner los valores debes indicar con un signo de interrogación su posición dentro de la sentencia SQL.</p>
+<blockquote>
+<p>$consulta-&gt;prepare('INSERT INTO familia (cod, nombre) VALUES (?, ?)');</p>
+</blockquote>
+<p>Y antes de ejecutar la consulta tienes que utilizar el método <strong>bind_param</strong> (o la función <strong>mysqli_stmt_bind_param</strong>) para sustituir cada parámetro por su valor. El primer parámetro del método bind_param es una cadena de texto en la que cada carácter indica el tipo de un parámetro, según la siguiente tabla.</p>
+<p style="text-align: center;">Caracteres indicativos del tipo de los parámetros en una consulta preparada.</p>
+<table style="width: 34.3719%; margin-left: auto; margin-right: auto;" border="1">
+<tbody>
+<tr>
+<td style="width: 3.46738%;">Carácter</td>
+<td style="width: 30.9045%;">Tipo del parámetro</td>
+</tr>
+<tr>
+<td style="width: 3.46738%;">I</td>
+<td style="width: 30.9045%;">Número entero.</td>
+</tr>
+<tr>
+<td style="width: 3.46738%;">D</td>
+<td style="width: 30.9045%;">Número real (doble precisión).</td>
+</tr>
+<tr>
+<td style="width: 3.46738%;">s</td>
+<td style="width: 30.9045%;">Cadena de texto.</td>
+</tr>
+<tr>
+<td style="width: 3.46738%;">B</td>
+<td style="width: 30.9045%;">Contenido en formato binario (BLOB).</td>
+</tr>
+</tbody>
+</table>
+<p>En el caso anterior, si almacenas los valores a insertar en sendas variables, puedes hacer:</p>
+<blockquote>
+<p>$consulta = $dwes-&gt;stmt_init();</p>
+<p>$consulta-&gt;prepare('INSERT INTO familia (cod, nombre) VALUES (?, ?)');</p>
+<p>$cod_producto = "TABLET";</p>
+<p>$nombre_producto = "Tablet PC";</p>
+<p>$consulta-&gt;bind_param('ss', $cod_producto, $nombre_producto);</p>
+<p>$consulta-&gt;execute();</p>
+<p>$consulta-&gt;close();</p>
+<p>$dwes-&gt;close();</p>
+</blockquote>
+<p>Cuando uses bind_param para enlazar los parámetros de una consulta preparada con sus respectivos valores, <strong>deberás usar siempre variables</strong> como en el ejemplo anterior. Si intentas utilizar literales, por ejemplo:</p>
+<blockquote>
+<p>$consulta-&gt;bind_param('ss', 'TABLET', 'Tablet PC'); // Genera un error</p>
+</blockquote>
+<p>Obtendrás un error. El motivo es que <strong>los parámetros del método bind_param se pasan por referencia.</strong></p>
+<p>El método <strong>bind_param permite tener una consulta preparada en el servidor MySQL y ejecutarla tantas veces como quieras cambiando ciertos valores cada vez</strong>. Además, en el caso de las <strong>consultas que devuelven valores,</strong> se puede utilizar el método <strong>bind_result</strong> (función<strong> mysqli_stmt_bind_result</strong>) para asignar a variables los campos que se obtienen tras la ejecución. Utilizando el método <strong>fetch</strong> (<strong>mysqli_stmt_fetch</strong>) se recorren los registros devueltos. Observa el siguiente código:</p>
+<blockquote>
+<p>$consulta = $dwes-&gt;stmt_init();</p>
+<p>$consulta-&gt;prepare('SELECT producto, unidades FROM stock WHERE unidades&lt;2');</p>
+<p>$consulta-&gt;execute();</p>
+<p>$consulta-&gt;bind_result($producto, $unidades);</p>
+<p>while($consulta-&gt;fetch()) {</p>
+<p>   print "&lt;p&gt;Producto $producto: $unidades unidades.&lt;/p&gt;";</p>
+<p>}</p>
+<p>$consulta-&gt;close();</p>
+<p>$dwes-&gt;close();</p>
+</blockquote>
+<p><a href="https://www.php.net/manual/es/class.mysqli-stmt">Ver mysqli_stmt en php.net</a></p>
+<p><a href="https://www.php.net/manual/es/mysqli.quickstart.stored-procedures.php">Ver procedimientos almacenados en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="52_utilizacin_de_bases_de_datos_mysql_en_php.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="54_php_data_objects_pdo.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>

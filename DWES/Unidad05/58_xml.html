@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>5.8. XML | Unidad 05 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-61"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad 05</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 5. Utilización de técnicas de acceso a datos</a></li>
+   <li><a href="51_acceso_a_bases_de_datos_desde_php.html" class="no-ch">5.1. Acceso a bases de datos desde PHP</a></li>
+   <li><a href="52_utilizacin_de_bases_de_datos_mysql_en_php.html" class="no-ch">5.2. Utilización de bases de datos MySQL en PHP</a></li>
+   <li><a href="53_extensin_mysqli.html" class="no-ch">5.3. Extensión MySQLi</a></li>
+   <li><a href="54_php_data_objects_pdo.html" class="no-ch">5.4. PHP Data Objects (PDO)</a></li>
+   <li><a href="55_errores_y_manejo_de_excepciones.html" class="no-ch">5.5. Errores y manejo de excepciones</a></li>
+   <li><a href="56_expresiones_regulares.html" class="no-ch">5.6. Expresiones regulares</a></li>
+   <li><a href="57_filtrado_de_datos.html" class="no-ch">5.7. Filtrado de datos</a></li>
+   <li id="active"><a href="58_xml.html" class="active no-ch">5.8. XML</a></li>
+   <li><a href="59_ficheros.html" class="no-ch">5.9. Ficheros</a></li>
+   <li><a href="510_encriptacin_y_contraseas.html" class="no-ch">5.10. Encriptación y contraseñas</a></li>
+   <li><a href="511_subida_y_bajada_de_archivos.html" class="no-ch">5.11. Subida y bajada de archivos</a></li>
+   <li><a href="512_paginacin.html" class="no-ch">5.12. Paginación</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="57_filtrado_de_datos.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="59_ficheros.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">5.8. XML</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id156">
+<div class="iDevice emphasis0" >
+<div id="ta156_156_2" class="block iDevice_content">
+<div class="exe-text"><p><strong>XML</strong> son las siglas de <strong>Extensible Markup Language</strong>, un <strong>lenguage de marcado</strong> para guardar y transportar datos <strong>legible</strong> para ordenadores y humanos. A pesar de que su diseño está focalizado a documentos, se usa especialmente para la representación de <strong>estructuras de datos</strong> como en los web services.</p>
+<p><strong>XML</strong> se usa frecuentemente para <strong>separar los datos de la presentación</strong>. XML no indica cómo presentar la información, un mismo <strong>documento XML</strong> puede presentarse de muchas formas. Es muy utilizado junto a <strong>aplicaciones HTML</strong>, donde XML guarda o transporta los datos, y <strong>HTML</strong> les da formato y los muestra. Cuando se muestran los datos en HTML, no es necesario tener que editar el archivo HTML cuando los datos cambian, XML guarda los datos en archivos separados. Con los lenguajes de programación web como <strong>PHP</strong> o <strong>Javascript</strong> se pueden <strong>leer archivos XML</strong> y <strong>actualizar el contenido de cualquier página HTML</strong>.</p>
+<p><a href="https://www.php.net/manual/es/refs.xml.php">Ver manipulación de XML en php.net</a></p></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id157">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.8.1. SimpleXML</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta157_157_2" class="block iDevice_content">
+<div class="exe-text"><p>PHP proporciona varias <strong>formas de manejar archivos XML</strong>. La forma más sencilla de hacerlo es con la extensión SimpleXML.<strong></strong></p>
+<p>Algunos de los ejemplos se harán mediante el <strong>archivo xml</strong> <em>usuarios.xml</em>, que es el siguiente:</p>
+<blockquote>
+<p>&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br />&lt;usuarios&gt;<br />   &lt;usuario&gt;<br />      &lt;nombre&gt;Monnie&lt;/nombre&gt;<br />      &lt;apellido&gt;Boddie&lt;/apellido&gt;<br />      &lt;direccion&gt;Calle Pedro Mar 12&lt;/direccion&gt;<br />      &lt;ciudad&gt;Mexicali&lt;/ciudad&gt;<br />      &lt;pais&gt;Mexico&lt;/pais&gt;<br />      &lt;contacto&gt;<br />         &lt;telefono&gt;44221234&lt;/telefono&gt;<br />         &lt;url&gt;http://monnie.ejemplo.com&lt;/url&gt;<br />         &lt;email&gt;monnie@ejemplo.com&lt;/email&gt;<br />      &lt;/contacto&gt;<br />   &lt;/usuario&gt;<br />   &lt;usuario&gt;<br />      &lt;nombre&gt;Ted&lt;/nombre&gt;<br />      &lt;apellido&gt;Gonzalez&lt;/apellido&gt;<br />     &lt;direccion&gt;Calle Luis Angel 22&lt;/direccion&gt;<br />     &lt;ciudad&gt;Buenos Aires&lt;/ciudad&gt;<br />     &lt;pais&gt;Argentina&lt;/pais&gt;<br />     &lt;contacto&gt;<br />        &lt;telefono&gt;44224664&lt;/telefono&gt;<br />        &lt;url&gt;http://ted.ejemplo.com&lt;/url&gt;<br />        &lt;email&gt;ted@ejemplo.com&lt;/email&gt;<br />     &lt;/contacto&gt;<br />   &lt;/usuario&gt;<br />&lt;/usuarios&gt;</p>
+</blockquote>
+<p>La carga de un archivo XML se hace con una simple función llamada simplexml_loadfile(). Una vez que el archivo se pasa a esta función, se puede acceder a los datos:</p>
+<blockquote>
+<p>if(!$xml = simplexml_load_file('usuarios.xml')){<br />   echo "No se ha podido cargar el archivo";<br />} else {<br />   echo "El archivo se ha cargado correctamente";<br />}</p>
+</blockquote>
+<p>Si los datos en formato XML están en un <em>string</em>, se puede utilizar la función: simplexml_loadstring($string):</p>
+<blockquote>
+<p>&lt;?php<br />$string = '&lt;usuarios&gt;<br />&lt;usuario&gt;<br />&lt;nombre&gt;Monnie&lt;/nombre&gt;<br />&lt;apellido&gt;Boddie&lt;/apellido&gt;<br />&lt;direccion&gt;Calle Pedro Mar 12&lt;/direccion&gt;<br />&lt;ciudad&gt;Mexicali&lt;/ciudad&gt;<br />&lt;pais&gt;Mexico&lt;/pais&gt;<br />&lt;contacto&gt;<br />&lt;telefono&gt;44221234&lt;/telefono&gt;<br />&lt;url&gt;http://monnie.ejemplo.com&lt;/url&gt;<br />&lt;email&gt;monnie@ejemplo.com&lt;/email&gt;<br />&lt;/contacto&gt;<br />&lt;/usuario&gt;<br />&lt;/usuarios&gt;';<br />if(!$xml = simplexml_load_string($string)){<br />   echo "No se ha podido cargar el archivo";<br />} else {<br />   echo "Se ha cargado correctamente";<br />}</p>
+</blockquote>
+<p>Con el archivo cargado correctamente, se puede acceder a los datos contenidos en cada uno de los elementos, para mostrarlos, asignarlos a variables, manipularlos...</p>
+<p>Transformamos cada elemento en su correspondiente nombre de variable, cuyo valor será el valor del interior del elemento. En caso de que haya <strong>valores anidados</strong>, como en el elemento <em>contacto</em>, se proporciona la ruta de los elementos correspondiente:</p>
+<blockquote>
+<p>if(!$xml = simplexml_load_file('usuarios.xml')){<br />   echo "No se ha podido cargar el archivo";<br />} else {<br />   foreach ($xml as $usuario){<br />      echo 'Nombre: '.$usuario-&gt;nombre.'&lt;br&gt;';<br />      echo 'Apellido: '.$usuario-&gt;apellido.'&lt;br&gt;';<br />      echo 'Dirección: '.$usuario-&gt;direccion.'&lt;br&gt;';<br />      echo 'Ciudad: '.$usuario-&gt;ciudad.'&lt;br&gt;';<br />      echo 'País: '.$usuario-&gt;pais.'&lt;br&gt;';<br />      echo 'Teléfono: '.$usuario-&gt;contacto-&gt;telefono.'&lt;br&gt;';<br />      echo 'Url: '.$usuario-&gt;contacto-&gt;url.'&lt;br&gt;';<br />      echo 'Email: '.$usuario-&gt;email-&gt;nombre.'&lt;br&gt;';<br />   }<br />}</p>
+</blockquote>
+<p>El objeto cargado antes era realmente un objeto de la clase <strong>SimpleXMLElement</strong>. Esta clase es la base de la extensión SimpleXML. Vamos a iniciar el archivo xml instanciando esta clase de ahora en adelante. Al <strong>constructor de la clase</strong> se le ha de pasar la variable que contiene el <strong>string xml</strong>, o la <strong>ruta de un archivo</strong>, pero para esta segunda forma hay que especificar dos argumentos más:</p>
+<blockquote>
+<p>&lt;?php<br />$string = '&lt;usuarios&gt;<br />&lt;usuario&gt;<br />&lt;nombre&gt;Monnie&lt;/nombre&gt;<br />&lt;apellido&gt;Boddie&lt;/apellido&gt;<br />&lt;direccion&gt;Calle Pedro Mar 12&lt;/direccion&gt;<br />&lt;ciudad&gt;Mexicali&lt;/ciudad&gt;<br />&lt;pais&gt;Mexico&lt;/pais&gt;<br />&lt;contacto&gt;<br />&lt;telefono&gt;44221234&lt;/telefono&gt;<br />&lt;url&gt;http://monnie.ejemplo.com&lt;/url&gt;<br />&lt;email&gt;monnie@ejemplo.com&lt;/email&gt;<br />&lt;/contacto&gt;<br />&lt;/usuario&gt;<br />&lt;/usuarios&gt;';<br />// Nuevo objeto SimpleXMLElement al que se le pasa el string<br />$usuarios = new SimpleXMLElement($string);<br />// Mostrar un valor<br />echo $usuarios-&gt;usuario-&gt;ciudad; // Devuelve Mexicali<br />// Nuevo objeto SimpleXMLElement al que se le pasa ruta de archivo<br />$usuarios = new SimpleXMLElement('usuarios.xml', 0, true);<br />echo $usuarios-&gt;usuario[1]-&gt;ciudad; // Devuelve Buenos Aires</p>
+</blockquote>
+<p>Cuando existen <strong>elementos con hijos</strong> se utilizan las <strong>técnicas típicas de iteración de elementos</strong>:</p>
+<blockquote>
+<p>&lt;?php<br />// Nuevo objeto SimpleXMLElement al que se le pasa ruta de archivo<br />$usuarios = new SimpleXMLElement('usuarios.xml', 0, true);<br />foreach ($usuarios as $usuario){<br />   echo "Nombre: ". $usuario-&gt;nombre ."&lt;br&gt;";<br />      foreach($usuario-&gt;contacto as $contact){<br />         echo "Teléfono: ". $contact-&gt;telefono . "&lt;br&gt;";<br />         echo "Email: ".$contact-&gt;email . "&lt;br&gt;";<br />     }<br />}</p>
+</blockquote>
+<p>Se puede comprobar que lo que se crean son objetos, por lo que la <strong>iteración</strong> se realiza con <strong>objetos</strong>. Si lo que se quiere es <strong>obtener un array para iterar con arrays</strong>, se puede emplear el siguiente método:</p>
+<blockquote>
+<p>&lt;?php<br />​$xml = simplexml_load_file('usuarios.xml');<br />$jsonString = json_encode($xml);<br />$array = json_decode($jsonString, true);</p>
+</blockquote>
+<p>SimpleXML también puede acceder fácilmente a los <strong>atributos de los elementos xml</strong>. Para acceder a ellos se hace mediante sintaxis de array. Vamos a modificar el ejemplo xml anterior y añadir las <strong>opciones de contacto como atributos</strong> (aunque en la práctica fuera preferible hacerlo mediante elementos):</p>
+<blockquote>
+<p>$string = '&lt;usuarios&gt;<br />&lt;usuario&gt;<br />&lt;nombre&gt;Monnie&lt;/nombre&gt;<br />&lt;apellido&gt;Boddie&lt;/apellido&gt;<br />&lt;direccion&gt;Calle Pedro Mar 12&lt;/direccion&gt;<br />&lt;ciudad&gt;Mexicali&lt;/ciudad&gt;<br />&lt;pais&gt;Mexico&lt;/pais&gt;<br />&lt;contacto tipo="telefono"&gt;44221234&lt;/contacto&gt;<br />&lt;contacto tipo="url"&gt;http://monnie.ejemplo.com&lt;/contacto&gt;<br />&lt;contacto tipo="email"&gt;monnie@ejemplo.com&lt;/contacto&gt;<br />&lt;/usuario&gt;<br />&lt;/usuarios&gt;';<br />// Nuevo objeto SimpleXMLElement al que se le pasa el string xml<br />$usuarios = new SimpleXMLElement($string);<br />echo "Nombre de usuario:" . $usuarios-&gt;usuario[0]-&gt;nombre . "&lt;br&gt;";<br />foreach($usuarios-&gt;usuario[0]-&gt;contacto as $contacto) {<br />   switch((string) $contacto['tipo']){<br />      case 'telefono':<br />         echo "Telefono: " . $contacto . "&lt;br&gt;";<br />         break;<br />      case 'email':<br />         echo "Email: " . $contacto . "&lt;br&gt;";<br />   }<br />}</p>
+</blockquote>
+<p>Para <strong>comparar un elemento o atributo con un string o pasarlo a una función que requiera un string</strong> conviene hacer una conversión empleando (<em>string</em>). Sino, PHP tratará al elemento como un objeto (aunque funcione el tratamiento del objeto como string con __toString):</p>
+<blockquote>
+<p>// Seguimos con el string xml del ejemplo anterior<br />// Nuevo objeto SimpleXMLElement al que se le pasa el string xml<br />$usuarios = new SimpleXMLElement($string);<br />if((string) $usuarios-&gt;usuario-&gt;nombre == 'Monnie') {<br />   echo 'El usuario es efectivamente Monnie';<br />} else {<br />   echo 'El usuario NO es Monnie';<br />}<br />echo htmlentities((string) $usuarios-&gt;usuario-&gt;nombre);<br />// Podemos ver que si hacemos var_dump:<br />var_dump($usuarios-&gt;usuario-&gt;nombre);<br />/*<br />Devuelve:<br />object(SimpleXMLElement)[2]<br />public 0 =&gt; string 'Monnie' (length=6)<br />*/</p>
+</blockquote>
+<p>Dos elementos <strong>SimpleXMLElement</strong> se consideran <strong>distintos incluso cuando ambos apuntan al mismo elemento</strong>:</p>
+<blockquote>
+<p>// Nuevo objeto SimpleXMLElement al que se le pasa el string xml<br />$usuarios1 = new SimpleXMLElement($string);<br />$usuarios2 = new SimpleXMLElement($string);<br />var_dump($usuarios1 == $usuarios2); // Devuelve false</p>
+</blockquote>
+<p>Mediante el método <strong>SimpleXMLElement::xpath</strong> es posible ejecutar una petición <a href="http://diego.com.es/xml-principios-basicos#QueEsXPath">XPath</a> sobre los datos XML:</p>
+<blockquote>
+<p>// Nuevo objeto SimpleXMLElement al que se le pasa un archivo xml<br />$usuarios = new SimpleXMLElement('usuarios.xml', 0, true);<br />// Se puede especificar la ruta reducida y acceder directamente a un elemento:<br />foreach ($usuarios-&gt;xpath('//usuario') as $usuario){<br />   echo $usuario-&gt;apellido . "&lt;br&gt;";<br />}<br />// O especificar la ruta absoluta:<br />foreach ($usuarios-&gt;xpath('/usuarios/usuario') as $usuario){<br />   echo $usuario-&gt;nombre . "&lt;br&gt;";<br />}</p>
+</blockquote>
+<p>Para <strong>modificar un elemento</strong> simplemente se cambia su valor:</p>
+<blockquote>
+<p>// Nuevo objeto SimpleXMLElement al que se le pasa un archivo xml<br />$usuarios = new SimpleXMLElement('usuarios.xml', 0, true);<br />// Usuario 0 antes de cambiar:<br />echo "Nombre: " . $usuarios-&gt;usuario[0]-&gt;nombre . "&lt;br&gt;";<br />// Usuario 0 cambiando el nombre:<br />$usuarios-&gt;usuario[0]-&gt;nombre = "María";<br />echo "Nombre: " . $usuarios-&gt;usuario[0]-&gt;nombre . "&lt;br&gt;";</p>
+</blockquote>
+<p>Para <strong>añadir un elemento hijo</strong> se emplea <em>addChild()</em> y para añadir un atributo <em>addAttribute()</em>:</p>
+<blockquote>
+<p>// Nuevo objeto SimpleXMLElement al que se le pasa un archivo xml<br />$usuarios = new SimpleXMLElement('usuarios.xml', 0, true);<br />// Añadimos usuario, elementos y atributo<br />$nuevoUsuario = $usuarios-&gt;addChild('usuario');<br />$nuevoUsuario-&gt;addAttribute('sexo', 'Hombre');<br />$nuevoUsuario-&gt;addChild('nombre', 'Bernard');<br />$nuevoUsuario-&gt;addChild('apellido', 'Madoff');<br />var_dump($usuarios-&gt;usuario[3]);<br />/*<br />Devuelve:<br />object(SimpleXMLElement)[5]<br />public '@attributes' =&gt;<br />array (size=1)<br />'sexo' =&gt; string 'Hombre' (length=6)<br />public 'nombre' =&gt; string 'Bernard' (length=7)<br />public 'apellido' =&gt; string 'Madoff' (length=6)<br />*/</p>
+</blockquote>
+<p>Si ahora queremos ver los datos de nuevo el documento <em>usuarios.xml</em> en un string con formato xml podemos emplear el método <em>asXML()</em> o <em>saveXML()</em> que es su alias:</p>
+<blockquote>
+<p>$nuevoXML = $usuarios-&gt;asXML();<br />var_dump($nuevoXML); // Devuelve un string con los datos en XML</p>
+</blockquote>
+<p>Existen algunas <strong>funciones para obtener información de un archivo xml cualquiera</strong>:</p>
+<ul>
+<li><em>SimpleXMLElement::children()</em>. Muestra los hijos de un elemento. Pueden obtenerse resultados jerárquicamente:</li>
+</ul>
+<blockquote>
+<p>// Nuevo objeto SimpleXMLElement al que se le pasa un archivo xml<br />$usuarios = new SimpleXMLElement('usuarios.xml', 0, true);<br />// foreach para acceder a hijos de elementos<br />foreach ($usuarios-&gt;children() as $usuario){<br />   echo "Nombre de usuario: " . $usuario-&gt;nombre . "&lt;br&gt;";<br />   foreach ($usuario-&gt;children() as $contact){<br />      if (isset($contact-&gt;telefono)){<br />         echo "Telefono: " . $contact-&gt;telefono . "&lt;br&gt;";<br />      }<br />   }<br />}</p>
+</blockquote>
+<pre><code class="hljs php"><span class="hljs-comment"></span></code></pre>
+<ul>
+<li><em>SimpleXMLElement::count()</em>. Cuenta los hijos de un elemento:<code class="hljs php"></code></li>
+</ul>
+<blockquote>
+<p>// Nuevo objeto SimpleXMLElement al que se le pasa un archivo xml<br />$usuarios = new SimpleXMLElement('usuarios.xml', 0, true);<br />// Contar número de usuarios<br />echo "Hay un total de: " . $usuarios-&gt;count() . " usuarios en el archivo xml";<code class="hljs php"></code></p>
+</blockquote>
+<ul>
+<li><em>SimpleXMLElement::getName()</em>. Devuelve el nombre de un elemento XML:</li>
+</ul>
+<blockquote>
+<p>// Nuevo objeto SimpleXMLElement al que se le pasa un archivo xml<br />$usuarios = new SimpleXMLElement('usuarios.xml', 0, true);<br />echo $usuarios-&gt;getName(); // usuarios<br />echo $usuarios-&gt;usuario-&gt;getName(); // usuario<br />// Elementos disponibles en usuario:<br />foreach ($usuarios-&gt;usuario[0] as $user){<br />   echo $user-&gt;getName() . "&lt;br&gt;";<br />}</p>
+<p><code class="hljs php"><span class="hljs-comment"></span></code></p>
+</blockquote>
+<ul>
+<li><em>SimpleXMLElement::attributes()</em>. Identifica el atributo de un elemento:</li>
+</ul>
+<blockquote>
+<p>$string = &lt;&lt;&lt;XML<br />&lt;animales&gt;<br />&lt;animal tipo="mamifero"&gt;<br />&lt;nombre&gt;Tigre&lt;/nombre&gt;<br />&lt;/animal&gt;<br />&lt;animal tipo="anfibio"&gt;<br />&lt;nombre&gt;rana&lt;/nombre&gt;<br />&lt;/animal&gt;<br />&lt;/animales&gt;<br />XML;<br />// Cargamos el archivo:<br />$xml = simplexml_load_string($string);<br />// Se puede obtener el atributo así:<br />$xml-&gt;animal[0]-&gt;attributes(); // Devuelve: mamífero<br />$xml-&gt;animal[1]-&gt;attributes(); // Devuelve: anfibio</p>
+</blockquote>
+<pre><code class="hljs php"><span class="hljs-variable"></span></code></pre>
+<p><a href="https://www.php.net/manual/es/book.simplexml.php">Ver SimpleXML en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id158">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.8.2. Analizador XML</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta158_158_2" class="block iDevice_content">
+<div class="exe-text"><p>La <strong>extensión XML Parser de PHP</strong> proporciona una serie de <strong>herramientas para analizar documentos XML</strong> (no validarlos). Soporta tres tipos de codificación de caracteres: <strong>UTF-8</strong>, <strong>US-ASCII</strong> e <strong>ISO-8859-1</strong>. La codificación de entrada se detecta automáticamente, por lo que si se especifica la codificación en el argumento de una función para crear un recurso xml será para el elemento de salida, ya que el de entrada no se puede modificar.</p>
+<p>Si existen <strong>caracteres de entrada</strong> que no se pueden codificar aparece un error. Si no se consiguen <strong>codificar caracteres de salida</strong> se transforman en "?".</p>
+<p><strong>XML Parser</strong> al igual que <strong>XMLReader</strong> sólo carga el elemento actual en la <strong>memoria</strong>, por lo que hay que ir definiendo <em><strong>handlers</strong></em> para elementos específicos que se ejecutarán cuando el analizador se tope con ellos. Esto hace que sea más rápido y utilice menos recursos que un analizador basado en <strong>extensiones DOM</strong> como <strong>SimpleXML</strong> que tiene que cargar el documento XML entero en la memoria.</p>
+<p>La <strong>extensión XML Parser</strong> utiliza <strong>Expat XML parser</strong>. Expat es un analizador basado en eventos, observa un <strong>archivo xml</strong> como una serie de eventos. Cuando un evento ocurre, llama a una determinada función para tomar una acción. Al no validar datos, ignora cualquier DTD enlazado al documento. Si el documento no es <em><strong>well formed</strong></em> emitirá un error.</p>
+<p>Para crear un <strong>XML Parser</strong> se emplea la función xml_parsercreate(), que devuelve un <em><strong>resource</strong></em> para poder ser usado por otras funciones. Si se quiere que tenga soporte para namespaces se emplea xml_parser_createns().</p>
+<p>Para ver un ejemplo vamos a utilizar el siguiente archivo <em><strong>usuarios.xml</strong></em>:</p>
+<blockquote>
+<p>&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br />&lt;usuarios&gt;<br />   &lt;usuario&gt;<br />      &lt;nombre&gt;Monnie&lt;/nombre&gt;<br />      &lt;apellido&gt;Boddie&lt;/apellido&gt;<br />      &lt;direccion&gt;Calle Pedro Mar 12&lt;/direccion&gt;<br />      &lt;ciudad&gt;Mexicali&lt;/ciudad&gt;<br />      &lt;pais&gt;Mexico&lt;/pais&gt;<br />      &lt;contacto&gt;<br />         &lt;telefono&gt;44221234&lt;/telefono&gt;<br />         &lt;url&gt;http://monnie.ejemplo.com&lt;/url&gt;<br />         &lt;email&gt;monnie@ejemplo.com&lt;/email&gt;<br />      &lt;/contacto&gt;<br />   &lt;/usuario&gt;<br />   &lt;usuario&gt;<br />      &lt;nombre&gt;Ted&lt;/nombre&gt;<br />      &lt;apellido&gt;Gonzalez&lt;/apellido&gt;<br />      &lt;direccion&gt;Calle Luis Angel 22&lt;/direccion&gt;<br />      &lt;ciudad&gt;Buenos Aires&lt;/ciudad&gt;<br />      &lt;pais&gt;Argentina&lt;/pais&gt;<br />      &lt;contacto&gt;<br />         &lt;telefono&gt;44224664&lt;/telefono&gt;<br />         &lt;url&gt;http://ted.ejemplo.com&lt;/url&gt;<br />         &lt;email&gt;ted@ejemplo.com&lt;/email&gt;<br />      &lt;/contacto&gt;<br />   &lt;/usuario&gt;<br />&lt;/usuarios&gt;</p>
+</blockquote>
+<ul>
+<li><strong>Iniciamos el analizador:</strong></li>
+</ul>
+<blockquote>
+<p>$parser = xml_parser_create();</p>
+</blockquote>
+<ul>
+<li><strong>Especificamos las funciones a emplear con el parser</strong></li>
+</ul>
+<blockquote>
+<p>// Función a utilizar al inicio de un elemento:<br />function start($parser,$elemento,$atributos) {<br />   switch($elemento) {<br />      case "usuario":<br />         echo "Datos de usuario: &lt;br&gt;";<br />         break;<br />      case "nombre":<br />         echo "Nombre: ";<br />         break;<br />      case "apellido":<br />      echo "Apellido: ";<br />         break;<br />      case "ciudad":<br />         echo "Ciudad: ";<br />         break;<br />      case "pais":<br />         echo "País: ";<br />   }<br />}<br />// Función a emplear al final de un elemento:<br />function stop($parser,$elemento) {<br />   echo "&lt;br&gt;";<br />}<br />// Función que se emplea cuando se encuentra un carácter<br />function char($parser,$data) {<br />   echo $data;<br />}</p>
+</blockquote>
+<ul>
+<li><strong>Especificamos handlers, leemos datos y liberamos</strong></li>
+</ul>
+<blockquote>
+<p>// Especificar el handler de elementos<br />xml_set_element_handler($parser,"start","stop");<br />// Especificar el handler de datos<br />xml_set_character_data_handler($parser,"char");<br />// Abrir un archivo xml<br />$fp = fopen("usuarios.xml","r");<br />// Leer los datos<br />while ($data = fread($fp,4096)) {<br />   xml_parse($parser,$data,feof($fp)) or<br />      die (sprintf("Error XML: %s en la línea %d",<br />   xml_error_string(xml_get_error_code($parser)),<br />   xml_get_current_line_number($parser)));<br />}<br />// Liberar el analizador<br />xml_parser_free($parser);</p>
+</blockquote>
+<pre><code class="hljs php"><span class="hljs-comment"></span></code></pre>
+<p><a href="https://www.php.net/manual/es/book.xml.php">Ver analizador XML en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id159">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.8.3. Modelo de Objetos de Documento (DOM)</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta159_159_2" class="block iDevice_content">
+<div class="exe-text"><p><strong>PHP DOM</strong> es otra extensión de PHP que al igual que SimpleXML se basa en un estilo de análisis en árbol (<em>tree style parsing</em>) mediante el que se tiene que cargar el <strong>documento XML</strong> entero en la memoria. Este estilo permite acceder aleatoriamente al documento y editarlo, al contrario que los sistemas con un estilo de análisis <em>stream</em>, que van analizando nodo por nodo y no pueden editar el documento.</p>
+<p>La librería <em><strong>libxml2</strong></em> implementa el DOM junto a todos sus métodos en C. Todas las <strong>extensiones XML de PHP5</strong> están basadas en dicha librería, por lo que hay completa interoperatividad entre extensiones. Esto hace que potencie su funcionalidad, permitiendo por ejemplo utilizar <strong>XMLReader</strong> como <em>stream parser</em> para obtener un elemento, importarlo al <strong>DOM</strong> y extraer los datos mediante <strong>XPath</strong>.</p>
+<p>PHP DOM pasa toda la información a la aplicación <strong>creando objetos en forma de árbol</strong> que duplican exactamente los elementos en forma de árbol del <strong>documento XML</strong>. Para construir el árbol tiene que cargar el documento entero, por lo que utiliza bastante memoria. Con <strong>DOM</strong> es posible construir, modificar, consultar, validar y transformar <strong>documentos XML</strong>.</p>
+<p><strong>SimpleXML</strong> permite <strong>trabajar con documentos XML rápida y fácilmente</strong>, y a veces suele bastar con esa funcionalidad, pero <strong>cuando se necesita algo un poco más complejo</strong> suele ser necesario emplear <strong>PHP DOM</strong>. Existen dos funciones para pasar de uno a otro: de un nodo <strong>DOM</strong> a un objeto <strong>SimpleXML</strong>: simplexml_importdom(), de un objeto <strong>SimpleXML</strong> a un nodo <strong>DOM</strong>: dom_importsimplexml().</p>
+<p>Para los ejemplos vamos a emplear el siguiente archivo <em>usuarios.xml</em>:</p>
+<blockquote>
+<p>&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br />&lt;!DOCTYPE usuarios SYSTEM "usuarios.dtd"&gt;<br />&lt;usuarios&gt;<br />   &lt;usuario id="u23"&gt;<br />      &lt;nombre&gt;Monnie&lt;/nombre&gt;<br />      &lt;apellido&gt;Boddie&lt;/apellido&gt;<br />      &lt;ciudad&gt;Mexicali&lt;/ciudad&gt;<br />      &lt;pais&gt;Mexico&lt;/pais&gt;<br />      &lt;contacto&gt;<br />         &lt;telefono&gt;44221234&lt;/telefono&gt;<br />         &lt;email&gt;monnie@ejemplo.com&lt;/email&gt;<br />      &lt;/contacto&gt;<br />   &lt;/usuario&gt;<br />   &lt;usuario id="u33"&gt;<br />      &lt;nombre&gt;Ted&lt;/nombre&gt;<br />      &lt;apellido&gt;Gonzalez&lt;/apellido&gt;<br />      &lt;ciudad&gt;Buenos Aires&lt;/ciudad&gt;<br />      &lt;pais&gt;Argentina&lt;/pais&gt;<br />      &lt;contacto&gt;<br />         &lt;telefono&gt;44224664&lt;/telefono&gt;<br />         &lt;email&gt;ted@ejemplo.com&lt;/email&gt;<br />      &lt;/contacto&gt;<br />   &lt;/usuario&gt;<br />&lt;/usuarios&gt;</p>
+</blockquote>
+<p>Junto con el doctype <em>usuarios.dtd</em>:</p>
+<blockquote>
+<p>&lt;!ELEMENT usuarios (usuario*)&gt;<br />&lt;!ELEMENT usuario (nombre, apellido, ciudad, pais, contacto*)&gt;<br />&lt;!ATTLIST usuario id ID #REQUIRED&gt;<br />&lt;!ELEMENT nombre (#PCDATA)&gt;<br />&lt;!ELEMENT apellido (#PCDATA)&gt;<br />&lt;!ELEMENT ciudad (#PCDATA)&gt;<br />&lt;!ELEMENT pais (#PCDATA)&gt;<br />&lt;!ELEMENT contacto (telefono, email)&gt;<br />&lt;!ELEMENT telefono (#PCDATA)&gt;<br />&lt;!ELEMENT email (#PCDATA)&gt;</p>
+</blockquote>
+<p>El <strong>concepto de nodo en DOM</strong> es cualquier objeto individualizable dentro del <strong>documento XML</strong>. Esto significa que tanto los elementos como los atributos son nodos.</p>
+<pre><code class="hljs xml"><span class="hljs-pi"></span></code></pre>
+<pre><code class="hljs xml"><span class="hljs-tag"></span></code></pre>
+<p><strong>DOMNode</strong> es una clase que extiende <strong>DOMDocument</strong> que proporciona métodos para manipular diferentes aspectos del documento: <em>appendChild()</em>, <em>cloneNode()</em>, <em>hasAttributes()</em>, etc. <strong>DOMElement</strong> y <strong>DOMAttr</strong> también son hijas de DOMNode. El hecho de que partan de DOMNode permite que tengan métodos y propiedades comunes a todos los nodos.</p>
+<p>La clase <strong>Usuarios</strong> nos permitirá utilizar las funcionalidades que se han nombrado antes. Todas las secciones posteriores de este artículo se centran en explicar cada funcionalidad de esta clase:</p>
+<blockquote>
+<p>class Usuarios {<br />   private $xmlPath;<br />   private $domDocument;<br />   public function __construct($xmlPath){<br />      // Instancia de DOMDocument<br />   }<br />   public function __destruct() {<br />      // Librará la memoria del DOMDocument<br />   }<br />   public function getUserById($id){<br />      // Devuelve un array con los datos de usuario<br />   }<br />   public function addUser($id, $nombre, $apellido, $ciudad, $pais, $contacto){<br />      // Añade un usuario<br />   }<br />   public function deleteUser($id){<br />      // Elimina un usuario<br />   }<br />   public function findUserByCountry($pais){<br />      // Devuelve un array de usuarios del país<br />   }<br />}</p>
+</blockquote>
+<p>Este clase es sencilla porque sólo se trata de mostrar las posibilidades de DOM. Existiría una mejor forma de trabajar con los errores, pero en este caso lanzaremos un Exception sin capturar.</p>
+<p>El constructor está diseñado para recibir la <strong>ruta del documento XML</strong>, y es necesario hacerle algunos tests.</p>
+<p>Lo primero es comprobar que el documento cargado emplea el doctype <em>usuarios</em>. Cada <strong>DOMDocument</strong> tiene la propiedad pública <em><strong>doctype</strong></em>, que devuelve el doctype utilizado por el documento XML. En este ejemplo la propiedad doctype tiene el valor de "<em>usuarios</em>".</p>
+<p>Lo segundo es asegurarse de que la definición utilizada está definida de forma correcta mediante las propiedades públicas <em><strong>systemId</strong></em> o <em><strong>publicId</strong></em>. El XML utilizado aquí está definido por un DTD <em>usuarios.dtd</em>, por lo que se comprueba comparándolo con la propiedad <em><strong>systemId</strong></em>.</p>
+<p>Lo siguiente es asegurarse de que el documento es válido junto con el DTD. Si el XML tiene DTD, es obligatorio validarlo con <em>validate()</em>.</p>
+<p>Una vez comprobado todo, guarda la <strong>referencia del documento cargado</strong> y la <strong>ruta del archivo XML</strong> como propiedades internas para poder utilizarlas en otros métodos de la clase. Si cualquiera de las comprobaciones falla, se lanza una <strong>excepción</strong>.</p>
+<blockquote>
+<p>public function __construct($xmlPath){<br />   // Cargar el documento<br />   $doc = new DOMDocument;<br />   $doc-&gt;load($xmlPath);<br />   // Comprobar si es un xml usuarios:<br />   if($doc-&gt;doctype-&gt;name != "usuarios" ||<br />      $doc-&gt;doctype-&gt;systemId != "usuarios.dtd"){<br />      throw new Exception("Tipo de documento incorrecto");<br />   }<br />   // Comprobar si es válido y well formed<br />   if($doc-&gt;validate()){<br />      $this-&gt;domDocument = $doc;<br />      $this-&gt;xmlPath = $xmlPath;<br />   } else {<br />      throw new Exception("El documento no es válido");<br />   }<br />}</p>
+</blockquote>
+<p>El <strong>método destructor</strong> libera la memoria utilizada por <em>$domDocument</em>. Es simplemente una llamada a unset para deshacer la variable:</p>
+<blockquote>
+<p>public function __destruct() {<br />   // Librará la memoria del DOMDocument<br />   unset($this-&gt;domDocument);<br />}</p>
+</blockquote>
+<p>El método <em>getUserById()</em> obtiene los <strong>detalles de un usuario en concreto</strong>. Se proporciona un ID como <em>string</em> y el método devuelve un <em>array</em> con los datos del usuario.</p>
+<p><strong>PHP DOM</strong> proporciona una función para devolver un elemento específico basado en su ID: <em>getElementById()</em>, que devuelve el objeto <strong>DOMElement</strong>. Para que funcione es necesario tener un atributo ID en el DTD:</p>
+<blockquote>
+<p>&lt;!ATTLIST usuario id ID #REQUIRED&gt;</p>
+</blockquote>
+<p>El método <em>getElementById()</em> funciona si el documento se ha validado con un DTD o con el método <em>setIdAttribute()</em>, sino la función no detectará que ese elemento tiene un ID.</p>
+<pre><code class="hljs xml"><span class="hljs-tag"></span></code></pre>
+<p>Otra forma de obtener elementos de un documento es con el método <em>getElementsByTagName()</em>. Este método devuelve una colección de nodos con el tag específico. La colección devuelta es de la clase <strong>DOMNodeList</strong>, que es <em>traversable</em>.</p>
+<p>Los objetos <strong>DOMNodeList</strong> también pueden obtenerse por su posición en la lista con <em>item()</em>. Porque <strong>DTD</strong> define un usuario que sólo puede tener un nombre, sabemos que el DOMNodeList contendrá un nodo que podrá ser accedido con <em>item(0)</em>. El DTD fortalece este hecho, y si fuera diferente en el <strong>documento xml</strong> no se validaría correctamente al crear el objeto Usuarios.</p>
+<p>Una vez encontrado el node que se buscaba, se puede obtener su valor mediante nodeValue.</p>
+<p>Para acceder a <strong>atributos</strong> se pueden emplear los <strong>atributos de la propiedad pública DOMNode</strong>, que devuelve <strong>DOMNameNodeMap</strong>. Este es similar a <strong>DOMNodeList</strong>, es traversable también, pero puedes escoger un atributo específico utilizando el método <em>getNamedItem()</em> y pasar el nombre del atributo como <em>string</em>. El valor devuelto es un <strong>DOMNode</strong>. En este ejemplo no se ha añadido porque no se han puesto atributos a los elementos (aparte de "id").</p>
+<blockquote>
+<p>public function getUserById($id){<br />   // Obtener un elemento usuario desde el ID proporcionado<br />   $usuario = $this-&gt;domDocument-&gt;getElementById($id);<br />   // Si no se obtiene ningún usuario:<br />   if(!$usuario){<br />      throw new Exception("El usuario no existe");<br />   }<br />   $arrayUsuario = array();<br />   $arrayUsuario["id"] = $id;</p>
+</blockquote>
+<p>Ahora se obtienen los datos de los elementos en función de los nombres. Estos DOMNodeLists sólo devolerán un item porque el DTD lo dice así (seguimos en la función <em>getUserById($id)</em>):</p>
+<blockquote>
+<p>   // Nombre<br />   $arrayUsuario["nombre"] = $usuario-&gt;getElementsByTagName("nombre")-&gt;item(0)-&gt;nodeValue;<br />   // Apellido<br />   $arrayUsuario["apellido"] = $usuario-&gt;getElementsByTagName("apellido")-&gt;item(0)-&gt;nodeValue;<br />   // Ciudad<br />   $arrayUsuario["ciudad"] = $usuario-&gt;getElementsByTagName("ciudad")-&gt;item(0)-&gt;nodeValue;<br />   // Pais<br />   $arrayUsuario["pais"] = $usuario-&gt;getElementsByTagName("pais")-&gt;item(0)-&gt;nodeValue;<br />   // Contacto<br />   $contacto = $usuario-&gt;getElementsByTagName("contacto");<br />   $arrayContacto = array();<br />   // Iterar sobre los elementos de contacto<br />   foreach($contacto as $contact){<br />      // Telefono<br />      $telefono = $contact-&gt;getElementsByTagName("telefono")-&gt;item(0)-&gt;nodeValue;<br />      // Email<br />      $email = $contact-&gt;getElementsByTagName("email")-&gt;item(0)-&gt;nodeValue;<br />      // Creamos un array con los valores de las formas de contacto<br />      $arrayC["telefono"] = $telefono;<br />      $arrayC["email"] = $email;<br />      // Asignamos el array al array que pasaremos finalmente a arrayUsuario<br />      $arrayContacto[] = $arrayC;<br />   }<br />   $arrayUsuario["contacto"] = $arrayContacto;<br />   return $arrayUsuario;<br />}</p>
+</blockquote>
+<p><strong>Identificar y extraer datos de un documento XML</strong> es relativamente simple. Lo más complejo es entender el concepto de nodo. Una vez comprendido, obtener datos no tiene mayor complicación.</p>
+<p>El método <em>addUser()</em> añade un nuevo usuario a la <strong>base de datos XML</strong>. El método coge las propiedades y un array de <em>contacto</em> para añadir.</p>
+<p>Una forma de hacerlo es usar el método <em>createElement()</em> para <strong>añadir un nuevo nodo al documento</strong> y establecer una referencia para poder operar con el objeto desde el momento de crearlo en adelante. Cuando se crea un elemento se debe añadir el documento. Con el método <em>createElement()</em> no se añade automáticamente. Asocia el elemento con el documento, pero no va mas allá.</p>
+<p>Se utiliza la propiedad <strong>documentElement</strong> para identificar el <strong>elemento root</strong> del <strong>documento XML</strong>. Si no se hace esto y lo añadimos directamente al documento, estaríamos añadiendo un hijo al final del documento (fuera del elemento usuarios), lo que resultaría en un error de validación.</p>
+<p>El elemento usuario debe contener un <strong>id</strong>, asi que se ha de <strong>añadir un atributo al nuevo elemento creado</strong>. Hay dos formas de hacerlo, la más sencilla es con el método <em>setAttribute()</em> que coge el <strong>nombre del atributo</strong> y el <strong>valor del atributo</strong> como argumentos. La segunda forma es crear un objeto <strong>DOMAttr</strong> y añadirlo al elemento. <strong>DOMAttr</strong> es una subclase de <strong>DOMNode</strong>, por lo que hereda todas las propiedades y métodos de ésta.</p>
+<p><em>setAttribute()</em> y <em>setAttributeNode()</em> se encargan de <strong>añadir y actualizar atributos asociados a un elemento</strong>. Si el atributo no existe se creará. Si existe se actualizará.</p>
+<p>Para proporcionar el valor de un elemento textual se recomienda usar <em><strong>DOMCdataSection()</strong></em>. Si un elemento contiene datos que se desean analizar como CDATA, no se puede indicar directamente como tal. Hay que declararlo como PCDATA, y el contenido que se quiera interpretar tiene que ir de la forma: <strong>&lt;![CDATA[...]]&gt;</strong>. Si se quiere añadir HTML directamente en un nodo, caracteres como <strong>&lt;</strong> o <strong>&amp;</strong> se convertirán en sus entidades correspondientes <strong>&lt;</strong> y <strong>&amp;</strong>. Esto es porque estos caracteres tienen un significado especial en <strong>XML</strong>. <strong>DOM</strong> los sustituye para que no causen ningun <strong>problema en la interpretación cuando se carga o valida el documento</strong>.</p>
+<p>El último paso es guardar el nuevo documento en el archivo, mediante el método <em>save()</em>.</p>
+<blockquote>
+<p>public function addUser($id, $nombre, $apellido, $ciudad, $pais, $telefono, $email){<br />   // Crear un nuevo elemento que representa el nuevo usuario<br />   $nuevoUsuario = $this-&gt;domDocument-&gt;createElement("usuario");<br />   // Añadir el nuevo elemento creado<br />   $this-&gt;domDocument-&gt;documentElement-&gt;appendChild($nuevoUsuario);<br />   /*<br />    * Establecer el atributo id se puede hacer de dos formas:<br />    * 1\. $nuevoUsuario-&gt;setAttribute("id", $id);<br />    * 2\. Se expone a continuación:<br />    */<br />   $atributoId = new DOMAttr("id", $id);<br />   $nuevoUsuario-&gt;setAttributeNode($atributoId);</p>
+</blockquote>
+<p>Ahora crearemos cada uno de los elementos con <em>createElement()</em> (en la misma función <em>addUser()</em>):</p>
+<blockquote>
+<p>   // Nombre<br />   $nombre = $this-&gt;domDocument-&gt;createElement("nombre", $nombre);<br />   $nuevoUsuario-&gt;appendChild($nombre);<br />   // Apellido<br />   $apellido = $this-&gt;domDocument-&gt;createElement("apellido", $apellido);<br />   $nuevoUsuario-&gt;appendChild($apellido);<br />   // Ciudad<br />   $ciudad = $this-&gt;domDocument-&gt;createElement("ciudad", $ciudad);<br />   $nuevoUsuario-&gt;appendChild($ciudad);<br />   // País<br />   $pais = $this-&gt;domDocument-&gt;createElement("pais", $pais);<br />   $nuevoUsuario-&gt;appendChild($pais);<br />   // Contacto<br />   $contacto = $this-&gt;domDocument-&gt;createElement("contacto");<br />   $nuevoUsuario-&gt;appendChild($contacto);<br />   // Telefono<br />   $telefono = $this-&gt;domDocument-&gt;createElement("telefono", $telefono);<br />   $contacto-&gt;appendChild($telefono);<br />   // Email<br />   $email = $this-&gt;domDocument-&gt;createElement("email", $email);<br />   $contacto-&gt;appendChild($email);<br />   // Guardar todo lo anterior<br />   $this-&gt;domDocument-&gt;save($this-&gt;xmlPath);<br />}</p>
+</blockquote>
+<p>El siguiente método es para borrar un usuario. En éste se identifica qué elemento se quiere eliminar y se usa el método <em>removeChild()</em>. Dos aspectos importantes:</p>
+<ul>
+<li>No es posible remover un hijo de una instancia <strong>DOMDocument</strong> directamente. Primero hay que acceder al <strong>documentElement</strong> y eliminar el hijo de ahí. Esto es por la misma razón por la que hay que referenciar a documentElement cuando queremos añadir un usuario.</li>
+<li>Eliminar un elemento del documento solo lo elimina de la memoria. Si quieres culminar la eliminación, se ha de guardar en el archivo.</li>
+</ul>
+<blockquote>
+<p>public function deleteUser($id){<br />   // Obtener el usuario según el ID<br />   $usuario = $this-&gt;domDocument-&gt;getElementById($id);<br />   // Eliminar el hijo<br />   $this-&gt;domDocument-&gt;documentElement-&gt;removeChild($usuario);<br />   // Guardarlo en el archivo<br />   $this-&gt;domDocument-&gt;save($this-&gt;xmlPath);<br />}</p>
+</blockquote>
+<p>El método que encuentra un usuario en función de su país de origen utiliza <a href="http://diego.com.es/xml-principios-basicos#QueEsXPath">XPath</a> para obtener los resultados. <em><strong>getElementById()</strong></em> es una forma conveniente para sacar objetos del DOM cuando existe un atributo ID dentro de un <strong>DTD</strong>. Pero si queremos consultar cualquier otro dato podemos emplear <strong>DOMXPath</strong>. La sintaxis para encontrar cualquier usuario basándonos en el país es:</p>
+<blockquote>
+<p>//usuarios/usuario/pais[text() = "pais"]/..</p>
+</blockquote>
+<p>Esta consulta primero dice que queremos acceder a un usuario en la ruta <em><strong>//usuarios/usuario</strong></em>. Las dos barras al principio indican que usuarios es el <strong>elemento root</strong>, y la barra individual que usuario es un hijo de usuarios y pais es un hijo de usuario. <em><strong>[text() = "pais"]</strong></em> indica el texto que buscamos dentro de pais. Por último, <em><strong>/..</strong></em> indica que lo que queremos obtener realmente es el usuario, no el país.</p>
+<pre><code class="hljs php"><span class="hljs-comment"></span></code></pre>
+<p><strong>XPath</strong> es una buena forma de localizar nodos en una estructura. Si estás en una situación en la que iteras varias veces con <strong>DOMNodeLists</strong> y probando <strong>nodeValues</strong> para ver los valores es posible que sea más conveniente usar <strong>XPath</strong> que será más rápido y sencillo de leer.</p>
+<blockquote>
+<p>public function findUserByCountry($pais){<br />   // Utilizamos XPath para encontrar el libro que buscamos:<br />   $query = '//usuarios/usuario/pais[text() = "' . $pais . '"]/..';<br />   // Creamos un nuevo objeto XPath y lo asociamos con el documento<br />   $xpath = new DOMXPath($this-&gt;domDocument);<br />   $resultado = $xpath-&gt;query($query);<br />   $arrayUsuarios = array();<br />   //iterar los resultados:<br />   foreach ($resultado as $usuario){<br />      // Añade el nombre de usuario al array<br />      $arrayUsuarios[] = $usuario-&gt;getElementsByTagName("nombre")-&gt;item(0)-&gt;nodeValue;<br />   }<br />   return $arrayUsuarios;<br />}</p>
+</blockquote>
+<p>Para comprobar todo lo anterior, vamos a obtener, crear, eliminar y segmentar usuarios:</p>
+<blockquote>
+<p>$user = new Usuarios('usuarios.xml');<br />$u23 = $user-&gt;getUserById("u23");<br />// Mostrar datos de un usuario<br />echo "El usuario " . $u23["nombre"] . " " . $u23["apellido"] . " es de " . $u23["pais"];<br />// Devuelve: El usuario Monnie Boddie es de Mexico<br />// Añadir un usuario:<br />$user-&gt;addUser("u44", "Jefferson", "West", "Córdoba", "Argentina", "123123", "jeff@ejemplo.com");<br />// Eliminar un usuario:<br />$user-&gt;deleteUser("u23");<br />// Encontrar un usuario por país<br />$argentinos = $user-&gt;findUserByCountry("Argentina");<br />var_dump($argentinos);<br />/*<br /> * Devuelve:<br /> * array (size=2)<br /> 0 =&gt; string 'Ted' (length=3)<br /> 1 =&gt; string 'Jefferson' (length=9)<br />*/</p>
+</blockquote>
+<p>Lo más importante es el concepto de nodo, el bloque más básico de un <strong>documento XML para DOM</strong>.</p>
+<pre><code class="hljs php"><span class="hljs-keyword"></span></code></pre>
+<pre><code class="hljs php"><span class="hljs-variable"></span></code></pre>
+<p><a href="https://www.php.net/manual/es/book.dom.php">Ver DOM en php.net</a></p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="57_filtrado_de_datos.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="59_ficheros.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>

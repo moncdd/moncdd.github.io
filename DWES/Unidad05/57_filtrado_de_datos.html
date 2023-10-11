@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>5.7. Filtrado de datos | Unidad 05 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-60"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad 05</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 5. Utilización de técnicas de acceso a datos</a></li>
+   <li><a href="51_acceso_a_bases_de_datos_desde_php.html" class="no-ch">5.1. Acceso a bases de datos desde PHP</a></li>
+   <li><a href="52_utilizacin_de_bases_de_datos_mysql_en_php.html" class="no-ch">5.2. Utilización de bases de datos MySQL en PHP</a></li>
+   <li><a href="53_extensin_mysqli.html" class="no-ch">5.3. Extensión MySQLi</a></li>
+   <li><a href="54_php_data_objects_pdo.html" class="no-ch">5.4. PHP Data Objects (PDO)</a></li>
+   <li><a href="55_errores_y_manejo_de_excepciones.html" class="no-ch">5.5. Errores y manejo de excepciones</a></li>
+   <li><a href="56_expresiones_regulares.html" class="no-ch">5.6. Expresiones regulares</a></li>
+   <li id="active"><a href="57_filtrado_de_datos.html" class="active no-ch">5.7. Filtrado de datos</a></li>
+   <li><a href="58_xml.html" class="no-ch">5.8. XML</a></li>
+   <li><a href="59_ficheros.html" class="no-ch">5.9. Ficheros</a></li>
+   <li><a href="510_encriptacin_y_contraseas.html" class="no-ch">5.10. Encriptación y contraseñas</a></li>
+   <li><a href="511_subida_y_bajada_de_archivos.html" class="no-ch">5.11. Subida y bajada de archivos</a></li>
+   <li><a href="512_paginacin.html" class="no-ch">5.12. Paginación</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="56_expresiones_regulares.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="58_xml.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">5.7. Filtrado de datos</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id154">
+<div class="iDevice emphasis0" >
+<div id="ta154_154_2" class="block iDevice_content">
+<div class="exe-text"><p>La extensión de filtrado de PHP permite validar o sanitizar los datos, especialmente cuando vienen de fuentes externas (como usuarios). La extensión se divide entre filtros de validación y en filtros de saneamiento:</p>
+<ul>
+<li>La <strong>validación,</strong> que se usa para validar o comprobar si los datos cumplen ciertos requisitos. Por ejemplo, pasándole FILTER_VALIDATE_EMAIL determinará si los datos son una dirección de correo válida, pero no realizará ningún cambio en los datos.</li>
+<li>El <strong>saneamiento,</strong> que limpiará los datos, de modo que los modificará eliminando los caracteres no deseados. Por ejemplo, pasándole FILTER_SANITIZE_EMAIL eliminará los caracteres que no son apropiados para una dirección de correo electrónico. Sin embargo, no valida los datos.</li>
+</ul>
+<p>Las <strong>banderas</strong> u <strong>opciones de filtrado </strong>sirven para modificar el comportamiento en el saneamiento o la validación según las necesidades. Por ejemplo, si se pasa <strong>FILTER_FLAG_PATH_REQUIRED</strong> en una url, se exige que se precise una ruta concreta: <em>/seccion</em> en <em>http://www.ejemplo.com/seccion</em>.</p>
+<p>Existen diferentes funciones de filtrado:</p>
+<ul>
+<li>filter_list. Devuelve un <em><strong>array</strong></em> con todos los <strong>filtros</strong> soportados.</li>
+</ul>
+<ul>
+<li>filter_var. Filtra una variable <em>$variable</em> con el filtro indicado en <em>$filter</em>. El filtro por defecto <strong>FILTER_DEFAULT</strong> equivale a <strong>FILTER_UNSAFE_RAW</strong>, y no filtra realmente nada.</li>
+</ul>
+<blockquote>
+<p>// EJEMPLO 1<br />$var = filter_var('hola', FILTER_VALIDATE_BOOLEAN); // Valor: FALSE<br />// EJEMPLO 2<br />$opciones = array(<br />   'options' =&gt; array(<br />      'default' =&gt; 3, // Valor a devolver si falla el filtro<br />      'min_range' =&gt; 0<br />   ),<br />   'flags' =&gt; FILTER_FLAG_ALLOW_OCTAL,<br />);<br />$var = filter_var('12345', FILTER_VALIDATE_INT, $opciones); // Valor: 12345</p>
+</blockquote>
+<pre><code class="hljs php"><span class="hljs-comment"></span></code></pre>
+<blockquote>
+<p>Si se quiere <strong>validar el integer 0</strong> con <strong>FILTER_VALIDATE_INT</strong> devuelve que "Integer is not valid". Para solucionar esto:</p>
+<p>$int = 0;<br />if (filter_var($int, FILTER_VALIDATE_INT) === 0 || !filter_var($int, FILTER_VALIDATE_INT) === false) {<br />echo("El integer es válido");<br />} else {<br />echo("El integer NO es válido");<br />}</p>
+<p>Para asegurarnos de que <strong>un string es un email</strong>, con la <strong>extensión de filtrado de PHP</strong> podemos <strong>sanitizar y validar un email</strong>:</p>
+<p>$email = "nombre@ejemplo.com";<br />// Primero eliminamos cualquier carácter que pueda dar problemas<br />$email = filter_var($email, FILTER_SANITIZE_EMAIL);<br />// Luego validamos el email<br />if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {<br />   echo("$email es una dirección de email válida");<br />} else {<br />   echo("$email NO es una dirección de email válida");<br />}</p>
+<p>También podemos <strong>sanitizar y validar una URL</strong>:</p>
+<p>$url = "http://www.google.com";<br />// Eliminar cualquier carácter que pueda dar problemas<br />$url = filter_var($url, FILTER_SANITIZE_URL);<br />// Luego validamos la URL<br />if (!filter_var($url, FILTER_VALIDATE_URL) === false) {<br />   echo("$url es una URL válida");<br />} else {<br />   echo("$url no es una URL válida");<br />}</p>
+</blockquote>
+<pre><code class="hljs php"><span class="hljs-variable"></span></code></pre>
+<ul>
+<li>filter_var_array. Devuelve los datos del array <em>$data</em> y opcionalmente los filtra. <em>$definition</em> puede ser otro <em>array</em> que define <strong>filtros específicos</strong> para cada uno de los elementos de <em>$data</em>, o simplemente una constante de filtro como FILTER_VALIDATE_URL, por ejemplo.</li>
+</ul>
+<blockquote>
+<p>$inputs = ["&lt;a&gt;perro&lt;/a&gt;", "gato"];<br />$animales = filter_var_array($inputs, FILTER_SANITIZE_STRING);<br />var_dump($inputs);<br />/*<br />   Devuelve<br />   array (size=2)<br />   0 =&gt; string '&lt;a&gt;perro&lt;/a&gt;' (length=38)<br />   1 =&gt; string 'gato' (length=4)<br />*/<br />var_dump($animales);<br />/*<br />   Devuelve<br />   array (size=2)<br />   0 =&gt; string 'perro' (length=5)<br />   1 =&gt; string 'gato' (length=4)<br />*/</p>
+</blockquote>
+<ul>
+<li>filter_input. Toma una <strong>variable externa</strong> de un determinado tipo y opcionalmente la <strong>filtra</strong>. Estas variables pueden venir de $_GET, $_POST, $_COOKIE, $_SERVER, $_ENV, por lo que type deberá ser uno de los siguientes valores: INPUT_GET, INPUT_POST, INPUT_COOKIE, INPUT_SERVER o INPUT_ENV. Los filtros y opciones funcionan de la misma forma que en las funciones anteriores.</li>
+</ul>
+<blockquote>
+<p>$busqueda = filter_input(INPUT_GET, 'buscar', FILTER_SANITIZE_SPECIAL_CHARS);<br />$url = filter_input(INPUT_GET, 'buscar', FILTER_SANITIZE_ENCODED);<br />echo "Has buscado $busqueda.\n";<br />echo "Buscar otra vez";<br />// Ejemplo con "5f F$ "·$ %!"<br />// Busqueda: 5f F$ "·$ %!<br />// URL: 5f%20F%24%20"·%24%20%25%21</p>
+</blockquote>
+<pre><code class="hljs php"><span class="hljs-variable"></span></code></pre>
+<ul>
+<li>filter_input_array. Obtiene <strong>variables externas</strong> de un determinado tipo (GET, POST...) y opcionalmente las filtra. Es igual que <strong>filter_input</strong> pero permite facilitar un <em>array</em> <em>$definition</em> para filtrar todos los valores de un array externo de vez.</li>
+</ul>
+<blockquote>
+<p>&lt;form action="index.php" method="post"&gt;<br />Nombre de usuario: &lt;input type="text" name="usuario"&gt;&lt;br&gt;<br />Email: &lt;input type="text" name="email"&gt;&lt;br&gt;<br />Enviar &lt;input type="submit" name="enviar"&gt;<br />&lt;/form&gt;<br />&lt;?php<br />if(isset($_POST['enviar'])) {<br />   $usuario = filter_input_array(INPUT_POST, FILTER_SANITIZE_ENCODED);<br />   var_dump($usuario);<br />}<br />/* Si pasamos:<br />usuario = diego&lt;a href&gt;<br />email = diego@ejemplo.com'$"<br />Devuelve:<br />array (size=3)<br />'usuario' =&gt; string 'diego%3Ca%20href%3E' (length=19)<br />'email' =&gt; string 'diego%40ejemplo.com%27%24%22' (length=28)<br />'enviar' =&gt; string 'Submit' (length=6)<br />*/</p>
+</blockquote>
+<ul>
+<li>filter_has_var. Comprueba si existe una variable en un tipo concreto (GET, POST, COOKIE...)</li>
+</ul>
+<blockquote>
+<p>$_GET['hey'] = "hola";<br />echo filter_has_var(INPUT_GET, 'hey') ? 'Si' : 'No';<br />// No devolverá 'Sí' a no ser que accedas desde URL con<br />// el parámetro hey y el valor hola:<br />// http://ejemplo.com/index.php?hey=hola</p>
+</blockquote>
+<pre><code class="hljs php"><span class="hljs-variable"></span></code></pre>
+<p>Las constantes de filtrado son:</p>
+<table border="1" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th>Constante</th>
+<th>Validación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FILTER_VALIDATE_BOOLEAN</td>
+<td>Valida un booleano</td>
+</tr>
+<tr>
+<td>FILTER_VALIDATE_EMAIL</td>
+<td>Valida una dirección de email</td>
+</tr>
+<tr>
+<td>FILTER_VALIDATE_FLOAT</td>
+<td>Valida un float</td>
+</tr>
+<tr>
+<td>FILTER_VALIDATE_INT</td>
+<td>Valida un integer</td>
+</tr>
+<tr>
+<td>FILTER_VALIDATE_IP</td>
+<td>Valida una dirección IP</td>
+</tr>
+<tr>
+<td>FILTER_VALIDATE_REGEXP</td>
+<td>Valida una expresión regular</td>
+</tr>
+<tr>
+<td>FILTER_VALIDATE_URL</td>
+<td>Valida una URL</td>
+</tr>
+<tr>
+<td>FILTER_SANITIZE_EMAIL</td>
+<td>Elimina caracteres peligrosos de una dirección de email</td>
+</tr>
+<tr>
+<td>FILTER_SANITIZE_ENCODED</td>
+<td>Elimina caracteres especiales</td>
+</tr>
+<tr>
+<td>FILTER_SANITIZE_MAGIC_QUOTES</td>
+<td>Hace lo mismo que la función addslashes()</td>
+</tr>
+<tr>
+<td>FILTER_SANITIZE_NUMBER_FLOAT</td>
+<td>Elimina todo menos dígitos, +, - y opcionalmente .,eE</td>
+</tr>
+<tr>
+<td>FILTER_SANITIZE_NUMBER_INT</td>
+<td>Elimina todo menos dígitos</td>
+</tr>
+<tr>
+<td>FILTER_SANITIZE_SPECIAL_CHARS</td>
+<td>Elimina caracteres especiales</td>
+</tr>
+<tr>
+<td>FILTER_SANITIZE_STRING</td>
+<td>Elimina etiquetas y caracteres especiales de un string</td>
+</tr>
+<tr>
+<td>FILTER_SANITIZE_STRIPPED</td>
+<td>Alias de FILTER_SANITIZE_STRING</td>
+</tr>
+<tr>
+<td>FILTER_SANITIZE_URL</td>
+<td>Elimina caracteres peligrosos de una URL</td>
+</tr>
+<tr>
+<td>FILTER_UNSAFE_RAW</td>
+<td>No hace nada, igual que FILTER_DEFAULT</td>
+</tr>
+<tr>
+<td>FILTER_CALLBACK</td>
+<td>Llama a una función callback definida por el usuario</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://www.php.net/manual/es/book.filter.php">Ver filter en php.net</a></p>
+<p><a href="https://www.php.net/manual/es/ref.filter.php">Ver funciones filter en php.net</a></p>
+<p><a href="https://www.php.net/manual/es/filter.filters.validate.php">Ver filtros de validación en php.net</a></p>
+<p><a href="https://www.php.net/manual/es/filter.filters.sanitize.php">Ver filtros de saneamiento en php.net</a></p></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="56_expresiones_regulares.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="58_xml.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>

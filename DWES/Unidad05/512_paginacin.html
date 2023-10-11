@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>5.12. Paginación | Unidad 05 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-65"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad 05</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 5. Utilización de técnicas de acceso a datos</a></li>
+   <li><a href="51_acceso_a_bases_de_datos_desde_php.html" class="no-ch">5.1. Acceso a bases de datos desde PHP</a></li>
+   <li><a href="52_utilizacin_de_bases_de_datos_mysql_en_php.html" class="no-ch">5.2. Utilización de bases de datos MySQL en PHP</a></li>
+   <li><a href="53_extensin_mysqli.html" class="no-ch">5.3. Extensión MySQLi</a></li>
+   <li><a href="54_php_data_objects_pdo.html" class="no-ch">5.4. PHP Data Objects (PDO)</a></li>
+   <li><a href="55_errores_y_manejo_de_excepciones.html" class="no-ch">5.5. Errores y manejo de excepciones</a></li>
+   <li><a href="56_expresiones_regulares.html" class="no-ch">5.6. Expresiones regulares</a></li>
+   <li><a href="57_filtrado_de_datos.html" class="no-ch">5.7. Filtrado de datos</a></li>
+   <li><a href="58_xml.html" class="no-ch">5.8. XML</a></li>
+   <li><a href="59_ficheros.html" class="no-ch">5.9. Ficheros</a></li>
+   <li><a href="510_encriptacin_y_contraseas.html" class="no-ch">5.10. Encriptación y contraseñas</a></li>
+   <li><a href="511_subida_y_bajada_de_archivos.html" class="no-ch">5.11. Subida y bajada de archivos</a></li>
+   <li id="active"><a href="512_paginacin.html" class="active no-ch">5.12. Paginación</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="511_subida_y_bajada_de_archivos.html" class="prev"><span><span>&laquo; </span>Anterior</span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">5.12. Paginación</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id172">
+<div class="iDevice emphasis0" >
+<div id="ta172_172_2" class="block iDevice_content">
+<div class="exe-text"><p>PHP se utiliza principalmente para almacenar y mostrar datos de una base de datos. Es posible que una consulta SELECT devuelva millones de tuplas. No es una buena idea mostrar todas las tuplas en una sola página. Una gran lista de registros en una sola página puede tomar tanto tiempo para cargar la página y también consumir tiempo para encontrar datos específicos. Esto puede causar confusión en el usuario. Por lo tanto, se recomienda dividir los registros en varias páginas de acuerdo con las peticiones del usuario.</p>
+<p>La paginación es una forma de mostrar los datos en varias páginas en lugar de ponerlos en una sola página. La paginación ayuda a dividir los registros en varias páginas, lo que hace que los datos sean más legibles y comprensibles. La paginación es una tarea común para los desarrolladores de PHP. MySQL ayuda al desarrollador a crear la paginación mediante el uso de la cláusula LIMIT, que toma dos argumentos. El primer argumento como OFFSET y el segundo argumento es el número de registros que volverán de la base de datos.</p></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id173">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.12.1. Ventajas y desventajas de la paginación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta173_173_2" class="block iDevice_content">
+<div class="exe-text"><ul>
+<li>Ventajas de la Paginación<br />
+<ul>
+<li>La paginación es muy útil en proyectos a gran escala porque hace que el trabajo web sea más profesional. No sólo más profesional, sino que también hace que la página web funcione mucho más rápido, preciso y eficiente.</li>
+<li>Con la ayuda de la paginación, podemos guardar el tiempo de carga de una página dividiendo los datos en varias páginas. Nos ahorra cargar mucha información a la vez.</li>
+<li>El uso de la paginación mejora la experiencia del usuario, los ingresos publicitarios y la disminución del tiempo de carga de la página.</li>
+</ul>
+</li>
+<li>Desventajas de la Paginación
+<ul>
+<li>La propia paginación es un gran sobrecarga en PHP, que es una de las desventajas de la paginación.</li>
+<li>La paginación puede ser la causa del bajo ranking en los motores de búsqueda porque cuando una página está lejos de la página de inicio y requiere varios clics, por lo general no consigue un rango alto de página.</li>
+<li>También limita el número de enlaces, acciones sociales, número total de resultados a visibles en la página web, y el texto de anclaje que una página recibe cuando la información se divide en varias páginas.</li>
+</ul>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id174">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">5.12.2.</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta174_174_2" class="block iDevice_content">
+<div class="exe-text"><p>Para implementar la paginación, requiere un gran conjunto de datos para aplicar paginación a ella. Por lo tanto, primero necesitamos crear una base de datos y una tabla. Después de eso, proporcionar los registros en la tabla y comenzar a codificar para crear paginación. Para que los datos que se obtienen de la base de datos se pueden dividir a través de varias páginas.</p>
+<p>Los pasos para crear paginación son:</p>
+<ol>
+<li>Crear una base de datos y una tabla.</li>
+<li>Proporcionar una lista de los registros en la tabla.</li>
+<li>Conectar con la base de datos MySQL.</li>
+<li>Crear el enlace de paginación para dividir los datos en varias páginas y añadirlos a la parte inferior de la tabla.</li>
+<li>Traer datos de la base de datos y visualizarlos en las múltiples páginas.</li>
+</ol>
+<p>Lo más importante para realizar la paginación es la sentencia SQL de MySQL:</p>
+<blockquote>
+<p>$query = "SELECT *FROM table LIMIT " . $page_first_result . ',' . $results_per_page;  </p>
+</blockquote></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="511_subida_y_bajada_de_archivos.html" class="prev"><span><span>&laquo; </span>Anterior</span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>
