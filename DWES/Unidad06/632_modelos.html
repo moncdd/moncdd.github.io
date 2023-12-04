@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>6.3.2. Modelos | Unidad 06 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-91"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad 06</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 6. Generación dinámica de páginas web</a></li>
+   <li><a href="61_paradigma_de_la_programacin_orientada_a_objetos.html" class="daddy">6.1. Paradigma de la Programación Orientada a Objetos</a>
+   <ul class="other-section">
+      <li><a href="611_clases_y_objetos.html" class="no-ch">6.1.1. Clases y objetos</a></li>
+      <li><a href="612_propiedades.html" class="no-ch">6.1.2. Propiedades</a></li>
+      <li><a href="613_constantes.html" class="no-ch">6.1.3. Constantes</a></li>
+      <li><a href="614_constructores_y_destructores.html" class="no-ch">6.1.4. Constructores y destructores</a></li>
+      <li><a href="615_herencia.html" class="no-ch">6.1.5. Herencia</a></li>
+      <li><a href="616_operador_de_resolucin_de_mbito_.html" class="no-ch">6.1.6. Operador de Resolución de Ámbito (::)</a></li>
+      <li><a href="617_abstraccin_de_clases.html" class="no-ch">6.1.7. Abstracción de clases</a></li>
+      <li><a href="618_interfaces.html" class="no-ch">6.1.8. Interfaces</a></li>
+      <li><a href="619_mtodos_mgicos.html" class="no-ch">6.1.9. Métodos mágicos</a></li>
+      <li><a href="6110_final.html" class="no-ch">6.1.10. Final</a></li>
+      <li><a href="6111_clonacin_de_objetos.html" class="no-ch">6.1.11. Clonación de objetos</a></li>
+      <li><a href="6112_comparacin_de_objetos.html" class="no-ch">6.1.12. Comparación de objetos</a></li>
+      <li><a href="6113_namespaces_y_use.html" class="no-ch">6.1.13. Namespaces y Use</a></li>
+   </ul>
+   </li>
+   <li><a href="62_object_relational_mapping.html" class="daddy">6.2. Object Relational Mapping</a>
+   <ul class="other-section">
+      <li><a href="621_persistencia_de_objetos.html" class="no-ch">6.2.1. Persistencia de objetos</a></li>
+      <li><a href="622_obtener_todos_los_objetos.html" class="no-ch">6.2.2. Obtener todos los objetos</a></li>
+      <li><a href="623_obtener_un_objeto.html" class="no-ch">6.2.3. Obtener un objeto</a></li>
+      <li><a href="624_guardar_el_estado_del_objeto.html" class="no-ch">6.2.4. Guardar el estado del objeto</a></li>
+   </ul>
+   </li>
+   <li class="current-page-parent"><a href="63_modelviewcontroller_mvc.html" class="current-page-parent daddy">6.3. Model-View-Controller (MVC)</a>
+   <ul>
+      <li><a href="631_entendiendo_el_funcionamiento_de_mvc.html" class="no-ch">6.3.1. Entendiendo el funcionamiento de MVC</a></li>
+      <li id="active"><a href="632_modelos.html" class="active no-ch">6.3.2. Modelos</a></li>
+      <li><a href="633_vistas.html" class="no-ch">6.3.3. Vistas</a></li>
+      <li><a href="634_lgica_de_negocio_de_las_vistas.html" class="no-ch">6.3.4. Lógica de negocio de las vistas</a></li>
+      <li><a href="635_controlador.html" class="no-ch">6.3.5. Controlador</a></li>
+      <li><a href="636_urls_amigables.html" class="no-ch">6.3.6. URLs amigables</a></li>
+   </ul>
+   </li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="631_entendiendo_el_funcionamiento_de_mvc.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="633_vistas.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">6.3.2. Modelos</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id206">
+<div class="iDevice emphasis0" >
+<div id="ta206_203_2" class="block iDevice_content">
+<div class="exe-text"><p>Un modelo, en MVC, es una clase. Como patrón que guía nuestras arquitecturas, MVC nos obliga a escribir clases “puras” que respeten el verdadero espíritu de la orientación a objetos:</p>
+<ol>
+<li>Una clase, debe representar solo y únicamente, un “modelo” para crear un objeto único.</li>
+<li>Las propiedades de un objeto, siempre deberán ser -solo y únicamente- “sustantivos” cuyo valor, pueda ser definido por una cualidad o más de una.</li>
+<li>Cuando una propiedad, sea definida por más de una cualidad, deberá considerarse la opción de componer el objeto: dicha propiedad, adquirirá las cualidades de otro objeto.</li>
+<li>Las propiedades no compuestas del objeto -mayormente-, deben poder modificarse de forma directa, sin necesidad de requerir la llamada a un método.</li>
+<li>Las propiedades compuestas -mayormente-, deberán contener un método -en la clase- del tipo set_propiedad(Objeto $objeto) para ser modificadas.</li>
+<li>Los métodos de un objeto, deberán ser “acciones” intrínsecas del objeto y jamás, podrán representar acciones genéricas, que puedan ser consideradas ajenas al objeto.</li>
+<li>Solo los modelos, podrán interactuar con la base de datos. No se podrá acceder a una base de datos, desde un ámbito externo a los modelos.</li>
+<li>Preferentemente, cada modelo accederá a la base de datos, mediante otro objeto- conector (capa de abstracción que pertenecerá al núcleo de la aplicación).</li>
+</ol></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id207">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">Acceso a bases de datos</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta207_204_2" class="block iDevice_content">
+<div class="exe-text"><p>Un “objeto-conector” a nivel del core, que actúe como intermediario entre los modelos y la base de datos, será muy recomendable para respetar el verdadero espíritu del patrón arquitectónico MVC.</p>
+<p>Este objeto, será una clase preferentemente estática. Es decir, que no necesitará ser instanciada para hacer uso de los métodos destinados a acceder a las bases de datos.</p></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id208">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle">Object Relational Mapping (ORM)</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta208_205_2" class="block iDevice_content">
+<div class="exe-text"><p>El Mapeo Relacional de Objetos (Object Relational Mapping) es una técnica de programación que nos permite vincular los objetos (modelos) de nuestra aplicación, con una base de datos relacional, otorgándonos de manera colateral, una abstracción completa entre los modelos y el motor de la base de datos.</p>
+<p>Sin dudas, las principales ventajas del ORM -en orden de prioridades-, son:</p>
+<ol>
+<li>Independizar los modelos de las bases de datos, lo cual nos obliga a razonar nuestra aplicación, 100% orientada a objetos (ya no pensaremos en como crear las<br />tablas, solo crearemos nuestros modelos -modelar la app-).</li>
+<li>Independencia del motor de base de datos: este punto es fundamental, ya que un buen ORM debe ser capaz de mapear los modelos de forma tal que las llamadas a sus métodos, sean capaces de conectarse a cualquier tipo de base de datos y general consultas con el lenguaje SQL de la misma. Esta característica, es la que permite una mayor portabilidad de la aplicación.</li>
+<li>Acelera el proceso de desarrollo, puesto que se ahorra tiempo tanto en la creación y diseño de las bases de datos como en la escritura de las consultas.</li>
+</ol>
+<p>Sin embargo, la utilización de ORM, trae aparejadas ciertas desventajas que no pueden ser obviadas al momento de tomar una decisión:</p>
+<ul>
+<li>Lenguaje de consulta propio: la mayoría de las librerías ORM disponibles en el mercado, poseen su propio lenguaje de consulta a bases de datos. Esta característica, que erróneamente es considerada una ventaja por muchos autores (debido al escaso conocimiento del lenguaje SQL) genera una pseudoabstracción (o abstracción falaz) que induce a errores en el modelado de objetos, puesto que estos pseudolenguajes que ofrecen los ORM, no son más que una especie de “lenguaje SQL resumido”.</li>
+<li>Reduce el rendimiento de la aplicación, puesto que el proceso de conversión desde el pseudo-lenguaje al lenguaje SQL de la base de datos y el de ésta a objetos, demanda un mayor consumo de recursos.</li>
+<li>Baja escalabilidad: también derivado del uso de pseudo-lenguajes de consulta propio, cuanto más robusta y compleja se va haciendo una aplicación, mayor<br />necesidad tendrá el programador, de escribir consultas en lenguaje SQL “crudo”.</li>
+</ul>
+<p>En PHP, existen prestigiosos frameworks ORM, que podríamos utilizar en nuestra aplicaciones. Entre los más destacados, podremos encontrar:</p>
+<ul>
+<li>Doctrine: <a href="http://www.doctrine-project.org/">http://www.doctrine-project.org/</a></li>
+<li>Propel: <a href="http://www.propelorm.org/">http://www.propelorm.org/</a></li>
+<li>Eloquent: <a href="https://laravel.com/docs/10.x/eloquent">https://laravel.com/docs/10.x/eloquent</a></li>
+<li>Entre otros.</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="631_entendiendo_el_funcionamiento_de_mvc.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="633_vistas.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>

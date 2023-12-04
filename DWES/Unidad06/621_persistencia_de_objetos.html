@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>6.2.1. Persistencia de objetos | Unidad 06 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-82"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad 06</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 6. Generación dinámica de páginas web</a></li>
+   <li><a href="61_paradigma_de_la_programacin_orientada_a_objetos.html" class="daddy">6.1. Paradigma de la Programación Orientada a Objetos</a>
+   <ul class="other-section">
+      <li><a href="611_clases_y_objetos.html" class="no-ch">6.1.1. Clases y objetos</a></li>
+      <li><a href="612_propiedades.html" class="no-ch">6.1.2. Propiedades</a></li>
+      <li><a href="613_constantes.html" class="no-ch">6.1.3. Constantes</a></li>
+      <li><a href="614_constructores_y_destructores.html" class="no-ch">6.1.4. Constructores y destructores</a></li>
+      <li><a href="615_herencia.html" class="no-ch">6.1.5. Herencia</a></li>
+      <li><a href="616_operador_de_resolucin_de_mbito_.html" class="no-ch">6.1.6. Operador de Resolución de Ámbito (::)</a></li>
+      <li><a href="617_abstraccin_de_clases.html" class="no-ch">6.1.7. Abstracción de clases</a></li>
+      <li><a href="618_interfaces.html" class="no-ch">6.1.8. Interfaces</a></li>
+      <li><a href="619_mtodos_mgicos.html" class="no-ch">6.1.9. Métodos mágicos</a></li>
+      <li><a href="6110_final.html" class="no-ch">6.1.10. Final</a></li>
+      <li><a href="6111_clonacin_de_objetos.html" class="no-ch">6.1.11. Clonación de objetos</a></li>
+      <li><a href="6112_comparacin_de_objetos.html" class="no-ch">6.1.12. Comparación de objetos</a></li>
+      <li><a href="6113_namespaces_y_use.html" class="no-ch">6.1.13. Namespaces y Use</a></li>
+   </ul>
+   </li>
+   <li class="current-page-parent"><a href="62_object_relational_mapping.html" class="current-page-parent daddy">6.2. Object Relational Mapping</a>
+   <ul>
+      <li id="active"><a href="621_persistencia_de_objetos.html" class="active no-ch">6.2.1. Persistencia de objetos</a></li>
+      <li><a href="622_obtener_todos_los_objetos.html" class="no-ch">6.2.2. Obtener todos los objetos</a></li>
+      <li><a href="623_obtener_un_objeto.html" class="no-ch">6.2.3. Obtener un objeto</a></li>
+      <li><a href="624_guardar_el_estado_del_objeto.html" class="no-ch">6.2.4. Guardar el estado del objeto</a></li>
+   </ul>
+   </li>
+   <li><a href="63_modelviewcontroller_mvc.html" class="daddy">6.3. Model-View-Controller (MVC)</a>
+   <ul class="other-section">
+      <li><a href="631_entendiendo_el_funcionamiento_de_mvc.html" class="no-ch">6.3.1. Entendiendo el funcionamiento de MVC</a></li>
+      <li><a href="632_modelos.html" class="no-ch">6.3.2. Modelos</a></li>
+      <li><a href="633_vistas.html" class="no-ch">6.3.3. Vistas</a></li>
+      <li><a href="634_lgica_de_negocio_de_las_vistas.html" class="no-ch">6.3.4. Lógica de negocio de las vistas</a></li>
+      <li><a href="635_controlador.html" class="no-ch">6.3.5. Controlador</a></li>
+      <li><a href="636_urls_amigables.html" class="no-ch">6.3.6. URLs amigables</a></li>
+   </ul>
+   </li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="62_object_relational_mapping.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="622_obtener_todos_los_objetos.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">6.2.1. Persistencia de objetos</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id193">
+<div class="iDevice emphasis0" >
+<div id="ta193_193_2" class="block iDevice_content">
+<div class="exe-text"><p>Para que el ORM se entere de que una nueva entidad se debe introducir en la base de datos, se ha de llamar al método persist(). Para que finalmente esta entidad sea creada en la base de datos, se utiliza flush().</p>
+<blockquote>
+<p>$product = new Product();<br />$product-&gt;setName("producto");</p>
+<p>$orm-&gt;persist($product);<br />$orm-&gt;flush($product);</p>
+</blockquote>
+<p>El hecho de que haya dos métodos, persist y flush, permite agregar diferentes artículos por separado en una sola transacción, ejecutada mediante flush().</p></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="62_object_relational_mapping.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="622_obtener_todos_los_objetos.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>
