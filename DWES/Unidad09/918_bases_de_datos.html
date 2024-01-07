@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>9.1.8. Bases de datos | Unidad 09 </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-113"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Unidad 09</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Unidad 9. Desarrollo de aplicaciones web híbridas</a></li>
+   <li class="current-page-parent"><a href="91_tecnologas_y_frameworks.html" class="current-page-parent daddy">9.1. Tecnologías y frameworks.</a>
+   <ul>
+      <li><a href="911_instalacin_de_symfony_en_xampp.html" class="no-ch">9.1.1. Instalación de Symfony en XAMPP</a></li>
+      <li><a href="912_estructura_de_directorios.html" class="no-ch">9.1.2. Estructura de directorios</a></li>
+      <li><a href="913_controladores.html" class="no-ch">9.1.3. Controladores</a></li>
+      <li><a href="914_rutas.html" class="no-ch">9.1.4. Rutas</a></li>
+      <li><a href="915_redireccin.html" class="no-ch">9.1.5. Redirección</a></li>
+      <li><a href="916_plantillas_twig.html" class="no-ch">9.1.6. Plantillas (Twig)</a></li>
+      <li><a href="917_servicios.html" class="no-ch">9.1.7. Servicios</a></li>
+      <li id="active"><a href="918_bases_de_datos.html" class="active no-ch">9.1.8. Bases de datos</a></li>
+      <li><a href="919_formularios.html" class="no-ch">9.1.9. Formularios</a></li>
+      <li><a href="9110_seguridad_usuarios_y_roles.html" class="no-ch">9.1.10. Seguridad, usuarios y roles</a></li>
+      <li><a href="9111_documentacin_oficial.html" class="no-ch">9.1.11. Documentación oficial</a></li>
+   </ul>
+   </li>
+   <li><a href="92_aplicaciones_web_hbridas.html" class="no-ch">9.2. Aplicaciones web híbridas</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="917_servicios.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="919_formularios.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">9.1.8. Bases de datos</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id238">
+<div class="iDevice emphasis0" >
+<div id="ta238_238_2" class="block iDevice_content">
+<div class="exe-text"><p>Aunque se pueden usar otros, Doctrine es el ORM por defecto de Symfony. La configuración de la base de datos se introduce en el fichero .env</p>
+<p>Los ORM liberan al programador de muchas tareas, generando el código necesario para comunicarse con la base de datos. Proporcionan un nivel de abstracción adicional que permite integrar diferentes orígenes de datos con un lenguaje común y facilita la reusabilidad del código.</p>
+<p>El elemento básico de Doctrine son las entidades. Las entidades son clases que están asociadas con la base de datos. Los atributos de estas clases son persistentes, es decir, se almacenan en una base de datos.</p>
+<p>La relación entre entidades y la base de datos se describe mediante metadatos que pueden añadirse con anotaciones en la propia entidad o en un fichero externo. En general, las anotaciones tienen que especificar:</p>
+<ul>
+<li>La tabla con la que está mapeada la entidad</li>
+<li>La columna con la que está mapeado cada atributo persistente</li>
+<li>Las modificaciones de cada atributo (p.e. AUTO_INCREMENT)</li>
+<li>Las asociaciones con otras entidades. Las asociaciones son la contraparte de las foreign key.</li>
+</ul>
+<p>Hay varios tipos de asociaciones que se diferencia por:</p>
+<ul>
+<li>Cardinalidad: muchos a uno, uno a muchos, uno a uno, muchos a muchos</li>
+<li>Direccionalidad: unidireccionales o bidireccionales</li>
+<li>Si incluyen una referencia a la propia entidad</li>
+</ul>
+<p>Las consultas que se pueden realizar se obtienen de un repositorio. Algunas de las consultas disponibles son:</p>
+<ul>
+<li>findBy: utiliza criterios de búsqueda que se introducen en un array</li>
+<li>findOneBy: igual que el anterior pero devolviendo un solo resultado</li>
+<li>findAll: devuelve todas las filas de una tabla asociada</li>
+</ul>
+<p>Doctrine también tiene su propio lenguaje de consultas, se llama <strong>Doctrine Query Language (DQL)</strong> y es bastante parecido a SQL.</p>
+<p></p></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="917_servicios.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="919_formularios.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_intef_js.js"></script></body></html>
